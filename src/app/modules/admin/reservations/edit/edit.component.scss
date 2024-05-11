@@ -1,0 +1,52 @@
+.custom-mat-form-field-1 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+.custom-mat-form-field-2 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+
+.desglose {
+    text-transform: capitalize;
+  }
+
+  .notAllowed{
+    cursor: not-allowed!important;
+}
+
+
+
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+    }
+    
+    .example-right-align {
+    text-align: right;
+    }
+    
+    input.example-right-align::-webkit-outer-spin-button,
+    input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+    }
+    
+    input.example-right-align {
+    -moz-appearance: textfield;
+    }
+
+    .estatus_asistentes{
+        // background-color: #4f46e5;    
+        padding: 5px 25px;
+        border-radius: 13px;               
+        color: white;
+    }
+    
+    @media (min-width: 360px) and (max-width: 1401px) {
+        .btn-estatus > span{
+            padding: 5px 25px;              
+        }
+        // .estatus_asistentes{
+        //     font-size: 10px;
+        //     margin: 5px -30px;    
+        // }
+    }

@@ -1,0 +1,214 @@
+//asignar el tipo de fuente {
+h1, h2, h3, h4, h5, p, span, a, option, select {
+    font-family: 'Poppins', sans-serif;
+}
+
+owl-carousel-o {
+    width: 100%;
+}
+
+.img-logo {
+    width: 123px;
+    height: 123px;
+}
+.duracion-event {
+    font-weight: 600;
+    font-size: 24px;
+}
+.name-event {
+    font-weight: 700;
+    font-size: 24px;
+}
+.description-event {
+    font-weight: 300;
+    font-size: 20px;
+}
+.text-day {
+    font-weight: 700;
+    font-size: 64px;
+}
+.text-day-content {
+    font-weight: 600;
+    font-size: 16px;
+}
+.gallery-hotel {
+    height: 592px;
+}
+.gallery-hotel .img-1 {
+    width: 39%;
+    height: 592px;
+    margin-right: 1.5%;
+}
+.gallery-hotel .second-column {
+    width: 30%;
+    margin-right: 1.5%;
+}
+.gallery-hotel .third-column {
+    width: 28%;
+}
+.gallery-hotel .img-2 {
+    width: 100%;
+    height: 279px;
+    margin-bottom: 31px;
+    margin-right: 1.5%;
+}
+.gallery-hotel .img-3 {
+    width: 100%;
+    height: 282px;
+    margin-right: 1.5%;
+}
+.gallery-hotel .img-4 {
+    width: 100%;
+    height: 355px;
+    margin-bottom: 24px;
+}
+.gallery-hotel .img-5 {
+    width: 100%;
+    height: 213px;
+}
+.hotel-title-description {
+    font-weight: 700;
+    font-size: 14px;
+}
+.hotel-description {
+    font-weight: 500;
+    font-size: 14px;
+}
+.hotel-services {
+    font-weight: 400;
+    font-size: 14px;
+}
+.hotel-name {
+    font-weight: 600;
+    font-size: 24px;
+}
+.text-download-program {
+    font-weight: 600;
+    font-size: 20px;
+}
+.text-select-program {
+    font-weight: 500;
+    font-size: 18.2px;
+}
+.text-que-incluye {
+    font-weight: 700;
+    font-size: 32px;
+}
+.list-que-incluye {
+    font-weight: 400;
+    font-size: 24px;
+}
+.text-button-reservar {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+iframe {
+    border-radius: 1.5rem;
+}
+
+/*responsive secction*/
+/*pc, laptop*/
+@media only screen and (min-width: 1280px) {
+
+}
+/*tablets*/
+@media only screen and (min-width: 960px) and (max-width: 1279px) {
+}
+/*tablets*/
+@media only screen and (min-width: 600px) and (max-width: 959px) {
+    .gallery-hotel {
+        height: auto;
+    }
+    .gallery-hotel .img-1 {
+        width: 100%;
+        height: 592px;
+        margin-bottom: 1.5%;
+    }
+    .gallery-hotel .second-column {
+        width: 100%;
+        margin-bottom: 1.5%;
+    }
+    .gallery-hotel .third-column {
+        width: 100%;
+    }
+    .gallery-hotel .img-2 {
+        width: 100%;
+        height: 279px;
+        margin-bottom: 31px;
+        margin-right: 1.5%;
+    }
+    .gallery-hotel .img-3 {
+        width: 100%;
+        height: 282px;
+        margin-right: 1.5%;
+    }
+    .gallery-hotel .img-4 {
+        width: 100%;
+        height: 355px;
+        margin-bottom: 24px;
+    }
+    .gallery-hotel .img-5 {
+        width: 100%;
+        height: 213px;
+    }
+}
+/*celulares*/
+@media only screen and (max-width: 599px) {
+    .gallery-hotel {
+        height: auto;
+    }
+    .gallery-hotel .img-1 {
+        width: 100%;
+        height: 592px;
+        margin-bottom: 1.5%;
+    }
+    .gallery-hotel .second-column {
+        width: 100%;
+        margin-bottom: 1.5%;
+    }
+    .gallery-hotel .third-column {
+        width: 100%;
+    }
+    .gallery-hotel .img-2 {
+        width: 100%;
+        height: 279px;
+        margin-bottom: 31px;
+        margin-right: 1.5%;
+    }
+    .gallery-hotel .img-3 {
+        width: 100%;
+        height: 282px;
+        margin-right: 1.5%;
+    }
+    .gallery-hotel .img-4 {
+        width: 100%;
+        height: 355px;
+        margin-bottom: 24px;
+    }
+    .gallery-hotel .img-5 {
+        width: 100%;
+        height: 213px;
+    }
+    .responsive-phone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .responsive-phone div {
+        margin-bottom: 10px;
+    }
+    .responsive-phone-icon {
+        width: auto;
+    }
+    iframe {
+        width: auto;
+    }
+    .responsive-phone-carusel {
+        height: 130px;
+    }
+    .responsive-phone-logo {
+        width: 150px !important;
+        height: 100px !important;
+    }
+}

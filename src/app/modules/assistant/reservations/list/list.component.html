@@ -1,0 +1,174 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500">ServyViajes</a>
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon class="icon-size-5 text-secondary" [svgIcon]="'heroicons_mini:chevron-right'"></mat-icon>
+                    <a class="ml-1 text-primary-500">Mis reservaciones</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Mis reservaciones
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                    Mis reservaciones
+                </h2>
+            </div>
+            <div class="flex items-center ml-6">
+            </div>
+        </div>
+
+        <div class="overflow-x-auto mt-6">
+            <table mat-table [dataSource]="dataSource" class="table-auto w-full mt-2">
+
+                <ng-container matColumnDef="id" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef>ID</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.id }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nombre" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef>Nombre y apellidos</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.nombre_solicitante }} {{ element.apellido_solicitante }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="hotel" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef>Hotel</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element?.hotel?.nombre ? element?.hotel?.nombre : 'No disponible' }}
+                    </td>
+                </ng-container>
+
+                <!-- clave Column -->
+                <ng-container matColumnDef="clave" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Clave de reservación</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        {{ element.clave_reservation }}
+                    </td>
+                </ng-container>
+
+                <!-- fecha_entrada Column -->
+                <ng-container matColumnDef="fecha_entrada" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">In</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        {{ element.fecha_entrada | date:'dd-MM-yyyy' }}
+                    </td>
+                </ng-container>
+
+
+                <!-- fecha_salida Column -->
+                <ng-container matColumnDef="fecha_salida" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef>Out</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.fecha_salida | date:'dd-MM-yyyy' }}
+                    </td>
+                </ng-container>
+
+                <!-- total_dias_reservaciones Column -->
+                <ng-container matColumnDef="total_dias_reservaciones" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Total de noches</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        {{ element.cantidad_noches }}
+                    </td>
+                </ng-container>
+
+                <!-- total_dias_reservaciones Column -->
+                <ng-container matColumnDef="cantidad_habitaciones" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Cantidad de habitaciones</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        {{ element?.reservation_rooms.length ? element?.reservation_rooms.length : 'No disponible'}}
+                    </td>
+                </ng-container>
+
+                <!-- monto_a_pagar Column -->
+                <ng-container matColumnDef="monto_a_pagar" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Monto a pagar</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        ${{ element.monto_total | number:'1.2-2' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total_pagado" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Total pagado</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        ${{ getTotalAmount(element.reserve_payments) | number:'1.2-2' }}
+                    </td>
+                </ng-container>
+
+                <!-- comprobante Column -->
+                <ng-container matColumnDef="comprobante" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Comprobante</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        {{ element.reserve_payments.length }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="estatus" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">
+                        Estatus
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <div class="btn-estatus">
+                            <span class="estatus_asistentes" [style.background-color]="getStatusColor(element.estatus)">                            
+                                {{ getStatusText(element.estatus) }}                                                        
+                            </span>                  
+                        </div>
+                    </td>
+                </ng-container>
+
+                <!-- Acciones Column -->
+                <ng-container matColumnDef="acciones" class="w-1/2">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">
+                        Acciones
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="flex justify-center space-x-1">
+                            <!-- (click)="ver(element)" -->
+                            <!-- <button                                
+                                mat-icon-button
+                                matTooltip="Basic"
+                                aria-label="eye"
+                            >
+                                <mat-icon
+                                    svgIcon="heroicons_mini:eye"
+                                ></mat-icon>
+                            </button> -->
+
+                            <button mat-icon-button matTooltip="Basic" aria-label="pencil" (click)="editar(element)">
+                                <mat-icon svgIcon="heroicons_mini:pencil"></mat-icon>
+                            </button>
+
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+        </div>
+
+        <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,553 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500">ServyViajes</a>
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon class="icon-size-5 text-secondary" [svgIcon]="'heroicons_mini:chevron-right'"></mat-icon>
+                    <a class="ml-1 text-primary-500">Landing eventos</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Landing eventos
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                    Registro de landing
+                </h2>
+            </div>
+            <div class="flex items-center ml-6">
+                <button class="hidden sm:inline-flex ml-3" [routerLink]="['/landing/eventos']" mat-flat-button
+                    [color]="'primary'">
+                    <mat-icon class="icon-size-5" svgIcon="heroicons_solid:arrow-left"></mat-icon>
+                    <span class="ml-2">Regresar</span>
+                </button>
+            </div>
+        </div>
+
+        <form class="mt-8" [formGroup]="createForm" #createHotel="ngForm">
+            <!-- start card -->
+            <div class="mat-elevation-z8 mt-8">
+                <div class="flex flex-col p-4 pb-4 bg-card rounded-2xl shadow overflow-hidden">
+                    <!-- Datos generales del hotel -->
+                    <div class="ml-4 font-medium tracking-tight text-secondary">
+                        Datos generales del landing eventos
+                    </div>
+                    <!--- color de fondo -->
+                    <div class="flex mt-4 pl-3">
+                        <label>Color de fondo</label>
+                        <input type="color" id="colorPicker" name="colorPicker" [formControlName]="'color_fondo'">
+                    </div>
+
+                    <!-- select evento-->
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                            <mat-label>Evento</mat-label>
+                            <mat-select [formControlName]="'event_id'">
+                                <mat-option *ngFor="let item of listaEventos" [value]="item.id">{{ item.nombre }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-matbold fuse-mat-rounded">
+                            <mat-label>Slug</mat-label>
+                            <input matInput [placeholder]="'slug'" (input)="convertSlug($event)"
+                                [formControlName]="'slug'" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-matbold fuse-mat-rounded">
+                            <mat-label>Conversión Slug</mat-label>
+                            <input matInput [placeholder]="'slug'" [value]="slug" readonly />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                            <mat-label>Días</mat-label>
+                            <input matInput [placeholder]="'Número de días'" [formControlName]="'dias'" />
+                        </mat-form-field>
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                            <mat-label>Conferencias</mat-label>
+                            <input matInput [placeholder]="'Número de conferencias'"
+                                [formControlName]="'conferencias'" />
+                        </mat-form-field>
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                            <mat-label>Profesores</mat-label>
+                            <input matInput [placeholder]="'Número de profesores'" [formControlName]="'profesores'" />
+                        </mat-form-field>
+                    </div>
+
+                    <!--  --->
+
+                    <div class="grid grid-cols-2">
+                        <!--contenedor primera columna-->
+                        <div>
+                            <!-- Imagenes del hotel -->
+                            <div class="ml-4 font-medium tracking-tight text-secondary">
+                                Cargar logo del evento - 400 x 300
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-15 mt-3">
+                                <div class="col-span-1">
+                                    <div class="flex-auto ml-5 :pr-3">
+                                        <input class="addImg" type="file" (change)="selectLogoEvento($event)" />
+                                    </div>
+                                </div>
+                                <div class="col-span-1">
+                                    <div class="flex-auto sm:pr-3">
+                                        <button mat-flat-button color="primary" (click)="agregarLogoEvento()">
+                                            Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-1 mt-3">
+                                <div class="owl-carousel-container w-full">
+                                    <owl-carousel-o [options]="customOptions">
+                                        <ng-container *ngFor="let slide of slideEvento">
+                                            <ng-template carouselSlide [id]="slide.id">
+                                                <span
+                                                    class="absolute z-40 top-2 right-0 left-22 flex items-center justify-left h-3">
+                                                    <span
+                                                        class="flex items-center shrink-0 min-w-4 h-8 px-1 ml-22 mt-4 rounded-full bg-red-500">
+                                                        <mat-icon title="Delete" style="
+                                                                color: rgba(
+                                                                    255,
+                                                                    255,
+                                                                    255,
+                                                                    0.938
+                                                                ) !important;
+                                                                cursor: pointer;
+                                                            " (click)="
+                                                                eliminarLogoEvento(slide.id)
+                                                            ">delete</mat-icon>
+                                                    </span>
+                                                </span>
+                                                <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title"
+                                                    class="h-50 w-50 object-cover mx-4 inline-block" />
+                                            </ng-template>
+                                        </ng-container>
+                                    </owl-carousel-o>
+                                </div>
+                            </div>
+                        </div>
+                        <!--contenerdor segunda columna-->
+                        <div>
+                            <!-- Imagenes del hotel -->
+                            <div class="ml-4 font-medium tracking-tight text-secondary">
+                                Cargar logo de la asociación - 400 x 300
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-15 mt-3">
+                                <div class="col-span-1">
+                                    <div class="flex-auto ml-5 :pr-3">
+                                        <input class="addImg" type="file" (change)="selectLogoAsociacion($event)" />
+                                    </div>
+                                </div>
+                                <div class="col-span-1">
+                                    <div class="flex-auto sm:pr-3">
+                                        <button mat-flat-button color="primary" (click)="agregarLogoAsociacion()">
+                                            Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-1 mt-3">
+                                <div class="owl-carousel-container w-full">
+                                    <owl-carousel-o [options]="customOptions">
+                                        <ng-container *ngFor="let slide of slideAsociacion">
+                                            <ng-template carouselSlide [id]="slide.id">
+                                                <span
+                                                    class="absolute z-40 top-2 right-0 left-22 flex items-center justify-left h-3">
+                                                    <span
+                                                        class="flex items-center shrink-0 min-w-4 h-8 px-1 ml-22 mt-4 rounded-full bg-red-500">
+                                                        <mat-icon title="Delete" style="
+                                                                color: rgba(
+                                                                    255,
+                                                                    255,
+                                                                    255,
+                                                                    0.938
+                                                                ) !important;
+                                                                cursor: pointer;
+                                                            " (click)="
+                                                                eliminarLogoAsociacion(slide.id)
+                                                            ">delete</mat-icon>
+                                                    </span>
+                                                </span>
+                                                <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title"
+                                                    class="h-50 w-50 object-cover mx-4 inline-block" />
+                                            </ng-template>
+                                        </ng-container>
+                                    </owl-carousel-o>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!--seccion banners-->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 p-4 mt-8 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Banners del evento - 1440 x 500
+                        </h2>
+                        <!-- Contenido dentro del borde -->
+                        <div class="grid grid-cols-2">
+                            <!--contenedor imagen-->
+                            <div class="grid grid-cols-1 gap-1">
+                                <div class="owl-carousel-container w-full">
+                                    <owl-carousel-o [options]="customOptions">
+                                        <ng-container *ngFor="let slide of slidesBanners">
+                                            <ng-template carouselSlide [id]="slide.id">
+                                                <span
+                                                    class="absolute z-40 top-2 right-0 left-22 flex items-center justify-left h-3">
+                                                    <span
+                                                        class="flex items-center shrink-0 min-w-4 h-8 px-1 ml-22 mt-4 rounded-full bg-red-500">
+                                                        <mat-icon title="Delete" style="
+                                                            color: rgba(
+                                                                255,
+                                                                255,
+                                                                255,
+                                                                0.938
+                                                            ) !important;
+                                                            cursor: pointer;
+                                                        " (click)="
+                                                            eliminarBanner(slide.id)
+                                                        ">delete</mat-icon>
+                                                    </span>
+                                                </span>
+                                                <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title"
+                                                    class="h-50 w-50 object-cover mx-4 inline-block" />
+                                            </ng-template>
+                                        </ng-container>
+                                    </owl-carousel-o>
+                                </div>
+                            </div>
+                            <!--contenedor input-->
+                            <!-- Imagenes del hotel -->
+                            <div>
+                                <!-- <div class="ml-4 font-medium tracking-tight text-secondary"></div> -->
+
+                                <div class="grid grid-cols-2 gap-15 mt-3">
+                                    <div class="col-span-1">
+                                        <div class="flex-auto ml-5 :pr-3">
+                                            <input class="addImg" type="file" multiple
+                                                (change)="selectBanners($event)" />
+                                        </div>
+                                    </div>
+                                    <div class="col-span-1">
+                                        <div class="flex-auto sm:pr-3">
+                                            <button mat-flat-button color="primary" (click)="agregarBanners()">
+                                                Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- sección del programa -->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 p-3 mt-8 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Programa
+                        </h2>
+                        <!-- Contenido dentro del borde -->
+                        <div class="flex mt-4 pl-3">
+                            <input class="addImg" type="file" accept=".pdf" (change)="agregarPdfPrograma($event)" />
+                        </div>
+
+                        <div class="flex mt-4 pl-3">
+                            <iframe *ngIf="pdfUrl" [src]="pdfUrl" width="50%" height="300px"></iframe>
+                        </div>
+
+                        <form [formGroup]="programaForm">
+                            <div class="flex mt-4">
+                                <!-- <mat-form-field
+                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                            >   
+                                <mat-label>Día</mat-label>
+                                <input
+                                    matInput
+                                    maxlength="250"
+                                    [placeholder]="'Día'"
+                                    [formControlName]="'dia'"
+                                />
+                            </mat-form-field> -->
+
+                                <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                    <mat-label>Fecha</mat-label>
+                                    <input matInput [matDatepicker]="picker" [formControlName]="'fecha'" />
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                    <mat-label>Horario</mat-label>
+                                    <input matInput maxlength="250" [placeholder]="'Horario'"
+                                        [formControlName]="'horario'" />
+                                </mat-form-field>
+                            </div>
+
+                            <div class="flex mt-4">
+                                <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                    <mat-label>Módulo/conferencia</mat-label>
+                                    <input matInput maxlength="250" [placeholder]="'Módulo/conferencia'"
+                                        [formControlName]="'modulo_conferencia'" />
+                                </mat-form-field>
+                                <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                    <mat-label>Coordinador/profesor</mat-label>
+                                    <input matInput maxlength="250" [placeholder]="'Coordinador/profesor'"
+                                        [formControlName]="'coordinador_profesor'" />
+                                </mat-form-field>
+
+                                <div class="flex ml-3 items-center">
+                                    <button mat-flat-button color="primary" (click)="agregarPrograma()">
+                                        Agregar
+                                    </button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <div class="flex flex-col mr-3">
+                            <table class="border-collapse border border-slate-400 ml-3 mt-5 mb-5">
+                                <thead>
+                                    <tr>
+                                        <!-- <th class="border border-slate-300">Día</th> -->
+                                        <th class="border border-slate-300">Fecha</th>
+                                        <th class="border border-slate-300">Horario</th>
+                                        <th class="border border-slate-300">Módulo/conferencia</th>
+                                        <th class="border border-slate-300">Coordinador/profesor</th>
+                                        <th class="border border-slate-300">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of dataSource">
+                                        <!-- <td class="border border-slate-300">{{ item.dia }}</td> -->
+                                        <td class="border border-slate-300">{{ item.fecha | date:'dd-MM-yyyy' }}</td>
+                                        <td class="border border-slate-300">{{ item.horario }}</td>
+                                        <td class="border border-slate-300">{{ item.modulo_conferencia }}</td>
+                                        <td class="border border-slate-300">{{ item.coordinador_profesor }}</td>
+                                        <td class="border border-slate-300">
+                                            <div class="flex justify-center items-center">
+                                                <button
+                                                    mat-icon-button
+                                                    matTooltip="Basic"
+                                                    aria-label="pencil"
+                                                    (click)="editarPrograma(item)"
+                                                >
+                                                    <mat-icon
+                                                        svgIcon="heroicons_mini:pencil"
+                                                    ></mat-icon>
+                                                </button>                            
+
+                                                <button
+                                                   [disabled]="item.id == programaEnEdicion.id ? true : false"
+                                                    mat-icon-button
+                                                    matTooltip="Basic"
+                                                    aria-label="delete"
+                                                    (click)="eliminarPrograma(item)"
+                                                >
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!--seccion patrocinadores-->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 p-4 mt-8 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Patrocinadores - 400 x 300
+                        </h2>
+                        <!-- Contenido dentro del borde -->
+                        <div class="grid grid-cols-2">
+                            <!--contenedor imagenes-->
+                            <div class="grid grid-cols-1 gap-1">
+                                <div class="owl-carousel-container w-full">
+                                    <owl-carousel-o [options]="customOptions">
+                                        <ng-container *ngFor="let slide of slidesPatrocinadores">
+                                            <ng-template carouselSlide [id]="slide.id">
+                                                <span
+                                                    class="absolute z-40 top-2 right-0 left-22 flex items-center justify-left h-3">
+                                                    <span
+                                                        class="flex items-center shrink-0 min-w-4 h-8 px-1 ml-22 mt-4 rounded-full bg-red-500">
+                                                        <mat-icon title="Delete" style="
+                                                            color: rgba(
+                                                                255,
+                                                                255,
+                                                                255,
+                                                                0.938
+                                                            ) !important;
+                                                            cursor: pointer;
+                                                        " (click)="
+                                                            eliminarPatrocinador(slide.id)
+                                                        ">delete</mat-icon>
+                                                    </span>
+                                                </span>
+                                                <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title"
+                                                    class="h-50 w-50 object-cover mx-4 inline-block" />
+                                            </ng-template>
+                                        </ng-container>
+                                    </owl-carousel-o>
+                                </div>
+                            </div>
+                            <!--contenedor input-->
+                            <!-- Imagenes del hotel -->
+                            <div>
+                                <!-- <div class="ml-4 font-medium tracking-tight text-secondary"></div> -->
+                                <div class="grid grid-cols-2 gap-15 mt-3">
+                                    <div class="col-span-1">
+                                        <div class="flex-auto ml-5 :pr-3">
+                                            <input class="addImg" type="file" multiple
+                                                (change)="selectPatrocinadores($event)" />
+                                        </div>
+                                    </div>
+                                    <div class="col-span-1">
+                                        <div class="flex-auto sm:pr-3">
+                                            <button mat-flat-button color="primary" (click)="agregarPatrocinadores()">
+                                                Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                            <mat-label>¿Qué incluye?</mat-label>
+                            <textarea [placeholder]="'¿Que incluye?'" [formControlName]="'que_incluye'" matInput
+                                cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- sección para elegir que mostrar -->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 p-3 mt-4 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Seccionar secciones para mostrar
+                        </h2>
+                        <!--contenido dentro del borde-->
+                        <div class="flex mt-4">
+                            <div class="w-1/2">
+                                <mat-slide-toggle [formControlName]="'show_hotel'" class="example-margin" [color]="color">
+                                    Mostrar secciones del hotel
+                                </mat-slide-toggle>
+                            </div>
+                            <div class="w-1/2">
+                                <mat-slide-toggle [formControlName]="'show_event'" class="example-margin" [color]="color">
+                                    Mostrar secciones del evento
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- sección de redes sociales -->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 p-3 mt-8 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Redes sociales
+                        </h2>
+                        <!--contenido dentro del borde-->
+                        <div class="flex mt-4">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Facebook</mat-label>
+                                <input matInput [placeholder]="'Facebook'" [formControlName]="'facebook'" />
+                            </mat-form-field>
+                        </div>
+                        <div class="flex mt-4">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Instagram</mat-label>
+                                <input matInput [placeholder]="'Instagram'" [formControlName]="'instagram'" />
+                            </mat-form-field>
+                        </div>
+                        <div class="flex mt-4">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Whatsapp</mat-label>
+                                <input 
+                                    matInput 
+                                    maxlength="12"
+                                    [placeholder]="'Whatsapp'" 
+                                    [formControlName]="'whatsapp'" 
+                                    mask="00-0000-0000"
+                                />
+                            </mat-form-field>
+                        </div>
+                        <div class="flex mt-4">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Twitter</mat-label>
+                                <input matInput [placeholder]="'Twitter'" [formControlName]="'twitter'" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- sección mapa -->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 p-3 mt-8 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Iframe maps
+                        </h2>
+                        <!--contenido dentro del borde-->
+                        <div class="flex mt-4">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Iframe maps</mat-label>
+                                <textarea [placeholder]="'Iframe maps'" [formControlName]="'iframe_maps'" matInput
+                                    cdkTextareaAutosize [cdkAutosizeMinRows]="5"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- end card -->
+            </div>
+
+            <!-- Slide  -->
+            <section class="example-section mt-5">
+                <mat-slide-toggle [formControlName]="'status'" class="example-margin" [color]="color">
+                    Activar/Desactivar
+                </mat-slide-toggle>
+            </section>
+
+            <!-- Botones -->
+            <div class="flex flex-row space-x-1 mt-3 mt-1.5 justify-end">
+                <button mat-flat-button w-full color="primary" (click)="cancel()">
+                    <mat-icon svgIcon="heroicons_solid:x-mark"></mat-icon>
+                    Cancelar
+                </button>
+
+                <button mat-flat-button w-full color="primary" (click)="create()">
+                    <mat-icon svgIcon="heroicons_solid:bars-arrow-up"></mat-icon>
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,198 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent"
+    >
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500"
+                        >ServyViajes</a
+                    >
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_mini:chevron-right'"
+                    ></mat-icon>
+                    <a class="ml-1 text-primary-500">Hoteles</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
+                >
+                    Hoteles
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                    Catálogo de hoteles
+                </h2>                
+            </div>
+            <div class="flex items-center ml-6">
+                <!-- <button
+                    class="hidden sm:inline-flex"
+                    mat-stroked-button>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:document-chart-bar'"></mat-icon>
+                    <span class="ml-2">Reports</span>
+                </button>
+                <button
+                    class="hidden sm:inline-flex ml-3"
+                    mat-stroked-button>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:cog-8-tooth'"></mat-icon>
+                    <span class="ml-2">Settings</span>
+                </button> -->
+                <button
+                    class="hidden sm:inline-flex ml-3"
+                    [routerLink]="['/create/hotels']"
+                    mat-flat-button
+                    [color]="'primary'"
+                >
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:plus-circle'"
+                    ></mat-icon>
+                    <span class="ml-2">Nuevo hotel</span>
+
+                    <!-- [svgIcon]="'heroicons_solid:arrow-up-tray'"></mat-icon> -->
+                </button>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto mt-6">
+            <table
+                mat-table
+                [dataSource]="dataSource"
+                class="table-auto w-full mt-2"
+            >                
+
+                <ng-container matColumnDef="id" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef>ID hotel</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.id }}
+                    </td>
+                </ng-container>
+
+                <!-- Nombre Column -->
+                <ng-container matColumnDef="nombre" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef>Nombre de hotel</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.nombre }}
+                    </td>
+                </ng-container>
+
+                <!-- direccion Column -->
+                <ng-container matColumnDef="direccion" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef>Dirección</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.direccion }}
+                    </td>
+                </ng-container>
+
+                <!-- Habitaciones disponible Column -->                    
+                <!-- <ng-container matColumnDef="habitaciones_disponible" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">
+                        Habitaciones disponible
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center">                                                                        
+                        <mat-icon
+                            svgIcon="heroicons_mini:eye"
+                        ></mat-icon>
+                    </td>
+                </ng-container>     -->
+                
+                <!-- Ver habitaciones Column -->                    
+                <ng-container matColumnDef="ver_habitaciones" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">
+                        Ver habitaciones
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> 
+                        <div class="bad" (click)="verHabitacion(element.nombre)" style="cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#a0a0a2}</style><path d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z"/></svg>
+                        </div>                                                                                               
+                    </td>
+                </ng-container>   
+
+
+                <ng-container matColumnDef="estatus" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">
+                      Estatus
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center">                                                                        
+                        <span [class]="element.estatus === 1 ? 'isActive' : 'isInative'">
+                            {{ element.estatus === 1 ? 'Activo' : 'Inactivo' }}
+                        </span>                                                    
+                    </td>
+                </ng-container>    
+
+                <!-- Acciones Column -->
+                <ng-container matColumnDef="acciones" class="w-1/2">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">
+                        Acciones
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="flex justify-center space-x-1">
+                            <button
+                                mat-icon-button
+                                matTooltip="Basic"
+                                aria-label="eye"
+                                (click)="ver(element)"
+                            >
+                                <mat-icon
+                                    svgIcon="heroicons_mini:eye"
+                                ></mat-icon>
+                            </button>
+
+                            <button
+                                mat-icon-button
+                                matTooltip="Basic"
+                                aria-label="pencil"
+                                (click)="editar(element)"
+                            >
+                                <mat-icon
+                                    svgIcon="heroicons_mini:pencil"
+                                ></mat-icon>
+                            </button>                            
+
+                            <button
+                                mat-icon-button
+                                matTooltip="Basic"
+                                aria-label="delete"
+                                (click)="delete(element.id)"
+                            >
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+            </table>
+        </div>
+
+        <mat-paginator
+            [pageSizeOptions]="[10, 20, 30]"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+    </div>
+</div>

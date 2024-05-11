@@ -1,0 +1,77 @@
+.bad{
+    margin-top: -10px;
+    margin-left: 50%;    
+}
+
+.table-th{
+    width: 10% !important;
+}
+.table-td{
+    font-size: 16px !important;
+}
+
+table {
+    width: 100%;
+}
+
+.custom-mat-form-field-1 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+.custom-mat-form-field-2 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+.isActive{
+    background-color: #4f46e5;    
+    padding: 5px 20px;
+    border-radius: 13px;               
+    color: white;                    
+}
+
+.isInative{
+    background-color: #dc2626; 
+    padding: 5px 15px;
+    border-radius: 13px;   
+    color: white;        
+    
+}
+
+.estatus_asistentes{
+    // background-color: #4f46e5;    
+    padding: 5px 25px;
+    border-radius: 13px;               
+    color: white;
+}
+
+@media (min-width: 360px) and (max-width: 1401px) {
+    .btn-estatus > span{
+        padding: 5px 25px;              
+    }
+    // .estatus_asistentes{
+    //     font-size: 10px;
+    //     margin: 5px -30px;    
+    // }
+}
+
+.mat-column-nombre {
+    min-width: 250px;
+}
+.mat-column-hotel {
+    min-width: 250px;
+}
+.mat-column-fecha_entrada {
+    min-width: 130px;
+}
+.mat-column-fecha_salida {
+    min-width: 130px;
+}
+.mat-column-tipo_habitacion {
+    min-width: 250px;
+}
+.mat-column-tipo_plan {
+    min-width: 250px;
+}
+.mat-column-total_pagado {
+    min-width: 130px;
+}

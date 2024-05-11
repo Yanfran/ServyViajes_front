@@ -1,0 +1,1474 @@
+
+<div class="flex flex-col w-full h-full">
+    <nav class="bg-gray-900 fixed top-0 left-0 right-0 z-10">
+        <div class="mx-auto max-w-screen-2xl px-2 sm:px-8 lg:px-8">
+          <div class="relative flex h-16 items-center justify-between">
+            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              <!-- Mobile menu button-->
+              <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" (click)="showMobileMenu = !showMobileMenu">
+                <span class="absolute -inset-0.5"></span>
+                <span class="sr-only">Open main menu</span>
+                <!--
+                  Icon when menu is closed.
+      
+                  Menu open: "hidden", Menu closed: "block"
+                -->
+                <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <!--
+                  Icon when menu is open.
+      
+                  Menu open: "block", Menu closed: "hidden"
+                -->
+                <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div class="flex flex-shrink-0 items-center">
+                <img class="h-14 w-auto" src="assets/images/logo/white.png" alt="Your Company">
+              </div>
+              <div class="hidden sm:ml-6 sm:block">
+                <div class="flex space-x-4 mt-2">
+                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                  
+                    <a 
+                        class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white rounded-md px-3 py-2 text-lg font-medium" 
+                        [routerLink]="['/home']"
+                    >Inicio
+                    </a>
+                    <!----
+                    <a 
+                        (click)="scrollToSection('contactanos')" 
+                        class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                        >Contacto
+                    </a>
+                    ---->
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <!-- aqui va el boton de whats-->
+              <img class="h-9 w-auto mt-3 mb-3 hidden sm:ml-6 sm:block" src="assets/icons/phone-icon2.png">
+              <h3 class="text-indigo-50 text-lg font-medium ml-2 mr-8 hidden sm:ml-4 sm:block">Tel: {{ landing.telefono_movil }}</h3>
+              <!-- Profile dropdown -->
+              <div class="relative ml-3">
+                <!------
+                <div>
+                    <a class="bg-indigo-50 text-gray-900 rounded-md px-3 py-2 text-lg font-medium cursor-pointer">
+                        Regístrate
+                    </a>
+                </div>
+                ----->
+      
+                <!--
+                  Dropdown menu, show/hide based on menu state.
+      
+                  Entering: "transition ease-out duration-100"
+                    From: "transform opacity-0 scale-95"
+                    To: "transform opacity-100 scale-100"
+                  Leaving: "transition ease-in duration-75"
+                    From: "transform opacity-100 scale-100"
+                    To: "transform opacity-0 scale-95"
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="sm:hidden" id="mobile-menu">
+          <div class="space-y-1 px-2 pb-3 pt-2" *ngIf="showMobileMenu">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white block rounded-md px-3 py-2 text-base font-medium" [routerLink]="['/home']">Inicio</a>
+            <a href="#contactanos" class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Contacto</a>
+          </div>
+        </div>
+      </nav>
+    <!-- contendor del contenido -->
+    <div class="bg-indigo-50 h-full pt-20">
+        <!-- seccion de relleno -->
+        <div class="max-w-7xl mx-auto flex bg-white sm:p-6 rounded-t-lg">
+          <div class="flex flex-col flex-auto min-w-0">
+
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+                <div class="flex-1 min-w-0">
+                    <!-- Title -->
+                    <div class="mt-2">
+                        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                            Registro a evento
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Main -->
+            <div class="flex-auto sm:p-10" *ngIf="isEnableFirstDisplay">
+        
+                <!-- Title and action buttons -->
+                <!-- <div class="flex items-center justify-between w-full">
+                    <div>
+                        <h2 class="text-3xl font-semibold tracking-tight leading-8">registro asistente</h2>                
+                    </div>
+                    <div class="flex items-center ml-6">              
+                    </div>
+                </div> -->
+                                         
+                    <form 
+                        class="" 
+                        [formGroup]="createForm" 
+                        #createAssistants="ngForm"
+                        enctype="multipart/form-data">
+                        
+                        <!-- start card -->
+                        <div class=""> 
+        
+                            <div class="flex flex-col p-4 pb-4 bg-card rounded-2xl overflow-hidden">
+                                <!--seccion datos generales del asistente-->
+                                <div class="border-2 border-gray-300 rounded-lg ml-3 p-4 relative">
+                                    <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                        Datos generales del asistente
+                                    </h2>
+                                    
+                                    <!-- contenido dentro del borde -->
+                                    <div class="flex mt-4">
+                                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                            
+                                            <mat-label>Código beca</mat-label>
+                                            <input matInput maxlength="30" [formControlName]="'codigo_beca'" [placeholder]="'Código beca'">                            
+                                            <mat-error *ngIf="createForm.get('codigo_beca').hasError('required')">
+                                                Código beca es requerido.
+                                            </mat-error>                                
+                                            <mat-error *ngIf="createForm.get('codigo_beca').hasError('maxlength')">
+                                                Código beca no debe tener más de 30 caracteres.
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <!--"Su nombre aparecera en su constancia exactamente como usted lo registre" -->
+                                    <div class="sm:flex sm:text-justify ml-4 mb-3 font-medium tracking-tight md:whitespace-nowrap text-primary-500">
+                                        * Su nombre aparecerá en su constancia exactamente como usted lo registre
+                                    </div>
+
+                                    <div class="flex flex-col sm:flex-row mt-3"> 
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field                                    
+                                                class="flex-auto w-full sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                                <mat-label>Seleccione un grado academico</mat-label>
+                                                <mat-select 
+                                                    [formControlName]="'grado_academico'" 
+                                                    placeholder="Seleccione un grado academico"
+                                                >                                    
+                                                    <mat-option 
+                                                        *ngFor="let item of gradosAcademicos" 
+                                                        [value]="item.id">
+                                                            {{ item.descripcion }}
+                                                    </mat-option>
+                                                </mat-select>   
+                                                <mat-error *ngIf="createForm.get('grado_academico').hasError('required')">
+                                                    El grado academico es requerido.
+                                                </mat-error>                                                                     
+                                            </mat-form-field>                                                
+                                        </div>
+                                    
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field                                  
+                                            class="w-full fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                
+                                            <mat-label>Nombre</mat-label>
+                                            <input matInput maxlength="200" [formControlName]="'nombre'" [placeholder]="'Nombre'">                                
+                                            <mat-error *ngIf="createForm.get('nombre').hasError('required')">
+                                                El nombre es requerido.
+                                            </mat-error>                                
+                                            <mat-error *ngIf="createForm.get('nombre').hasError('maxlength')">
+                                                El nombre no debe tener más de 200 caracteres.
+                                            </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field                                      
+                                                class="flex-auto w-full sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                                <mat-label>Apellido paterno</mat-label>
+                                                <input matInput maxlength="200" [formControlName]="'apellido_paterno'" [placeholder]="'Apellido paterno'">                                    
+                                                <mat-error *ngIf="createForm.get('apellido_paterno').hasError('required')">
+                                                    El apellido paterno es requerido.
+                                                </mat-error>                                
+                                                <mat-error *ngIf="createForm.get('apellido_paterno').hasError('maxlength')">
+                                                    El apellido paterno no debe tener más de 200 caracteres.
+                                                </mat-error>
+                                            </mat-form-field>   
+                                        </div>  
+                                    
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field                                      
+                                                class="w-full fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                    
+                                                <mat-label>Apellido materno</mat-label>
+                                                <input matInput maxlength="200" [formControlName]="'apellido_materno'" [placeholder]="'Apellido materno'">                                    
+                                                <mat-error *ngIf="createForm.get('apellido_materno').hasError('required')">
+                                                    El apellido materno es requerido.
+                                                </mat-error>                                
+                                                <mat-error *ngIf="createForm.get('apellido_materno').hasError('maxlength')">
+                                                    El apellido materno no debe tener más de 200 caracteres.
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field                                      
+                                                class="flex-auto w-full sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                                <mat-label>Correo electronico</mat-label>
+                                                <input matInput type="email"  maxlength="200" [formControlName]="'correo_electronico'" [placeholder]="'Correo electronico'">                                    
+                                                <mat-error *ngIf="createForm.get('correo_electronico').hasError('required')">
+                                                    El correo electrónico es requerido.
+                                                </mat-error>
+                                                <mat-error *ngIf="createForm.get('correo_electronico').hasError('email')">
+                                                    El correo electrónico no es válido.
+                                                </mat-error>
+                                                <mat-error *ngIf="createForm.get('correo_electronico').hasError('maxlength')">
+                                                    El correo electrónico no debe tener más de 200 caracteres.
+                                                </mat-error>                                    
+                                            </mat-form-field>   
+                                        </div>  
+                                    
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field                                      
+                                                class="w-full fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                
+                                            <mat-label>Teléfono</mat-label>
+                                            <input 
+                                                matInput 
+                                                type="text" 
+                                                maxlength="12"
+                                                [formControlName]="'telefono'" 
+                                                [placeholder]="'Teléfono'"
+                                                mask="00-0000-0000"
+                                            >                                
+                                            <mat-error *ngIf="createForm.get('telefono').hasError('required')">
+                                                El teléfono es requerido.
+                                            </mat-error>                                
+                                            <mat-error *ngIf="createForm.get('telefono').hasError('minlength')">
+                                                El teléfono no debe tener menos de 10 caracteres.
+                                            </mat-error>
+                                            <mat-error *ngIf="createForm.get('telefono').hasError('maxlength')">
+                                                El teléfono no debe tener más de 10 caracteres.
+                                            </mat-error>
+                                            <mat-error *ngIf="createForm.get('telefono').hasError('pattern')">
+                                                El teléfono debe contener solo números.
+                                            </mat-error>                               
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field                                    
+                                                class="flex-auto w-full sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                                <mat-label>Seleccione un país</mat-label>
+                                                <mat-select 
+                                                    [formControlName]="'pais_id'" 
+                                                    placeholder="Seleccione un país"
+                                                >                                    
+                                                    <mat-option 
+                                                        *ngFor="let country of countrys" 
+                                                        [value]="country.id">
+                                                            {{ country.nombre }}
+                                                    </mat-option>
+                                                </mat-select>   
+                                                <mat-error *ngIf="createForm.get('pais_id').hasError('required')">
+                                                    El país es requerido.
+                                                </mat-error>                                                                     
+                                            </mat-form-field>                                                
+                                        </div> 
+                                        
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field                                  
+                                            class="w-full fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2"> 
+                                                <mat-label>Estado</mat-label>                               
+                                                <input matInput maxlength="200" [formControlName]="'estado'" [placeholder]="'Estado'">                                
+                                                <mat-error *ngIf="createForm.get('estado').hasError('required')">
+                                                    El estado es requerido.
+                                                </mat-error>                                    
+                                                <mat-error *ngIf="createForm.get('estado').hasError('maxlength')">
+                                                    El estado no debe tener más de 200 caracteres.
+                                                </mat-error>  
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col md:w-1/2 sm:flex-row mb-2.5">  
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field                                  
+                                            class="w-full fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                
+                                                <mat-label>Ciudad</mat-label>                               
+                                                <input matInput maxlength="200" [formControlName]="'ciudad'" [placeholder]="'Ciudad'">                                
+                                                <mat-error *ngIf="createForm.get('ciudad').hasError('required')">
+                                                    La ciudad es requerida.
+                                                </mat-error>                                    
+                                                <mat-error *ngIf="createForm.get('ciudad').hasError('maxlength')">
+                                                    La ciudad no debe tener más de 200 caracteres.
+                                                </mat-error> 
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field  class="flex-auto w-full sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                                <mat-label>Especialidad</mat-label>
+                                                <input matInput maxlength="200" [formControlName]="'especialidad'" [placeholder]="'Especialidad'">                                    
+                                                <mat-error *ngIf="createForm.get('especialidad').hasError('required')">
+                                                    La especialidad es requerida.
+                                                </mat-error>                                
+                                                <mat-error *ngIf="createForm.get('especialidad').hasError('maxlength')">
+                                                    La especialidad no debe tener más de 200 caracteres.
+                                                </mat-error>
+                                            </mat-form-field>   
+                                        </div>  
+                                    
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field  class="w-full fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                
+                                                <mat-label>Institución</mat-label>
+                                                <input matInput maxlength="200" [formControlName]="'institucion'" [placeholder]="'Institución'">                                
+                                                <mat-error *ngIf="createForm.get('institucion').hasError('required')">
+                                                    La institucion es requerida.
+                                                </mat-error>                                
+                                                <mat-error *ngIf="createForm.get('institucion').hasError('maxlength')">
+                                                    La institucion no debe tener más de 200 caracteres.
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--seccion datos generales del asistente-->
+                                <div class="border-2 border-gray-300 rounded-lg ml-3 mt-8 p-4 relative">
+                                    <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                        Selección de evento
+                                    </h2>
+                                    <!--contenido dentro del borde  -->
+                                    <div class="flex mt-4 mb-2.5">
+                                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                            <mat-label>Seleccione un evento</mat-label>
+                                            <input class="notAllowed" matInput [formControlName]="'evento_id'" [placeholder]="'evento'" readonly="true">
+                                            <mat-error *ngIf="createForm.get('evento_id').hasError('required')">
+                                                El evento es requerido.
+                                            </mat-error>                                                                
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="flex mb-2.5">
+                                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                            <mat-label>Seleccione una categoría</mat-label>
+                                            <mat-select 
+                                                [formControlName]="'categoria_id'" 
+                                                placeholder="Seleccione una categoría"
+                                                (selectionChange)="changeCategory($event)"
+                                            >
+                                                <mat-option 
+                                                    *ngFor="let item of availableCategories" 
+                                                    [value]="item.id"
+                                                >
+                                                {{ item.category?.descripcion }}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="createForm.get('categoria_id').hasError('required')">
+                                                La categoría es requerida.
+                                            </mat-error>                                                                
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="flex mb-2.5">
+                                        <mat-form-field                                
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                                
+                                            <mat-label>Comentarios</mat-label>
+                                            <textarea
+                                                [placeholder]="'Comentarios'"   
+                                                [formControlName]="'comentario'"
+                                                matInput
+                                                cdkTextareaAutosize
+                                                [cdkAutosizeMinRows]="3">
+                                            </textarea>                                
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--seccion de facturación-->
+                                <div class="border-2 border-gray-300 rounded-lg ml-3 mt-8 p-4 relative">
+                                    <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                        Facturación
+                                    </h2>
+                                    <!--contenido dentro del borde  -->
+                                    <div class="ml-4 mt-3 font-medium tracking-tight text-on-accent-400">¿Requiere recibo fiscal?</div>
+                                    <div class="flex mt-4">
+                                        <div class="flex flex-col">
+                                        <div class="flex flex-col">
+                                            <mat-radio-group
+                                                [color]="'primary'"
+                                                formControlName="is_required_facturacion"
+                                            >
+                                                <mat-radio-button [value]="true">Si requiero</mat-radio-button>
+                                                <mat-radio-button [value]="false">No requiero</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <!-- Datos -->
+                                    <div class="ml-4 font-medium tracking-tight text-secondary">Datos</div>
+                                    
+                                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field 
+                                                class="flex-auto w-full sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                                <mat-label>RFC</mat-label>
+                                                <input matInput maxlength="200" [formControlName]="'rfc'" [placeholder]="'RFC'">                                    
+                                                <mat-error *ngIf="createForm.get('rfc').hasError('required')">
+                                                    El rfc es requerido.
+                                                </mat-error>                                
+                                                <mat-error *ngIf="createForm.get('rfc').hasError('maxlength')">
+                                                    El rfc no debe tener más de 200 caracteres.
+                                                </mat-error>
+                                            </mat-form-field>   
+                                        </div>  
+                                    
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field                                      
+                                                class="w-full fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                    
+                                                <mat-label>Nombre fiscal</mat-label>
+                                                <input matInput maxlength="200" [formControlName]="'nombre_fiscal'" [placeholder]="'Nombre fiscal'">                                    
+                                                <mat-error *ngIf="createForm.get('nombre_fiscal').hasError('required')">
+                                                    El nombre fiscal es requerido.
+                                                </mat-error>                                
+                                                <mat-error *ngIf="createForm.get('nombre_fiscal').hasError('maxlength')">
+                                                    El nombre fiscal no debe tener más de 200 caracteres.
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field                                      
+                                                class="flex-auto w-full sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                                <mat-label>Correo facturación</mat-label>
+                                                <input matInput type="email" maxlength="200" [formControlName]="'correo_facturacion'" [placeholder]="'Correo facturación'">                                
+                                                <mat-error *ngIf="createForm.get('correo_facturacion').hasError('required')">
+                                                    El correo electrónico es requerido.
+                                                </mat-error>
+                                                <mat-error *ngIf="createForm.get('correo_facturacion').hasError('email')">
+                                                    El correo electrónico no es válido.
+                                                </mat-error>
+                                                <mat-error *ngIf="createForm.get('correo_facturacion').hasError('maxlength')">
+                                                    El correo electrónico no debe tener más de 200 caracteres.
+                                                </mat-error>                                    
+                                            </mat-form-field>   
+                                        </div>  
+                                    
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field                                      
+                                                class="w-full fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                    
+                                                <mat-label>Código postal</mat-label>
+                                                <input matInput maxlength="20" [formControlName]="'codigo_postal'" [placeholder]="'CP'">                                    
+                                                <mat-error *ngIf="createForm.get('codigo_postal').hasError('required')">
+                                                    El codigo postal es requerido.
+                                                </mat-error>                                
+                                                <mat-error *ngIf="createForm.get('codigo_postal').hasError('maxlength')">
+                                                    El codigo postal no debe tener más de 20 caracteres.
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field                                    
+                                                class="flex-auto w-full sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                                <mat-label>Seleccione un regimen fiscal</mat-label>
+                                                <mat-select 
+                                                    [formControl]="createForm.get('taxRegimes')" 
+                                                    placeholder="Seleccione un regimen fiscal"
+                                                >                                    
+                                                    <mat-option 
+                                                        *ngFor="let taxRegime of taxRegimes" 
+                                                        [value]="taxRegime.id">
+                                                            {{ taxRegime.nombre }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="createForm.get('taxRegimes').hasError('required')">
+                                                    El regimen fiscal es requerido.
+                                                </mat-error>                                                                                                                                   
+                                            </mat-form-field>                                                
+                                        </div> 
+            
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field                                    
+                                                class="flex-auto w-full sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                    
+                                                <mat-label>Seleccione un CFDI</mat-label>
+                                                <mat-select 
+                                                    [formControl]="createForm.get('cfdis')" 
+                                                    placeholder="Seleccione un CFDI"
+                                                >                                    
+                                                    <mat-option 
+                                                        *ngFor="let cfdi of cfdis" 
+                                                        [value]="cfdi.id">
+                                                            {{ cfdi.nombre }}
+                                                    </mat-option>
+                                                </mat-select> 
+                                                <mat-error *ngIf="createForm.get('cfdis').hasError('required')">
+                                                    El CFDI fiscal es requerido.
+                                                </mat-error>                                                                                                                                  
+                                            </mat-form-field>                                                
+                                        </div>                                                         
+                                       
+                                    </div>
+
+                                    <div class="flex">
+                                        <mat-form-field                                
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                                
+                                            <mat-label>Comentario facturación</mat-label>
+                                            <textarea
+                                                [placeholder]="'Comentario facturación'"
+                                                [formControlName]="'comentario_facturacion'"   
+                                                matInput                                    
+                                                cdkTextareaAutosize
+                                                [cdkAutosizeMinRows]="3">
+                                            </textarea>                                
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="flex flex-col sm:flex-row">
+                                        <div class="flex-none h-14">                        
+                                        </div>
+                                        <div class="flex-grow flex justify-center items-center h-14"> <!-- Agregadas las clases para centrar -->
+                                            <button 
+                                                [disabled]="siRequiere === 'no'"
+                                                class="addFile"
+                                                mat-fab extended 
+                                                w-full 
+                                                [color]="!imagenUp ? 'primary' : 'accent'"                                    
+                                                (click)="fileInput.click()"
+                                            >
+                                            <mat-icon [svgIcon]="!imagenUp ? 'heroicons_mini:arrow-up-tray' : 'heroicons_solid:check'"></mat-icon>                                    
+                                                {{ !imagenUp ? 'Cargar Constancia de Situación fiscal' : 'Constancias cargada con éxito' }}                                    
+                                            </button>
+                                        </div>
+                                        <div class="flex-none h-14">                        
+                                        </div>
+                                    </div>                                                   
+                                    
+                                    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+
+                                </div>
+
+                            </div>
+        
+                        <!-- end card -->
+                        </div>
+                        <!-- Botones -->
+                        <div class="flex flex-row space-x-1 mt-1.5 justify-end">
+                                <!------
+                                <button mat-flat-button w-full color="primary" (click)="cancel()">   
+                                    <mat-icon svgIcon="heroicons_solid:x-mark"></mat-icon>                         
+                                    Cancelar
+                                </button>  
+                                ---->      
+                                <button                            
+                                    mat-flat-button
+                                    w-full
+                                    [color]="'primary'"  
+                                    class="btn-continue"                          
+                                    [disabled]="!createForm.valid"
+                                    (click)="next()">
+                                    <mat-icon svgIcon="heroicons_solid:bars-arrow-up"></mat-icon>                           
+                                    <span *ngIf="!createForm.disabled">
+                                        Continuar
+                                    </span>
+                                    <mat-progress-spinner
+                                        *ngIf="createForm.disabled"
+                                        [diameter]="24"
+                                        [mode]="'indeterminate'">
+                                    </mat-progress-spinner>
+                                </button>                                         
+                                                                                                                        
+                        </div>
+        
+                    </form>                                                                                                     
+        
+            </div>
+
+            <!--segundo formulario-->
+            <!-- Main -->
+            <div class="flex-auto p-3 sm:p-10" *ngIf="isEnableSecondDisplay">
+                    <form 
+                        class="" 
+                        [formGroup]="secondForm" 
+                        #createAssistants="ngForm">
+                        
+                        <!-- start card -->
+                        <div class=""> 
+
+                            <div class="flex flex-col p-4 pb-4 bg-card rounded-2xl overflow-hidden">
+                                <!--seccion selección de categoria y tipo de pago-->
+                                <div class="border-2 border-gray-300 rounded-lg ml-3 p-4 relative">
+                                    <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                        Selección de categoría y tipo de pago
+                                    </h2>
+                                    <!--contenido dentro del borde  -->
+                                    <!-- Invoice -->
+                                    <div class="md:min-w-240 md:p-16 rounded-2xl print:w-auto print:p-0 print:rounded-none print:shadow-none print:bg-transparent">                                                       
+                                        <!-- Datos generales del asistente -->
+                                        <div class="font-medium tracking-tight text-secondary">Datos generales del asistente</div>
+
+                                        <div class="grid grid-cols-12 gap-x-1 mt-16">                                
+                                            <!-- Spacer -->
+                                            <div class="col-span-12 mt-5"></div>
+
+                                            <!-- CONCEPTO -->
+                                            <div class="col-span-10 self-center font-medium tracking-tight text-secondary">CONCEPTO</div>
+                                            <div class="col-span-2 text-right text-lg">Sub total</div>
+
+                                            <!-- Divider -->
+                                            <div class="col-span-12 my-3 border-b"></div>
+
+                                            <!-- MEDICO INCLUYE CENA -->
+                                            <div class="col-span-8 sm:col-span-10 self-center font-medium tracking-tight text-secondary">
+                                                <div>{{ eventoActual.nombre }}</div>
+                                            </div>
+                                            <div class="col-span-4 sm:col-span-2 text-right text-lg">
+                                                {{ selectedAvalibleCategory.costo | currency: 'USD':true }}
+                                            </div>                                                                
+                                            
+                                            <!-- Divider -->
+                                            <div class="col-span-12 my-3 border-b"></div>
+
+                                            <!-- DESCUENTO -->
+                                            <div *ngIf="porcentajeDescuento > 0" class="col-span-8 sm:col-span-10 self-center font-medium tracking-tight text-secondary">
+                                                <div>Descuento ({{ porcentajeDescuento }} %)</div>
+                                            </div>
+                                            <div *ngIf="porcentajeDescuento > 0" class="col-span-4 sm:col-span-2 text-right text-lg">
+                                               - {{ montoDescuento | currency: 'USD':true }}
+                                            </div>
+
+                                            <!-- Divider -->
+                                            <div *ngIf="porcentajeDescuento > 0" class="col-span-12 my-3 border-b"></div>
+
+                                            <!-- Total -->
+                                            <div class="col-span-8 sm:col-span-10 self-center text-2xl font-medium tracking-tight text-secondary">TOTAL</div>
+                                            <div class="col-span-4 sm:col-span-2 text-right text-2xl font-medium">
+                                                {{ costoConDescuento | currency: 'USD':true }}
+                                            </div>
+                                        </div>                                                        
+                                    </div>
+                                    <div class="flex mt-4">                                                      
+                                        <mat-form-field                                
+                                            class="flex-auto py-12 sm:p-10 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                                    
+                                            <mat-label>Seleccione una metodo de pago</mat-label>
+                                            <mat-select 
+                                                [formControl]="secondForm.get('paymentTypes')" 
+                                                placeholder="Seleccione una metodo de pago"
+                                            >                                    
+                                                <mat-option 
+                                                    *ngFor="let paymentType of paymentTypes" 
+                                                    [value]="paymentType.id">
+                                                        {{ paymentType.nombre }}
+                                                </mat-option>
+                                            </mat-select>                                                               
+                                            <mat-error *ngIf="secondForm.get('paymentTypes').hasError('required')">
+                                                El metodo de pago es requerido.
+                                            </mat-error>   
+                                        </mat-form-field>                                                               
+                                    </div>
+                                    <div class="sm:p-10 text-center" style="margin-top: -50px!important;">
+                                        <div class="font-medium">                                
+                                            Al registrarse se te enviará un correo confirmando tu registro, asi como los datos 
+                                            de pago. Una vez realizada el pago  deberás iniciar sesión para subir el comprobante 
+                                            correspondiente.
+                                        </div>                                                                                        
+                                    </div>
+
+                                <!-- OPEN PAY  -->
+                                <div class="border-2 border-gray-300 rounded-lg ml-3 mb-3 p-4 sm:p-8 mt-8 relative"
+                                    *ngIf="showFormOpenPay">
+                                    <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                        Tarjeta de credito o debito
+                                    </h2>
+
+
+                                    <div class="grid grid-cols-12 gap-x-1 ">
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pr-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Nombre del titular</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'nombres_openpay'"
+                                                        [placeholder]="'Nombre'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pl-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Apellido del titular</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'apellidos_openpay'"
+                                                        [placeholder]="'Apellidos'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-12 gap-x-1 ">
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pr-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Ciudad</mat-label>
+                                                    <input matInput maxlength="250"
+                                                        [formControlName]="'ciudad_openpay'" [placeholder]="'Ciudad'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pl-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Estado</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'estado_openpay'"
+                                                        [placeholder]="'Estado'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>                                                                      
+                                    </div>
+
+                                    <div class="grid grid-cols-12 gap-x-1 ">                                    
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pr-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Código postal</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'cp_openpay'"
+                                                        [placeholder]="'Código postal'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pl-3">    
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Dirección</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'direccion_openpay'"
+                                                        [placeholder]="'Dirección'">                                                
+                                                </mat-form-field>    
+                                            </div>
+                                        </div>                                     
+                                    </div>
+                                                            
+                                    <div class="grid grid-cols-12 gap-x-1 ">
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pr-3">    
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Correo electrónico</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'email_openpay'"
+                                                        [placeholder]="'Correo electrónico'">
+                                                    <mat-error
+                                                        *ngIf="secondForm.get('email_openpay').hasError('email')">
+                                                        Deber agregar un correo electronico
+                                                    </mat-error>
+                                                </mat-form-field>    
+                                            </div>
+                                        </div>   
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pl-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Número de tarjeta</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'numero_openpay'"
+                                                        [placeholder]="'Número de tarjeta'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-12 gap-x-1 ">
+                                        <div class="col-span-12 sm:col-span-3 mt-5">
+                                            <div class="flex w-full sm:pr-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Mes</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'mes_openpay'"
+                                                        [placeholder]="'Mes'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-3 mt-5">
+                                            <div class="flex w-full sm:pl-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Año</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'año_openpay'"
+                                                        [placeholder]="'Año'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pl-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Código de seguridad</mat-label>
+                                                    <input matInput maxlength="250" [formControlName]="'cvv2_openpay'"
+                                                        [placeholder]="'Código de seguridad'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-12 gap-x-1 ">
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pr-3">                                          
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">
+                                                    <mat-label>Monto</mat-label>
+                                                    <input 
+                                                        matInput 
+                                                        [formControlName]="'monto_openpay'"
+                                                        class="example-right-align" 
+                                                        [max]="totalVerificar" 
+                                                        placeholder="0.00"
+                                                        mask="separator.2"
+                                                        thousandSeparator=","
+                                                        decimalMarker="."
+                                                        [leadZero]="true"
+                                                    >
+                                                    <mat-error *ngIf="secondForm.get('monto_openpay').errors?.max">
+                                                        El monto no puede ser mayor que ${{ totalVerificar }}.
+                                                    </mat-error>
+                                                    <span matTextPrefix>$&nbsp;</span>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 mt-5">
+                                            <div class="flex w-full sm:pl-3">
+                                                <mat-form-field
+                                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                    <mat-label>Descripción</mat-label>
+                                                    <input matInput maxlength="250"
+                                                        [formControlName]="'descripcion_openpay'" [placeholder]="'Descripción'">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>                                                                
+
+                                    <!-- Logo -->
+                                    <div class="grid grid-cols-12 gap-x-1 ">
+                                        <div class="col-span-12 mt-5 flex justify-center">
+                                            <div class="w-50">
+                                                <!--w-12-->
+                                                <img src="assets/images/logo/logo_new.png">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- AQUI TERMINA --->
+
+                                <!--- TRANSFERENCIAS -->
+                                <div class="border-2 border-gray-300 rounded-lg ml-3 mb-3 p-4 sm:p-8 mt-8 relative"
+                                    *ngIf="showFormTransferencia">
+                                    <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                        Transferencia
+                                    </h2>
+                                    <div class="font-medium tracking-tight text-secondary">
+                                        Datos de pago
+                                    </div>
+
+                                    <!-- Divider -->
+                                    <div class="col-span-12 my-3 border-b"></div>
+
+                                    <div class="flex mt-4 flex-col sm:flex-row">
+                                        <div class="flex w-full pr-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                            >
+                                                <mat-label>Beneficiario</mat-label>
+                                                <input
+                                                    class="notAllowed"
+                                                    matInput
+                                                    [formControlName]="'beneficiario'"
+                                                    readonly="true"
+                                                />
+                                            </mat-form-field>
+                                             
+                                        </div>
+            
+                                        <div class="flex w-full pr-3">
+                                            <mat-form-field
+                                                class="flex-auto gt-xs:pr-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                            >
+                                                <mat-label>Banco</mat-label>
+                                                <input
+                                                    class="notAllowed"
+                                                    matInput
+                                                    [formControlName]="'banco'"
+                                                    readonly="true"
+                                                />
+                                            </mat-form-field>              
+                                        </div>
+                                    </div>
+                                    <div class="flex mt-4 flex-col sm:flex-row">
+                                        <div class="flex w-full pr-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                            >
+                                                <mat-label>Número de cuenta</mat-label>
+                                                <input
+                                                    class="notAllowed"
+                                                    matInput
+                                                    [formControlName]="'numero_cuenta'"
+                                                    maxlength="18"
+                                                    readonly="true"
+                                                />
+                                            </mat-form-field>
+                                             
+                                        </div>
+            
+                                        <div class="flex w-full pr-3">
+                                            <mat-form-field
+                                                class="flex-auto gt-xs:pr-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                            >
+                                                <mat-label>CLABE interbancaria</mat-label>
+                                                <input
+                                                    class="notAllowed"
+                                                    maxlength="20"
+                                                    matInput
+                                                    [formControlName]="'clabe_interbancaria'"
+                                                    mask="000 000 00000000000 0"
+                                                    readonly="true"
+                                                />
+                                            </mat-form-field>              
+                                        </div>
+                                    </div>
+
+                                    <!-- Divider -->
+                                    <div class="col-span-12 my-3 border-b"></div>
+
+                                    <!------
+                                    <div class="flex flex-col sm:flex-row">
+                                        <div class="flex-none h-14">                        
+                                        </div>
+                                        <div class="flex-grow flex justify-center items-center h-14"> 
+                                            <button 
+                                                class="addFile"
+                                                mat-fab extended 
+                                                w-full 
+                                                [color]="!imagenUp ? 'primary' : 'accent'"                                    
+                                                (click)="fileInput.click()"
+                                            >
+                                            <mat-icon [svgIcon]="!imagenUp ? 'heroicons_mini:arrow-up-tray' : 'heroicons_solid:check'">
+                                            </mat-icon>                                    
+                                                {{ !imagenUp ? 'Cargar Comprobante de Pago' : 'Comprobante cargado con éxito' }}                                    
+                                            </button>
+                                        </div>
+                                        <div class="flex-none h-14">                        
+                                        </div>
+                                    </div>                              
+                                    
+                                    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+                                    ----->
+
+                                    <div class="flex mt-4 flex-col sm:flex-row">
+                                        <mat-form-field
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                            <mat-label>Fecha</mat-label>
+                                            <input matInput [matDatepicker]="picker2" [formControlName]="'fecha'"
+                                                [min]="haceSieteDias" [max]="hoy" [placeholder]="'Fecha'">
+                                            <mat-datepicker-toggle matIconSuffix [for]="picker2">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                        
+        
+                                        <mat-form-field
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                            <mat-label>Monto</mat-label>
+                                            <input 
+                                                matInput 
+                                                [formControlName]="'monto'"
+                                                class="example-right-align" 
+                                                [max]="totalVerificar" 
+                                                placeholder="0.00"
+                                                mask="separator.2"
+                                                thousandSeparator=","
+                                                decimalMarker="."
+                                                [leadZero]="true"
+                                            >
+                                                <mat-error *ngIf="secondForm.get('monto').errors?.max">
+                                                    El monto no puede ser mayor que ${{ totalVerificar }}.
+                                                </mat-error>
+                                            <span matTextPrefix>$&nbsp;</span>
+                                        </mat-form-field>
+        
+                                    </div>
+        
+                                    <div class="flex mt-4 flex-col sm:flex-row">
+                                        <mat-form-field
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                            <mat-label>No. de movimiento</mat-label>
+                                            <input matInput maxlength="250" [formControlName]="'numero_movimiento'"
+                                                [placeholder]="'No. de movimiento'" />
+                                        </mat-form-field>
+        
+                                        <div class="col-span-3 mt-6">
+                                            <div class="flex-auto sm:pl-3">
+                                                <button mat-flat-button color="primary" class="addFile btn-phone" color="primary"
+                                                    [color]="!imagenUp ? 'primary' : 'accent'" (click)="fileInput.click()">
+                                                    <mat-icon
+                                                        [svgIcon]="!imagenUp ? 'heroicons_mini:arrow-up-tray' : 'heroicons_solid:check'"></mat-icon>
+                                                    {{ !imagenUp ? 'Archivo' : 'Archivo' }}
+                                                    <!-- Archivo -->
+                                                </button>
+                                            </div>
+                                        </div>
+        
+                                        <input type="file" #fileInput style="display: none"
+                                            (change)="onFileSelectedTwo($event)">
+        
+                                        <div class="flex sm:ml-3 sm:items-center">
+                                            <button mat-flat-button class="btn-phone" color="primary" (click)="agregarPrograma()"
+                                                [disabled]="!formularioLleno">
+                                                Agregar
+                                            </button>
+                                        </div>
+        
+                                    </div>
+        
+        
+                                    <div class="flex flex-col mr-3">
+                                        <table class="table phone border-collapse border border-slate-400 ml-3 mt-5 mb-5">
+                                            <thead>
+                                                <tr class="tr-phone">
+                                                    <!-- <th class="border border-slate-300">Día</th> -->
+                                                    <th class="border border-slate-300">Fecha</th>
+                                                    <th class="border border-slate-300">Monto</th>
+                                                    <th class="border border-slate-300">Movimiento</th>
+                                                    <!-- <th class="border border-slate-300">Estatus</th> -->
+                                                    <th class="border border-slate-300">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="tr-phone" *ngFor="let comprobante of comprobantes_pago">
+                                                    <td class="border border-slate-300 text-center">{{ comprobante.fecha }}
+                                                    </td>
+                                                    <td class="border border-slate-300 text-center">${{ comprobante.monto |
+                                                        number:'1.2-2' }}
+                                                    </td>
+                                                    <td class="border border-slate-300 text-center">{{
+                                                        comprobante.numero_movimiento }}</td>
+                                                    <!-- <td class="border border-slate-300 text-center">
+                                                        <div class="btn-estatus">
+                                                            <span class="estatus_asistentes"
+                                                                [style.background-color]="getStatusColor(comprobante.estatus)">
+                                                                {{ getStatusText(comprobante.estatus) }}
+                                                            </span>
+                                                        </div>
+                                                    </td> -->
+            
+                                                    <td class="border border-slate-300 text-center">
+                                                        <div class="flex justify-center items-center">
+                                                            <span
+                                                                class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 mr-2 rounded-full bg-red-500"
+                                                                (click)="
+                                                                eliminarPrograma(comprobante)">
+                                                                <mat-icon title="Delete" style="
+                                                                    color: rgba(
+                                                                        255,
+                                                                        255,
+                                                                        255,
+                                                                        0.938
+                                                                    ) !important;
+                                                                    cursor: pointer;                                                                    
+                                                                ">delete</mat-icon>
+                                                            </span>
+                                                            <span *ngIf="comprobante.voucher"
+                                                                class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 mr-2 rounded-full bg-primary-500"
+                                                                (click)="openModal(comprobante.voucher)">
+                                                                <mat-icon title="Ver" svgIcon="heroicons_mini:eye" style="
+                                                                    color: rgba(
+                                                                        255,
+                                                                        255,
+                                                                        255,
+                                                                        0.938
+                                                                    ) !important;
+                                                                    cursor: pointer;
+                                                                "></mat-icon>
+                                                            </span>
+                                                            <!-- <span
+                                                                class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 rounded-full bg-teal-600" (click)="openDialog(comprobante)">
+                                                                    <mat-icon title="Editar estatus" svgIcon="heroicons_mini:pencil" style="
+                                                                    color: rgba(
+                                                                        255,
+                                                                        255,
+                                                                        255,
+                                                                        0.938
+                                                                    ) !important;
+                                                                    cursor: pointer;"></mat-icon>                                                          
+                                                            </span> -->
+            
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <!-- AQUI TERMINA --->
+
+                                <!-- DEPOSITOS --> 
+                                <div class="border-2 border-gray-300 rounded-lg ml-3 mb-3 p-4 sm:p-8 mt-8 relative"
+                                    *ngIf="showFormDeposito">
+                                    <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                        Deposito
+                                    </h2>
+                                    
+                                    <div class="font-medium tracking-tight text-secondary">
+                                        Datos de pago
+                                    </div>
+
+                                    <!-- Divider -->
+                                    <div class="col-span-12 my-3 border-b"></div>
+
+                                    <div class="flex mt-4 flex-col sm:flex-row">
+                                        <div class="flex w-full pr-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                            >
+                                                <mat-label>Beneficiario</mat-label>
+                                                <input
+                                                    class="notAllowed"
+                                                    matInput
+                                                    [formControlName]="'beneficiario'"
+                                                    readonly="true"
+                                                />
+                                            </mat-form-field>
+                                             
+                                        </div>
+            
+                                        <div class="flex w-full pr-3">
+                                            <mat-form-field
+                                                class="flex-auto gt-xs:pr-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                            >
+                                                <mat-label>Banco</mat-label>
+                                                <input
+                                                    class="notAllowed"
+                                                    matInput
+                                                    [formControlName]="'banco'"
+                                                    readonly="true"
+                                                />
+                                            </mat-form-field>              
+                                        </div>
+                                    </div>
+                                    <div class="flex mt-4 flex-col sm:flex-row">
+                                        <div class="flex w-full pr-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                            >
+                                                <mat-label>Número de cuenta</mat-label>
+                                                <input
+                                                    class="notAllowed"
+                                                    matInput
+                                                    [formControlName]="'numero_cuenta'"
+                                                    maxlength="18"
+                                                    readonly="true"
+                                                />
+                                            </mat-form-field>
+                                             
+                                        </div>
+            
+                                        <div class="flex w-full pr-3">
+                                            <mat-form-field
+                                                class="flex-auto gt-xs:pr-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                            >
+                                                <mat-label>CLABE interbancaria</mat-label>
+                                                <input
+                                                    class="notAllowed"
+                                                    maxlength="20"
+                                                    matInput
+                                                    [formControlName]="'clabe_interbancaria'"
+                                                    mask="000 000 00000000000 0"
+                                                    readonly="true"
+                                                />
+                                            </mat-form-field>              
+                                        </div>
+                                    </div>
+
+                                    <!-- Divider -->
+                                    <div class="col-span-12 my-3 border-b"></div>
+
+
+                                    <!----
+                                    <div class="flex flex-col sm:flex-row">
+                                        <div class="flex-none h-14">                        
+                                        </div>
+                                        <div class="flex-grow flex justify-center items-center h-14"> 
+                                            <button 
+                                                class="addFile"
+                                                mat-fab extended 
+                                                w-full 
+                                                [color]="!imagenUp ? 'primary' : 'accent'"                                    
+                                                (click)="fileInput.click()"
+                                            >
+                                            <mat-icon [svgIcon]="!imagenUp ? 'heroicons_mini:arrow-up-tray' : 'heroicons_solid:check'"></mat-icon>                                    
+                                                {{ !imagenUp ? 'Cargar Comprobante de Pago' : 'Comprobante cargado con éxito' }}                                    
+                                            </button>
+                                        </div>
+                                        <div class="flex-none h-14">                        
+                                        </div>
+                                    </div>                              
+                                    
+                                    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+                                    ---->
+                                    <div class="flex mt-4 flex-col sm:flex-row">
+                                        <mat-form-field
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                            <mat-label>Fecha</mat-label>
+                                            <input matInput [matDatepicker]="picker3" [formControlName]="'fecha'"
+                                                [min]="haceSieteDias" [max]="hoy" [placeholder]="'Fecha'">
+                                            <mat-datepicker-toggle matIconSuffix [for]="picker3">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #picker3></mat-datepicker>
+                                        </mat-form-field>
+                                        
+        
+                                        <mat-form-field
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                            <mat-label>Monto</mat-label>
+                                            <input 
+                                                matInput 
+                                                [formControlName]="'monto'"
+                                                class="example-right-align" 
+                                                [max]="totalVerificar"
+                                                placeholder="0.00"
+                                                mask="separator.2"
+                                                thousandSeparator=","
+                                                decimalMarker="."
+                                                [leadZero]="true"
+
+                                            >
+                                                <mat-error *ngIf="secondForm.get('monto').errors?.max">
+                                                    El monto no puede ser mayor que ${{ totalVerificar }}.
+                                                </mat-error>
+                                            <span matTextPrefix>$&nbsp;</span>
+                                        </mat-form-field>
+        
+                                    </div>
+        
+                                    <div class="flex mt-4 flex-col sm:flex-row">
+                                        <mat-form-field
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                            <mat-label>No. de movimiento</mat-label>
+                                            <input matInput maxlength="250" [formControlName]="'numero_movimiento'"
+                                                [placeholder]="'No. de movimiento'" />
+                                        </mat-form-field>
+        
+                                        <div class="col-span-3 mt-6">
+                                            <div class="flex-auto sm:pl-3">
+                                                <button mat-flat-button color="primary" class="addFile btn-phone" color="primary"
+                                                    [color]="!imagenUp ? 'primary' : 'accent'" (click)="fileInput.click()">
+                                                    <mat-icon
+                                                        [svgIcon]="!imagenUp ? 'heroicons_mini:arrow-up-tray' : 'heroicons_solid:check'"></mat-icon>
+                                                    {{ !imagenUp ? 'Archivo' : 'Archivo' }}
+                                                    <!-- Archivo -->
+                                                </button>
+                                            </div>
+                                        </div>
+        
+                                        <input type="file" #fileInput style="display: none"
+                                            (change)="onFileSelectedTwo($event)">
+        
+                                        <div class="flex sm:ml-3 sm:items-center">
+                                            <button mat-flat-button class="btn-phone" color="primary" (click)="agregarPrograma()"
+                                                [disabled]="!formularioLleno">
+                                                Agregar
+                                            </button>
+                                        </div>
+        
+                                    </div>
+        
+        
+                                    <div class="flex flex-col mr-3">
+                                        <table class="table-phone border-collapse border border-slate-400 ml-3 mt-5 mb-5">
+                                            <thead>
+                                                <tr class="tr-phone">
+                                                    <!-- <th class="border border-slate-300">Día</th> -->
+                                                    <th class="border border-slate-300">Fecha</th>
+                                                    <th class="border border-slate-300">Monto</th>
+                                                    <th class="border border-slate-300">Movimiento</th>
+                                                    <!-- <th class="border border-slate-300">Estatus</th> -->
+                                                    <th class="border border-slate-300">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="tr-phone" *ngFor="let comprobante of comprobantes_pago">
+                                                    <td class="border border-slate-300 text-center">{{ comprobante.fecha }}
+                                                    </td>
+                                                    <td class="border border-slate-300 text-center">${{ comprobante.monto |
+                                                        number:'1.2-2' }}
+                                                    </td>
+                                                    <td class="border border-slate-300 text-center">{{
+                                                        comprobante.numero_movimiento }}</td>
+                                                    <!-- <td class="border border-slate-300 text-center">
+                                                        <div class="btn-estatus">
+                                                            <span class="estatus_asistentes"
+                                                                [style.background-color]="getStatusColor(comprobante.estatus)">
+                                                                {{ getStatusText(comprobante.estatus) }}
+                                                            </span>
+                                                        </div>
+                                                    </td> -->
+            
+                                                    <td class="border border-slate-300 text-center">
+                                                        <div class="flex justify-center items-center">
+                                                            <span
+                                                                class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 mr-2 rounded-full bg-red-500"
+                                                                (click)="
+                                                                eliminarPrograma(comprobante)">
+                                                                <mat-icon title="Delete" style="
+                                                                    color: rgba(
+                                                                        255,
+                                                                        255,
+                                                                        255,
+                                                                        0.938
+                                                                    ) !important;
+                                                                    cursor: pointer;                                                                    
+                                                                ">delete</mat-icon>
+                                                            </span>
+                                                            <span *ngIf="comprobante.voucher"
+                                                                class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 mr-2 rounded-full bg-primary-500"
+                                                                (click)="openModal(comprobante.voucher)">
+                                                                <mat-icon title="Ver" svgIcon="heroicons_mini:eye" style="
+                                                                    color: rgba(
+                                                                        255,
+                                                                        255,
+                                                                        255,
+                                                                        0.938
+                                                                    ) !important;
+                                                                    cursor: pointer;
+                                                                "></mat-icon>
+                                                            </span>
+                                                            <!-- <span
+                                                                class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 rounded-full bg-teal-600" (click)="openDialog(comprobante)">
+                                                                    <mat-icon title="Editar estatus" svgIcon="heroicons_mini:pencil" style="
+                                                                    color: rgba(
+                                                                        255,
+                                                                        255,
+                                                                        255,
+                                                                        0.938
+                                                                    ) !important;
+                                                                    cursor: pointer;"></mat-icon>                                                          
+                                                            </span> -->
+            
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!---   AQUI TERMINA -->
+
+                            </div>
+                                                    
+                            </div>
+                        
+                        </div>  
+                        
+                        <!-- Terminos y condiciones -->
+                        <div class="inline-flex items-end w-full mt-1.5 justify-end">
+                            <mat-checkbox
+                                class="-ml-2"
+                                [color]="'primary'"
+                                [formControlName]="'agreements'">
+                                <span class="mr-1">Estoy de acuerdo con</span>
+                                <a
+                                    class="ml-1 text-primary-500 hover:underline"
+                                    [routerLink]="['./']">Términos
+                                </a>
+                                <span class="ml-1 mr-1">y</span>
+                                <a
+                                    class="ml-1 text-primary-500 hover:underline"
+                                    [routerLink]="['./']">política de privacidad
+                                </a>
+                            </mat-checkbox>                    
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="flex flex-row space-x-1 mt-4 justify-end">                  
+                                <button 
+                                    mat-flat-button w-full color="accent"
+                                    (click)="returnFirstDisplay()"
+                                >   
+                                    <mat-icon svgIcon="heroicons_solid:arrow-left"></mat-icon>                          
+                                    Regresar
+                                </button>
+                                <button                            
+                                    mat-flat-button
+                                    w-full
+                                    [color]="'primary'"
+                                    [disabled]="secondForm.invalid"                            
+                                    (click)="create()">
+                                    <mat-icon svgIcon="heroicons_solid:bars-arrow-up"></mat-icon>                           
+                                    <span *ngIf="!secondForm.disabled">
+                                        Registrarse
+                                    </span>
+                                    <mat-progress-spinner
+                                        *ngIf="secondForm.disabled"
+                                        [diameter]="24"
+                                        [mode]="'indeterminate'">
+                                    </mat-progress-spinner>
+                                </button>                                                            
+                        </div>
+                    </form>                                                                                                     
+            </div>
+            <!--aqui termina-->
+
+            <!--Tercera pantalla de confirmacion-->
+            <!-- Main -->
+            <div class="flex-auto p-6 sm:p-10" *ngIf="isEnableThirdDisplay">    
+                    <!-- start card -->
+                    <div class=""> 
+
+                        <div class="flex flex-col p-4 pb-4 bg-card rounded-2xl overflow-hidden">
+                            <!--seccion selección de categoria y tipo de pago-->
+                            <div class="border-2 border-gray-300 rounded-lg ml-3 p-4 relative">
+                                <!--contenido dentro del borde  -->
+                                <!-- Invoice -->
+                                <div class="min-w-240 p-16 rounded-2xl print:w-auto print:p-0 print:rounded-none print:shadow-none print:bg-transparent">                                                       
+                                    <!-- Datos generales del asistente -->
+                                    <h3 class="text-4xl text-gray-600 font-bold text-center">Registro Exitoso.</h3>
+                                    <h3 class="text-2xl text-gray-600 font-semibold text-center">
+                                        El registro se ha realizado correctamente. Le hemos enviado un correo electrónico
+                                        de confirmación
+                                    </h3>                                                       
+                                </div>
+                            </div>                     
+                        </div>
+                    
+                    </div>  
+                    
+
+                    <!-- Botones -->
+                    <div class="flex flex-row space-x-1 mt-4 justify-center">                  
+                            <button mat-flat-button w-full color="primary" (click)="goToHome()">   
+                                <mat-icon svgIcon="heroicons_solid:arrow-left"></mat-icon>                          
+                                Ir al evento
+                            </button>                                                            
+                    </div>                                                                                                    
+        </div>
+        <!--aqui termina-->
+        
+        </div>
+        
+        </div>
+        <div class="max-w-7xl mx-auto bg-white text-center p-6 h-6 mb-20 rounded-b-lg">
+        </div>
+
+    </div>
+        
+</div>

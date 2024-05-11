@@ -1,0 +1,1103 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500">ServyViajes</a>
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon class="icon-size-5 text-secondary" [svgIcon]="'heroicons_mini:chevron-right'"></mat-icon>
+                    <a class="ml-1 text-primary-500">Reservación</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Reservación
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                    Editar reservación
+                </h2>
+            </div>
+            <div class="flex items-center ml-6">
+                <button class="hidden sm:inline-flex ml-3" [routerLink]="['/reservations']" mat-flat-button
+                    [color]="'primary'">
+                    <mat-icon class="icon-size-5" svgIcon="heroicons_solid:arrow-left"></mat-icon>
+                    <span class="ml-2">Regresar</span>
+                </button>
+            </div>
+        </div>
+
+
+        <form class="mt-8" [formGroup]="createForm" #signUpNgForm="ngForm">
+
+            <!-- start card -->
+            <div class="mat-elevation-z8 mt-8">
+
+                <div class="flex flex-col p-4 pb-4 bg-card rounded-2xl shadow overflow-hidden">
+
+                    <!-- PRIMERA SESION -->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 mb-3 p-3 mt-8 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Datos generales del hotel
+                        </h2>
+
+
+                        <div class="flex mt-4 mb-2.5">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Seleccione un evento</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [value]="IsTheEvent"
+                                    [placeholder]="'Evento'">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex mt-2">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Nombre del hotel</mat-label>
+                                <input class="notAllowed" readonly="true" matInput maxlength="150"
+                                    [formControlName]="'nombre'" [placeholder]="'Nombre del hotel'">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Servicios</mat-label>
+                                <textarea class="notAllowed" readonly="true" [placeholder]="'Servicios'"
+                                    [(ngModel)]="servicios" matInput [formControlName]="'servicio'" cdkTextareaAutosize
+                                    [cdkAutosizeMinRows]="3" readonly="true">
+                                                </textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- PRIMERA SESION -->
+
+
+                    <!-- SEGUNDA SESION -->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 mb-3 p-3 mt-8 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Datos generales de la habitación
+                        </h2>
+
+                        <div class="flex mt-4 mb-2.5">
+
+
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Tipo de plan</mat-label>
+                                <input class="notAllowed" readonly="true" matInput placeholder="Ingrese el tipo de plan"
+                                    [value]="IsThePlan">
+                            </mat-form-field>
+
+
+                            <!-- <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Tipo de plan</mat-label>
+                                <mat-select placeholder="Seleccione un plan" [formControl]="createForm.get('planes')">
+                                    <mat-option *ngFor="let tipo of tiposDePlanSeleccionados" [value]="tipo.id">
+                                        {{ tipo.nombre }}
+                                    </mat-option>
+                                </mat-select>                                
+                            </mat-form-field> -->
+                        </div>
+
+                        <div class="flex flex-col mr-3">
+                            <table class="border-collapse border border-slate-400 ml-3 mt-5 mb-5">
+                                <thead>
+                                    <tr>
+                                        <th class="border border-slate-300">Tipo de habitación</th>
+                                        <th class="border border-slate-300">Sencilla</th>
+                                        <th class="border border-slate-300">Doble</th>
+                                        <th class="border border-slate-300">Triple</th>
+                                        <th class="border border-slate-300">Cuadruple</th>
+                                        <th class="border border-slate-300">Infantes</th>
+                                        <th class="border border-slate-300">Menores</th>
+                                        <th class="border border-slate-300">Junior</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let room of selectedPlanData">
+                                        <td class="border border-slate-300 text-center">{{ room.tipo_habitacion }}</td>
+                                        <td class="border border-slate-300 text-center">${{ room.sencilla |
+                                            number:'1.2-2' }}</td>
+                                        <td class="border border-slate-300 text-center">${{ room.doble | number:'1.2-2'
+                                            }}</td>
+                                        <td class="border border-slate-300 text-center">${{ room.triple | number:'1.2-2'
+                                            }}</td>
+                                        <td class="border border-slate-300 text-center">${{ room.cuadruple |
+                                            number:'1.2-2' }}</td>
+                                        <td class="border border-slate-300 text-center">${{room.infante_precio_menores |
+                                            number:'1.2-2'}} - ({{ room.infante_edad_minima }} - {{
+                                            room.infante_edad_maxima}})</td>
+                                        <td class="border border-slate-300 text-center">${{room.precio_menores |
+                                            number:'1.2-2'}} - ({{ room.edad_minima }} - {{
+                                            room.edad_maxima }})</td>
+                                        <td class="border border-slate-300 text-center">${{room.junior_precio_menores |
+                                            number:'1.2-2'}} - ({{ room.junior_edad_minima }} - {{
+                                            room.junior_edad_maxima }})</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ml-3 mb-4" *ngIf="!selectedPlanData || selectedPlanData.length === 0">No hay
+                                datos
+                                disponibles.</div>
+                        </div>
+
+                        <!-- Datos generales -->
+                        <div class="ml-3 mb-3 font-medium tracking-tight text-secondary">Datos generales</div>
+
+                        <div class="flex flex-col sm:flex-row">
+                            <div class="flex-auto sm:pr-3">
+
+                                <!-- <mat-form-field
+                                    class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                    <mat-label>Fecha de entrada</mat-label>
+                                    <input matInput [matDatepicker]="picker" [placeholder]="'Fecha de entrada'"
+                                        [matDatepickerFilter]="dateFilter" [formControlName]="'fecha_entrada'">
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>                                    
+                                </mat-form-field> -->
+
+                                <mat-form-field
+                                    class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                    <mat-label>Fecha de entrada</mat-label>
+                                    <input class="notAllowed" readonly="true" matInput placeholder="Fecha de entrada"
+                                        [value]="fechaEntrada">
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="flex-auto sm:pl-3">
+
+                                <!-- <mat-form-field
+                                    class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                    <mat-label>Fecha de salida</mat-label>
+                                    <input matInput [matDatepicker]="picker1" [placeholder]="'Fecha de salida'"
+                                        [matDatepickerFilter]="dateFilter" [formControlName]="'fecha_salida'">
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>                                    
+                                </mat-form-field> -->
+
+                                <mat-form-field
+                                    class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                    <mat-label>Fecha de salida</mat-label>
+                                    <input class="notAllowed" readonly="true" matInput placeholder="Fecha de salida"
+                                        [value]="fechaSalida">
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+
+                        <!-- GRADO ACADEMICO -->
+                        <div class="grid grid-cols-6 gap-4 mt-5">
+
+                            <!-- *ngFor="
+                                    let gradoCtrl of gradosArray.controls;
+                                    let i = index
+                                " -->
+
+                            <!-- <div class="col-span-3 ...">
+                                <div class="flex-auto sm:pr-3">
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                        <mat-label>Tipo de habitacion</mat-label>
+                                        [formControl]="gradoCtrl.get('tipo_habitacion')"
+                                        <mat-select placeholder="Tipo de habitación">
+                                            <mat-option *ngFor="let plan of selectedPlanData" [value]="plan.id">
+                                                [value]="plan.id"
+                                                {{ plan.tipo_habitacion }}
+                                            </mat-option>
+                                        </mat-select>                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="col-span-3 ...">
+                                <div class="flex-auto sm:pr-3">
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                        <mat-label>Cantidad</mat-label>
+                                        [formControl]="gradoCtrl.get('cantidad')"
+                                        <input type="number" min="1" max="10" matInput [placeholder]="'Cantidad'">                                        
+                                    </mat-form-field>
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="...">
+                                *ngIf="i === 0"
+                                <mat-label style="font-weight: 500;" class="pr-5 pl-5">Eliminar</mat-label>
+                                <div class="flex-auto sm:pl-3 mt-1">
+                                    <button mat-flat-button w-full color="warn" class="pr-5 pl-5 mt-1">
+                                        (click)="eliminarGradoAcademico(i)"
+                                        <mat-icon svgIcon="heroicons_solid:trash"></mat-icon>
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <!-- <div class="grid grid-cols-5 gap-4 mt-3">
+                            <div class="col-span-2 ...">
+                                <div class="flex-auto sm:pr-3">
+                                </div>
+                            </div>
+                            <div class="col-span-2 ...">
+                                <div class="flex-auto sm:pl-3">
+
+                                </div>
+                            </div>
+                            <div class="...">
+                                <div class="flex-auto sm:pl-3">
+                                    <button mat-flat-button w-full color="primary" class="pr-5 pl-5">
+                                        (click)="agregarGradoAcademico()"
+                                        *ngIf="selectedPlanData && selectedPlanData.length > 1 && !seleccionadasTresOpciones"
+                                        <mat-icon svgIcon="heroicons_solid:plus"></mat-icon>
+                                        Agregar
+                                    </button>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <!-- SEGUNDA SESION -->
+
+
+                    <!-- TERCERA SESION -->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 mb-3 p-3 mt-8 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Datos del solicitante
+                        </h2>
+                        <div class="grid grid-cols-12 gap-4 mt-3">
+
+                            <div class="col-span-6 ...">
+                                <div class="flex-auto sm:pr-1">
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                        <mat-label>Nombre</mat-label>
+                                        <input class="notAllowed" readonly="true" matInput [placeholder]="'Nombre'"
+                                            [formControlName]="'nombre_solicitante'">
+                                        <!-- <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('nombre_solicitante').hasError('required')">
+                                            El nombre es obligatorio
+                                        </mat-error>
+                                        <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('nombre_solicitante').hasError('maxLength')">
+                                            El nombre no puede tener más de 10 caracteres.
+                                        </mat-error>
+                                        <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('nombre_solicitante').hasError('pattern')">
+                                            El nombre no puede contener números ni caracteres especiales.
+                                        </mat-error> -->
+
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="col-span-6 ...">
+                                <div class="flex-auto sm:pl-1">
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                        <mat-label>Apellidos</mat-label>
+                                        <input class="notAllowed" readonly="true" matInput [placeholder]="'Apellidos'"
+                                            [formControlName]="'apellidos_solicitantes'">
+                                        <!-- <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('apellidos_solicitantes').hasError('required')">
+                                            El apellido es obligatorio
+                                        </mat-error>
+                                        <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('apellidos_solicitantes').hasError('maxLength')">
+                                            Los apellidos no pueden tener más de 10 caracteres.
+                                        </mat-error>
+                                        <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('apellidos_solicitantes').hasError('pattern')">
+                                            Los apellidos no pueden contener números ni caracteres especiales.
+                                        </mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="grid grid-cols-12 gap-4 mt-3">
+
+                            <div class="col-span-6 ...">
+                                <div class="flex-auto sm:pr-1">
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                        <mat-label>Correo electrónico</mat-label>
+                                        <input class="notAllowed" readonly="true" matInput
+                                            [placeholder]="'Correo electrónico'"
+                                            [formControlName]="'correo_solicitante'">
+                                        <!-- <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('correo_solicitante').hasError('email')">
+                                            Deber agregar un correo electronico
+                                        </mat-error>
+                                        <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('correo_solicitante').hasError('required')">
+                                            El correo electronico es obligatorio
+                                        </mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="col-span-6 ...">
+                                <div class="flex-auto sm:pl-1">
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                        <mat-label>Teléfono</mat-label>
+                                        <input class="notAllowed" readonly="true" type="text" matInput maxlength="12"
+                                            [placeholder]="'Teléfono'" mask="00-0000-0000"
+                                            [formControlName]="'telefono_solicitantes'">
+                                        <!-- <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('telefono_solicitantes').hasError('required')">
+                                            El teléfono es obligatorio
+                                        </mat-error>
+                                        <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('telefono_solicitantes').hasError('pattern')">
+                                            El teléfono debe contener solo números.
+                                        </mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="grid grid-cols-12 gap-4 mt-3">
+
+                            <div class="col-span-6 ...">
+                                <div class="flex-auto sm:pr-1">
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                        <mat-label>Ciudad</mat-label>
+                                        <input class="notAllowed" readonly="true" matInput [placeholder]="'Ciudad'"
+                                            [formControlName]="'ciudad_solicitante'">
+                                        <!-- <mat-error
+                                            *ngIf="horizontalStepperForm.get('step3').get('ciudad_solicitante').hasError('required')">
+                                            La ciudad es obligatorio
+                                        </mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="col-span-6 ...">
+                                <div class="flex-auto sm:pl-1">
+                                    <!-- <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">               
+                                            <mat-label>Telefono</mat-label>
+                                            <input matInput [formControlName]="'telefono_solicitantes'" [placeholder]="'Telefono'">                                                                        
+                                        </mat-form-field>  -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- TERCERA SESION -->
+
+                    <!-- CUARTA SESION -->
+                    <div *ngFor="let habCtrl of reservation_rooms; let i = index">
+                        <div class="border-2 border-gray-300 rounded-lg ml-3 mb-3 p-3 mt-8 relative">
+                            <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                Habitación <!--{{i + 1}}-->
+                            </h2>
+
+                            <div class="grid grid-cols-12 gap-4 mt-3">
+                                <div class="col-span-2 ...">
+
+                                    <!-- {{ habCtrl.get('tipo_habitacion').value.charAt(0).toUpperCase() +
+                                    habCtrl.get('tipo_habitacion').value.slice(1) }} -->
+                                    <h4 class="ml-3">{{ habCtrl.room_type_name }}</h4>
+                                </div>
+
+                                <div class="col-span-5 ...">
+                                    <div class="flex-auto sm:pr-1">
+                                        <mat-form-field
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                            <mat-label>Adultos</mat-label>
+                                            <!-- [formControl]="habCtrl.get('cant_adultos')" -->
+                                            <input class="notAllowed" readonly="true" matInput type="number" min="1"
+                                                max="4" [placeholder]="'Adultos'" [value]="habCtrl.adults_quantity">
+                                            <!-- (change)="agregarEliminarPersonas(i, 'adultos')" -->
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="col-span-5 ...">
+                                    <div class="flex-auto sm:pl-1">
+                                        <mat-form-field
+                                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                            <mat-label>Menores</mat-label>
+                                            <input class="notAllowed" readonly="true" matInput type="number" min="0"
+                                                max="5" [placeholder]="'Menores'" [value]="habCtrl.minor_quantity">
+                                            <!-- [formControl]="habCtrl.get('cant_menores')"
+                                            (change)="agregarEliminarPersonas(i, 'menores')" -->
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div *ngFor="let adulto of habCtrl.reservation_rooms_details; let j = index">
+                                <div *ngIf="adulto.type === 'adult'" class="grid grid-cols-12 gap-4 mt-3">
+                                    <div class="col-span-2 ...">
+                                        <h4 *ngIf="j === 0" class="ml-3">Reservar a:</h4>
+                                    </div>
+
+
+                                    <!-- <mat-error *ngIf="gradoCtrl.get('tipo_habitacion').hasError('required')">
+                                    La habitación es requerida.
+                                </mat-error> -->
+
+
+                                    <div class="col-span-5 ...">
+                                        <div class="flex-auto sm:pr-1">
+                                            <mat-form-field
+                                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <input class="notAllowed" readonly="true" matInput
+                                                    [placeholder]="'Nombres'" [value]="adulto.name">
+                                                <!-- [formControl]="adulto.get('nombre')" -->
+                                                <!-- <mat-error *ngIf="adulto.get('nombre').hasError('required')">
+                                            El nombre es obligatorio
+                                        </mat-error>
+                                        <mat-error *ngIf="adulto.get('nombre').hasError('maxLength')">
+                                            El nombre no puede tener más de 10 caracteres.
+                                        </mat-error>
+                                        <mat-error *ngIf="adulto.get('nombre').hasError('pattern')">
+                                            El nombre no puede contener números ni caracteres especiales.
+                                        </mat-error> -->
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-span-5 ...">
+                                        <div class="flex-auto sm:pl-1">
+                                            <mat-form-field
+                                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <input class="notAllowed" readonly="true" matInput
+                                                    [placeholder]="'Apellidos'" [value]="adulto.last_name">
+                                                <!-- [formControl]="adulto.get('apellido')" -->
+                                                <!-- <mat-error *ngIf="adulto.get('apellido').hasError('required')">
+                                            El apelido es obligatorio
+                                        </mat-error>
+                                        <mat-error *ngIf="adulto.get('apellido').hasError('maxLength')">
+                                            El apelido no puede tener más de 10 caracteres.
+                                        </mat-error>
+                                        <mat-error *ngIf="adulto.get('apellido').hasError('pattern')">
+                                            El apelido no puede contener números ni caracteres especiales.
+                                        </mat-error> -->
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngFor="let menor of habCtrl.reservation_rooms_details; let j = index">
+                                <div *ngIf="menor.type === 'minor'" class="grid grid-cols-12 gap-4 mt-3">
+                                    <div class="col-span-2 ...">
+                                        <h4 class="ml-3">Menores:</h4>
+                                        <!-- *ngIf="j === 0" -->
+                                    </div>
+
+                                    <div class="col-span-10 ...">
+                                        <div class="grid grid-cols-12">
+                                            <div class="col-span-4 ...">
+                                                <div class="flex-auto sm:pr-1">
+                                                    <mat-form-field
+                                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                        <input class="notAllowed" readonly="true" matInput
+                                                            [placeholder]="'Nombres'" [value]="menor.name">
+                                                        <!-- [formControl]="menor.get('nombre')" -->
+                                                        <!-- <mat-error *ngIf="menor.get('nombre').hasError('required')">
+                                                    El nombre es obligatorio
+                                                </mat-error>
+                                                <mat-error *ngIf="menor.get('nombre').hasError('maxLength')">
+                                                    El nombre no puede tener más de 10 caracteres.
+                                                </mat-error>
+                                                <mat-error *ngIf="menor.get('nombre').hasError('pattern')">
+                                                    El nombre no puede contener números ni caracteres especiales.
+                                                </mat-error> -->
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-span-4 ...">
+                                                <div class="flex-auto sm:pr-1">
+                                                    <mat-form-field
+                                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                        <input class="notAllowed" readonly="true" matInput
+                                                            [placeholder]="'Apellidos'" [value]="menor.last_name">
+                                                        <!-- [formControl]="menor.get('apellido')" -->
+                                                        <!-- <mat-error *ngIf="menor.get('nombre').hasError('required')">
+                                                    El nombre es obligatorio
+                                                </mat-error>
+                                                <mat-error *ngIf="menor.get('nombre').hasError('maxLength')">
+                                                    El nombre no puede tener más de 10 caracteres.
+                                                </mat-error>
+                                                <mat-error *ngIf="menor.get('nombre').hasError('pattern')">
+                                                    El nombre no puede contener números ni caracteres especiales.
+                                                </mat-error> -->
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-span-4 ...">
+                                                <div class="flex-auto sm:pr-1">
+                                                    <mat-form-field
+                                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                        <input class="notAllowed" readonly="true" matInput type="text"
+                                                            [placeholder]="'Edad'" inputmode="numeric" pattern="[0-9]*"
+                                                            [value]="menor.age">
+                                                        <!-- [formControl]="menor.get('edad')" -->
+                                                        <!-- <mat-error *ngIf="menor.get('edad').hasError('required')">
+                                                    La edad es obligatoria
+                                                </mat-error>
+                                                <mat-error *ngIf="menor.get('edad').hasError('pattern')">
+                                                    La edad debe contener solo números.
+                                                </mat-error> -->
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- CUARTA SESION -->
+
+                    <!-- QUINTA SESION -->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 mb-3 p-8 mt-8 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Desglose y pago
+                        </h2>
+
+
+                        <!-- <div class="flex flex-col p-8 bg-card rounded-2xl shadow overflow-hidden"> -->
+
+
+                        <!-- Invoice -->
+                        <!-- Datos generales del asistente -->
+                        <div class="font-medium tracking-tight text-secondary">Datos generales del asistente
+                        </div>
+
+                        <div class="grid grid-cols-12 gap-x-1">
+
+                            <!-- Spacer -->
+                            <div class="col-span-12 mt-5"></div>
+
+                            <!-- CONCEPTO -->
+                            <div class="col-span-10 self-center font-medium tracking-tight text-secondary">
+                                CONCEPTO
+                            </div>
+                            <div class="col-span-2 text-right text-lg">Sub total</div>
+
+
+                        </div>
+
+                        <div class="grid grid-cols-12 gap-x-1"
+                            *ngFor=" let desglose of reservation_details; let i = index">
+
+                            <!-- Divider -->
+                            <div class="col-span-12 my-3 border-b"></div>
+
+                            <div class="col-span-10 self-center font-medium tracking-tight text-secondary">
+                                <div class="desglose">{{ desglose.concept }}</div>
+                            </div>
+
+                            <div class="col-span-2 text-right text-lg">${{ desglose.price | number:'1.2-2' }}</div>
+
+                        </div>
+
+
+                        <!-- <div class="grid grid-cols-12 gap-x-1">
+
+                            Divider
+                            <div class="col-span-12 my-3 border-b"></div>
+
+                            MENORES
+                            <div class="col-span-10 self-center font-medium tracking-tight text-secondary">
+                                <div>Menores</div>
+                            </div>
+                            <div class="col-span-2 text-right text-lg">$</div>
+                            {{ sumaCostoMenores }}
+
+                        </div> -->
+
+                        <div class="grid grid-cols-12 gap-x-1">
+                            <!-- Divider -->
+                            <div class="col-span-12 my-3 border-b"></div>
+
+                            <!-- Total -->
+                            <div class="col-span-10 self-center text-2xl font-medium tracking-tight text-secondary">
+                                TOTAL</div>
+                            <div class="col-span-2 text-right text-2xl font-medium">${{ monto_total | number:'1.2-2' }}
+                            </div>
+                            <!-- {{ sumaCostoAdulto +
+                                        sumaCostoMenores }} -->
+
+                            <!-- Divider -->
+                            <div class="col-span-12 my-3 border-b"></div>
+
+                        </div>
+
+
+                        <form [formGroup]="programaForm">
+
+                            <div class="grid grid-cols-12 gap-x-1 ">
+                                <div class="col-span-6 mt-5">
+                                    <div class="flex-auto sm:pr-3">
+                                        <mat-form-field
+                                            class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                            <mat-label>Clave de reservación</mat-label>
+                                            <input matInput class="notAllowed" readonly="true" [formControlName]="'clave_reservacion'" [placeholder]="'Clave de reservación'">                                                                                                                                    
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-span-6 mt-5">
+
+                                    <div class="flex-auto sm:pl-3">
+
+                                        <mat-form-field
+                                            class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                            <mat-label>Seleccione una metodo de pago</mat-label>
+                                            <mat-select [formControl]="programaForm.get('tipo_pago')"
+                                                placeholder="Seleccione una metodo de pago">
+                                                <mat-option *ngFor="let paymentType of paymentTypes"
+                                                    [value]="paymentType.id">
+                                                    {{ paymentType.nombre }}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="programaForm.get('tipo_pago').hasError('required')">
+                                                El metodo de pago es requerido.
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="mt-3">
+                                <div class="font-medium">
+                                    Al registrarse se te enviará un correo confirmando tu registro, asi como los
+                                    datos
+                                    de pago. Una vez realizada el pago deberás regresar al registro a subir el
+                                    comprobante
+                                    correspondiente.
+                                </div>
+                            </div>
+
+
+                            <br>
+                            <br>
+
+                            <div class="border-2 border-gray-300 rounded-lg ml-3 mb-3 p-8 mt-8 relative"
+                                *ngIf="showOpenpayForm">
+                                <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                    Tarjeta de credito o debito
+                                </h2>
+
+
+                                <div class="grid grid-cols-12 gap-x-1 ">
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Nombre del titular</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'nombres_openpay'"
+                                                    [placeholder]="'Nombre'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Apellido del titular</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'apellidos_openpay'"
+                                                    [placeholder]="'Apellidos'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-12 gap-x-1 ">
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Ciudad</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'ciudad_openpay'"
+                                                    [placeholder]="'Ciudad'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Estado</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'estado_openpay'"
+                                                    [placeholder]="'Estado'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="grid grid-cols-12 gap-x-1 ">
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Código postal</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'cp_openpay'"
+                                                    [placeholder]="'Código postal'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Dirección</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'direccion_openpay'"
+                                                    [placeholder]="'Dirección'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-12 gap-x-1 ">
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Correo electrónico</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'email_openpay'"
+                                                    [placeholder]="'Correo electrónico'">
+                                                <mat-error *ngIf="programaForm.get('email_openpay').hasError('email')">
+                                                    Deber agregar un correo electronico
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Número de tarjeta</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'numero_openpay'"
+                                                    [placeholder]="'Número de tarjeta'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="grid grid-cols-12 gap-x-1 ">
+                                    <div class="col-span-3 mt-5">
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Mes</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'mes_openpay'"
+                                                    [placeholder]="'Mes'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-3 mt-5">
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Año</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'año_openpay'"
+                                                    [placeholder]="'Año'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Código de seguridad</mat-label>
+                                                <input matInput maxlength="250" [formControlName]="'cvv2_openpay'"
+                                                    [placeholder]="'Código de seguridad'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-12 gap-x-1 ">
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pr-3">
+                                            <mat-form-field
+                                                class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">
+                                                <mat-label>Monto</mat-label>
+                                                <input matInput type="number" [formControlName]="'monto_openpay'"
+                                                    class="example-right-align" [max]="totalVerificar" placeholder="0">
+                                                <mat-error *ngIf="programaForm.get('monto_openpay').errors?.max">
+                                                    El monto no puede ser mayor que ${{ totalVerificar }}.
+                                                </mat-error>
+                                                <span matTextPrefix>$&nbsp;</span>
+                                                <span matTextSuffix>.00</span>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6 mt-5">
+                                        <div class="flex-auto sm:pl-3">
+                                            <mat-form-field
+                                                class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                                <mat-label>Descripción</mat-label>
+                                                <input matInput maxlength="250"
+                                                    [formControlName]="'descripcion_openpay'"
+                                                    [placeholder]="'Descripción'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Logo -->
+                                <div class="grid grid-cols-12 gap-x-1 ">
+                                    <div class="col-span-12 mt-5 flex justify-center">
+                                        <div class="w-50">
+                                            <!--w-12-->
+                                            <img src="assets/images/logo/logo_new.png">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- sección del programa -->
+                            <div class="border-2 border-gray-300 rounded-lg ml-3 p-3 mt-8 relative"
+                                *ngIf="showComprobanteForm">
+                                <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                    Transferencia
+                                </h2>
+
+                                <div class="flex mt-4">
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                        <mat-label>Fecha</mat-label>
+                                        <input matInput [matDatepicker]="picker2" [formControlName]="'fecha'"
+                                            [min]="haceSieteDias" [max]="hoy" [placeholder]="'Fecha'">
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker2">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                    
+
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                        <mat-label>Monto</mat-label>
+                                        <input matInput type="number" [formControlName]="'monto'"
+                                            class="example-right-align" placeholder="0">
+                                        <span matTextPrefix>$&nbsp;</span>
+                                        <span matTextSuffix>.00</span>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="flex mt-4">
+                                    <mat-form-field
+                                        class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                        <mat-label>No. de movimiento</mat-label>
+                                        <input matInput maxlength="250" [formControlName]="'numero_movimiento'"
+                                            [placeholder]="'No. de movimiento'" />
+                                    </mat-form-field>
+
+                                    <div class="col-span-3 mt-6">
+                                        <div class="flex-auto sm:pl-3">
+                                            <button mat-flat-button color="primary" class="addFile" color="primary"
+                                                [color]="!imagenUp ? 'primary' : 'accent'" (click)="fileInput.click()">
+                                                <mat-icon
+                                                    [svgIcon]="!imagenUp ? 'heroicons_mini:arrow-up-tray' : 'heroicons_solid:check'"></mat-icon>
+                                                {{ !imagenUp ? 'Archivo' : 'Archivo' }}
+                                                <!-- Archivo -->
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <input type="file" #fileInput style="display: none"
+                                        (change)="onFileSelected($event)">
+
+                                    <div class="flex ml-3 items-center">
+                                        <button mat-flat-button color="primary" (click)="agregarPrograma()"
+                                            [disabled]="!formularioLleno">
+                                            Agregar
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex flex-col mr-3">
+                                <table class="border-collapse border border-slate-400 ml-3 mt-5 mb-5">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th class="border border-slate-300">Día</th> -->
+                                            <th class="border border-slate-300">Fecha</th>
+                                            <th class="border border-slate-300">Monto</th>
+                                            <th class="border border-slate-300">Movimiento</th>
+                                            <th class="border border-slate-300">Estatus</th>
+                                            <th class="border border-slate-300">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let comprobante of comprobantes">
+                                            <td class="border border-slate-300 text-center">{{ comprobante.date }}
+                                            </td>
+                                            <td class="border border-slate-300 text-center">${{ comprobante.amount |
+                                                number:'1.2-2' }}
+                                            </td>
+                                            <td class="border border-slate-300 text-center">{{
+                                                comprobante.motion }}</td>
+                                            <td class="border border-slate-300 text-center">
+                                                <div class="btn-estatus">
+                                                    <span class="estatus_asistentes"
+                                                        [style.background-color]="getStatusColor(comprobante.estatus)">
+                                                        {{ getStatusText(comprobante.estatus) }}
+                                                    </span>
+                                                </div>
+                                            </td>
+
+                                            <td class="border border-slate-300 text-center">
+                                                <div class="flex justify-center items-center">
+                                                    <span
+                                                        class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 mr-2 rounded-full bg-red-500"
+                                                        (click)="
+                                                        eliminarPrograma(comprobante)">
+                                                        <mat-icon title="Delete" style="
+                                                            color: rgba(
+                                                                255,
+                                                                255,
+                                                                255,
+                                                                0.938
+                                                            ) !important;
+                                                            cursor: pointer;                                                                    
+                                                        ">delete</mat-icon>
+                                                    </span>
+                                                    <span *ngIf="comprobante.voucher"
+                                                        class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 mr-2 rounded-full bg-primary-500"
+                                                        (click)="openModal(comprobante.voucher)">
+                                                        <mat-icon title="Ver" svgIcon="heroicons_mini:eye" style="
+                                                            color: rgba(
+                                                                255,
+                                                                255,
+                                                                255,
+                                                                0.938
+                                                            ) !important;
+                                                            cursor: pointer;
+                                                        "></mat-icon>
+                                                    </span>
+                                                    <span
+                                                        class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 rounded-full bg-teal-600" (click)="openDialog(comprobante)">
+                                                            <mat-icon title="Editar estatus" svgIcon="heroicons_mini:pencil" style="
+                                                            color: rgba(
+                                                                255,
+                                                                255,
+                                                                255,
+                                                                0.938
+                                                            ) !important;
+                                                            cursor: pointer;"></mat-icon>                                                          
+                                                    </span>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="flex">
+                                <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                    <mat-label>Observaciones</mat-label>
+                                    <textarea class="notAllowed" readonly="true" [placeholder]="'Observaciones'"
+                                        matInput [formControlName]="'observaciones'" cdkTextareaAutosize
+                                        [cdkAutosizeMinRows]="3">
+                                    </textarea>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="grid grid-cols-12 gap-x-1 ">
+                                <div class="col-span-6 mt-5">
+                                    <div class="flex-auto sm:pr-3">
+                                    </div>
+                                </div>
+                                <div class="col-span-6 mt-5">
+
+                                    <div class="flex-auto sm:pl-3">
+
+                                        <mat-form-field
+                                            class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                            <mat-label>Estatus</mat-label>
+                                            <mat-select [formControl]="createForm.get('estatus')"
+                                                placeholder="Seleccione un estatus">
+                                                <mat-option [value]="0">
+                                                    Reservado
+                                                </mat-option>
+                                                <mat-option [value]="1">
+                                                    Acreditado
+                                                </mat-option>
+                                                <mat-option [value]="2">
+                                                    Pendiente
+                                                </mat-option>
+                                                <mat-option [value]="3">
+                                                    Pagado
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+
+                        <!-- </div> -->
+
+                    </div>
+                    <!-- QUINTA SESION -->
+
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="flex flex-row space-x-1 mt-7 justify-end">
+                <button mat-flat-button w-full color="primary" (click)="cancel()">
+                    Cancelar
+                </button>
+
+                <button mat-flat-button w-full color="primary" [disabled]="createForm.disabled" (click)="edit()">
+                    <span *ngIf="!createForm.disabled"> Guardar </span>
+                    <mat-progress-spinner *ngIf="createForm.disabled" [diameter]="24" [mode]="'indeterminate'">
+                    </mat-progress-spinner>
+                </button>
+            </div>
+
+        </form>
+
+
+
+
+
+    </div>
+</div>

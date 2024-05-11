@@ -1,0 +1,27 @@
+<form [formGroup]="createForm2">
+    <div class="grid grid-cols-12 gap-x-1 ">    
+        <div class="col-span-12 mt-5">
+            <div class="flex-auto sm:pl-3">
+                <mat-form-field class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                    <mat-label>Estatus</mat-label>
+                    <mat-select formControlName="estatus" placeholder="Seleccione un estatus">
+                        <mat-option [value]="0">
+                            Pendiente
+                        </mat-option>
+                        <mat-option [value]="1">
+                            Pagado
+                        </mat-option>
+                        <mat-option [value]="2">
+                            Rechazado
+                        </mat-option>                    
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+  
+    </div>
+    <div class="flex flex-row space-x-1 mt-7 justify-end">
+        <button mat-flat-button w-full color="primary" (click)="onAceptar()">Aceptar</button>
+    </div>
+  </form>
+  

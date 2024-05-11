@@ -1,0 +1,40 @@
+.custom-mat-form-field-1 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+.custom-mat-form-field-2 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+mat-raised-button {
+    padding: 6px 15px!important;
+}
+
+.gallery{
+    width: 100%;
+}
+
+
+
+
+.owl-carousel-container .owl-next,
+.owl-carousel-container .owl-prev {
+    position: absolute;
+    top: 50%;    
+    background-color: #4f46e5!important;
+    color: white!important;
+    height: 30px!important;
+    width: 30px!important;
+    border-radius: 50%!important;
+}
+.owl-carousel-container .owl-next{
+    right: 0;
+    transform: translate(-50%, -50%);
+}
+.owl-carousel-container .owl-prev {
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+.example-right-align {
+    text-align: right;
+}

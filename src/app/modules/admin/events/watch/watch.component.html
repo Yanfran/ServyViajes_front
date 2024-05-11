@@ -1,0 +1,354 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent"
+    >
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500"
+                        >ServyViajes</a
+                    >
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_mini:chevron-right'"
+                    ></mat-icon>
+                    <a class="ml-1 text-primary-500">Evento</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
+                >
+                    Evento
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                    Ver evento
+                </h2>
+            </div>
+            <div class="flex items-center ml-6">
+                <button
+                    class="hidden sm:inline-flex ml-3"
+                    [routerLink]="['/events']"
+                    mat-flat-button
+                    [color]="'primary'"
+                >
+                    <mat-icon
+                        class="icon-size-5"
+                        svgIcon="heroicons_solid:arrow-left"
+                    ></mat-icon>
+                    <span class="ml-2">Regresar</span>
+                </button>
+            </div>
+        </div>
+        
+        <form class="mt-8" [formGroup]="createForm" #signUpNgForm="ngForm">
+            <!-- start card -->
+            <div class="mat-elevation-z8 mt-8">
+                <div
+                    class="flex flex-col p-4 pb-4 bg-card rounded-2xl shadow overflow-hidden"
+                >
+                    <!-- Datos generales del evento -->
+                    <div class="ml-4 font-medium tracking-tight text-secondary">Datos generales del evento</div>
+
+                    <div class="flex mt-4">
+                        <mat-form-field  class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                            
+                            <mat-label>Nombre del evento</mat-label>
+                            <input matInput class="notAllowed" readonly="true" maxlength="300" [formControlName]="'nombre'" [placeholder]="'Nombre del evento'">                                                        
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex mt-4">
+                        <mat-form-field  class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                            
+                            <mat-label>Sede</mat-label>
+                            <input matInput class="notAllowed" readonly="true" maxlength="300" [formControlName]="'sede'" [placeholder]="'Sede'">                                                        
+                        </mat-form-field>
+                    </div>  
+
+
+                    <div class="flex flex-col sm:flex-row">  
+                        <div class="flex-auto sm:pr-3">
+                            
+                            <mat-form-field                                
+                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                <mat-label>Fecha de inicio</mat-label>
+                                <input
+                                    matInput class="notAllowed" readonly="true"
+                                    [formControlName]="'fecha_inicio'"
+                                    [matDatepicker]="picker1"
+                                    [placeholder]="'Fecha de inicio'">
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>                                                      
+                            
+                        </div>  
+                    
+                        <div class="flex-auto sm:pl-3">
+
+                            <mat-form-field                                
+                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                <mat-label>Fecha de termino</mat-label>
+                                <input
+                                    matInput class="notAllowed" readonly="true"
+                                    [formControlName]="'fecha_termino'"
+                                    [matDatepicker]="picker2"
+                                    [placeholder]="'Fecha de termino'">
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="picker2">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="flex">
+                        <mat-form-field                            
+                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                                
+                            <mat-label>Descripción</mat-label>
+                            <textarea
+                                [placeholder]="'Descripción'"   
+                                matInput class="notAllowed" readonly="true"
+                                [formControlName]="'descripcion'"
+                                cdkTextareaAutosize
+                                [cdkAutosizeMinRows]="3"></textarea>                                
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="flex">
+                        <mat-form-field                            
+                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                                
+                            <mat-label>Politicas</mat-label>
+                            <textarea
+                                [placeholder]="'Politicas'"   
+                                matInput class="notAllowed" readonly="true"
+                                [formControlName]="'politicas'"
+                                cdkTextareaAutosize
+                                [cdkAutosizeMinRows]="3"></textarea>                                
+                        </mat-form-field>
+                    </div>
+                    
+                    <!--seccion datos de pago-->
+                    <div class="border-2 border-gray-300 rounded-lg ml-3 p-4 mt-4 relative">
+                        <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                            Datos de pago
+                        </h2>
+                        <!-- Contenido dentro del borde -->
+                        <div class="flex mt-4">
+                            <div class="flex w-full pr-3">
+                                <mat-form-field
+                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                >
+                                    <mat-label>Beneficiario</mat-label>
+                                    <input
+                                        class="notAllowed"
+                                        matInput
+                                        [formControlName]="'beneficiario'"
+                                        readonly="true"
+                                    />
+                                    <mat-error *ngIf="createForm.get('beneficiario').hasError('required')">
+                                        El beneficiario es requerido.
+                                    </mat-error>
+                                </mat-form-field>
+                                 
+                            </div>
+
+                            <div class="flex w-full pr-3">
+                                <mat-form-field
+                                    class="flex-auto gt-xs:pr-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                >
+                                    <mat-label>Banco</mat-label>
+                                    <input
+                                        class="notAllowed"
+                                        matInput
+                                        [formControlName]="'banco'"
+                                        readonly="true"
+                                    />
+                                    <mat-error *ngIf="createForm.get('banco').hasError('required')">
+                                        El banco es requerido.
+                                    </mat-error>
+                                </mat-form-field>              
+                            </div>
+                        </div>
+                        <div class="flex mt-4">
+                            <div class="flex w-full pr-3">
+                                <mat-form-field
+                                    class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                >
+                                    <mat-label>Número de cuenta</mat-label>
+                                    <input
+                                        class="notAllowed"
+                                        matInput
+                                        [formControlName]="'numero_cuenta'"
+                                        maxlength="18"
+                                        readonly="true"
+                                    />
+                                    <mat-error *ngIf="createForm.get('numero_cuenta').hasError('required')">
+                                        El número de cuenta es requerido.
+                                    </mat-error>
+                                    <mat-error *ngIf="createForm.get('numero_cuenta').hasError('pattern')">
+                                        El número de cuenta solo debe contener numeros.
+                                    </mat-error>
+                                </mat-form-field>
+                                 
+                            </div>
+
+                            <div class="flex w-full pr-3">
+                                <mat-form-field
+                                    class="flex-auto gt-xs:pr-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                >
+                                    <mat-label>CLABE interbancaria</mat-label>
+                                    <input
+                                        class="notAllowed"
+                                        maxlength="20"
+                                        matInput
+                                        [formControlName]="'clabe_interbancaria'"
+                                        mask="000 000 00000000000 0"
+                                        readonly="true"
+                                    />
+                                    <mat-error *ngIf="createForm.get('clabe_interbancaria').hasError('required')">
+                                        La CLABE interbancaria es requerida.
+                                    </mat-error>
+                                    <mat-error *ngIf="createForm.get('clabe_interbancaria').hasError('minlength')">
+                                        La CLABE interbancaria debe contener minimo 18 carecteres.
+                                    </mat-error>
+                                    <mat-error *ngIf="createForm.get('clabe_interbancaria').hasError('maxlength')">
+                                        La CLABE interbancaria debe contener maximo 18 caracteres.
+                                    </mat-error>
+                                    <mat-error *ngIf="createForm.get('clabe_interbancaria').hasError('pattern')">
+                                        La CLABE interbancaria solo debe contener numeros.
+                                    </mat-error>
+                                </mat-form-field>              
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Hotel sede -->
+                    <!-- <div class="ml-4 font-medium tracking-tight text-secondary">Hotel sede</div>      -->
+                    
+                    
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                            
+                            <mat-label>Seleccione un hotel</mat-label>
+                            <input matInput readonly="true" class="notAllowed" readonly="true" [value]="IsTheHotel" [placeholder]="'Hotel'">
+                        </mat-form-field>
+                    </div>                  
+                   
+                                
+
+                    <!-- Categorias disponibles -->
+                    <!-- <div class="ml-4 font-medium tracking-tight text-secondary">Categorias disponibles</div>                                                           -->
+                    <div *ngFor="let servicioCtrl of serviciosArray.controls; let i = index" class="grid grid-cols-5 gap-4 mt-3">
+                        <div class="col-span-2 ...">
+                            <div class="flex-auto sm:pr-3">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                            
+                                <mat-label *ngIf="i === 0">Seleccione una categoria</mat-label>
+                                <input matInput readonly="true" class="notAllowed" [placeholder]="'Seleccione una categoria'" [value]="getCategoryDescripcion(servicioCtrl.get('category_id').value)">                            
+                            </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-span-2 ...">
+                            <div class="flex-auto sm:pl-3">
+                            <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">
+                                <mat-label *ngIf="i === 0">Costo</mat-label>
+                                <input 
+                                    matInput 
+                                    class="notAllowed example-right-align" 
+                                    readonly="true" 
+                                    [formControl]="servicioCtrl.get('costo')" 
+                                    placeholder="0.00"
+                                    mask="separator.2"
+                                    thousandSeparator=","
+                                    decimalMarker="."
+                                    [leadZero]="true"
+                                >
+                                <span matTextPrefix>$&nbsp;</span>
+                            </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="...">
+                            <mat-label style="font-weight: 500;" class="pr-5 pl-5" *ngIf="i === 0">Eliminar</mat-label>
+                            <div class="flex-auto sm:pl-3 mt-1">
+                                <button [disabled]="true" mat-flat-button w-full color="warn" class="pr-5 pl-5">
+                                    <mat-icon svgIcon="heroicons_solid:trash"></mat-icon>
+                                    Eliminar
+                                </button>                        
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- GRADO ACADEMICO -->
+
+                    <div 
+                        *ngFor="
+                            let gradoCtrl of gradosArray.controls;
+                            let i = index
+                        "
+                        class="grid grid-cols-5 gap-4 mt-5"
+                    >
+
+                        <div class="col-span-2 ...">
+                            <div class="flex-auto sm:pr-3">
+                                <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                        
+                                    <mat-label>Grado academico</mat-label>
+                                    <input matInput class="notAllowed" readonly="true" [formControl]="gradoCtrl.get('grado_academico')" [placeholder]="'Grado academico'">                                                                  
+                                </mat-form-field>     
+                            </div> 
+                        </div>     
+                        
+                        <div class="col-span-2 ...">
+                        </div>
+
+                        <div class="...">
+                            <mat-label style="font-weight: 500;" class="pr-5 pl-5" *ngIf="i === 0">Eliminar</mat-label>
+                            <div class="flex-auto sm:pl-3 mt-1">
+                                <button [disabled]="true" mat-flat-button w-full color="warn" class="pr-5 pl-5 mt-1" (click)="eliminarGradoAcademico(i)">
+                                    <mat-icon svgIcon="heroicons_solid:trash"></mat-icon>
+                                    Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>                  
+                
+                </div>
+
+                <!-- end card -->
+            </div>
+
+            <!-- Slide  -->
+            <!-- <section class="example-section mt-5">
+                <mat-slide-toggle
+                    [disabled]="disabled"
+                    [formControlName]="'estatus'"
+                    class="example-margin"
+                    [color]="color"                                        
+                >
+                    Activar/Desactivar
+                </mat-slide-toggle>
+            </section>            -->
+        </form>
+
+    </div>
+</div>

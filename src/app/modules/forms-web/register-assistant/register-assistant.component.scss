@@ -1,0 +1,46 @@
+owl-carousel-o {
+    width: 100%;
+}
+.img-carusel {
+    width: 100%;
+    height: auto;
+}
+.notAllowed{
+    cursor: not-allowed!important;
+}
+.example-right-align {
+    text-align: right;
+}
+
+/*responsive secction*/
+/*pc, laptop*/
+@media only screen and (min-width: 1280px) {
+
+}
+/*tablets*/
+@media only screen and (min-width: 960px) and (max-width: 1279px) {
+}
+/*tablets*/
+@media only screen and (min-width: 600px) and (max-width: 959px) {
+    
+}
+/*celulares*/
+@media only screen and (max-width: 599px) {
+    .tr-phone {
+        display: flex;
+        flex-direction: column;
+    }
+    .table-phone {
+        display: flex;
+        flex-direction: column;
+    }
+    .btn-phone {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .btn-continue {
+        width: 100%;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+}

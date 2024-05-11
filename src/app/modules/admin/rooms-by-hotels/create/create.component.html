@@ -1,0 +1,433 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500">ServyViajes</a>
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_mini:chevron-right'"></mat-icon>
+                    <a class="ml-1 text-primary-500">Habitaciones por hoteles</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Habitaciones por hoteles
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">Crear habitación</h2>                
+            </div>
+            <div class="flex items-center ml-6">                
+                <button
+                    class="hidden sm:inline-flex ml-3"
+                    [routerLink]="['/rooms_by_hotels']"
+                    mat-flat-button
+                    [color]="'primary'">
+                    <mat-icon class="icon-size-5" svgIcon="heroicons_solid:arrow-left"></mat-icon>                    
+                    <span class="ml-2">Regresar</span>                    
+                </button>               
+            </div>
+        </div>
+                                 
+        <form
+            class="mt-8"
+            [formGroup]="createForm"
+            #signUpNgForm="ngForm"> 
+                
+                <!-- start card -->
+                <div class="mat-elevation-z8 mt-8"> 
+
+                    <div class="flex flex-col p-4 pb-4 bg-card rounded-2xl shadow overflow-hidden">
+
+                        <!-- Datos generales de habitación -->
+                        <div class="ml-4 font-medium tracking-tight text-secondary">Datos generales de habitación</div>
+
+                        <div class="flex mt-1">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Seleccione un hotel</mat-label>
+                                <mat-select 
+                                    [formControl]="createForm.get('hotel')" 
+                                    placeholder="Seleccione un hotel"
+                                >                                    
+                                    <mat-option 
+                                        *ngFor="let hotel of hoteles" 
+                                        [value]="hotel.id">
+                                            {{ hotel.nombre }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>                             
+                        </div>
+
+
+                        <div class="flex mt-1">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Seleccione un plan</mat-label>
+                                <mat-select 
+                                    [formControl]="createForm.get('plans')" 
+                                    placeholder="Seleccione un plan"
+                                >                                    
+                                    <mat-option 
+                                        *ngFor="let plan of plans" 
+                                        [value]="plan.id">
+                                            {{ plan.nombre }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>                             
+                        </div>                                                
+
+                        <div class="flex mt-1">
+                            <mat-form-field  class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                            
+                            <mat-label>Tipo de habitación</mat-label>
+                            <input matInput maxlength="150" [formControlName]="'tipo_habitacion'" [placeholder]="'Tipo de habitación'">                            
+                            </mat-form-field>
+                        </div>
+
+
+
+                        <!-- Precio por adulto por noche -->
+                        <!-- <div class="ml-4 mt-5 font-medium tracking-tight text-secondary">Precio por adulto por noche</div> -->
+
+                        <!-- <div class="grid grid-cols-4 gap-4 mt-1">
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Precio por adulto por noche</mat-label>
+                                        <input matInput type="number" [formControlName]="'precio_adulto'" class="example-right-align" placeholder="0">
+                                        <span matTextPrefix>$&nbsp;</span>
+                                        <span matTextSuffix>.00</span>
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>                            
+                        </div> -->
+
+
+                        <!-- Precio por habitación por noche -->
+                        <div class="ml-4 mt-5 font-medium tracking-tight text-secondary">Precio por habitación por noche</div>
+
+
+                        <div class="grid grid-cols-6 gap-4 mt-1">
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Sencilla</mat-label>
+                                        <input 
+                                            matInput 
+                                            [formControlName]="'sencilla'" 
+                                            class="example-right-align" 
+                                            placeholder="0.00"
+                                            mask="separator.2"
+                                            thousandSeparator=","
+                                            decimalMarker="."
+                                            [leadZero]="true"
+                                        >
+                                        <span matTextPrefix>$&nbsp;</span>
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Doble</mat-label>
+                                        <input 
+                                            matInput 
+                                            [formControlName]="'doble'" 
+                                            class="example-right-align" 
+                                            placeholder="0.00"
+                                            mask="separator.2"
+                                            thousandSeparator=","
+                                            decimalMarker="."
+                                            [leadZero]="true"
+                                        >
+                                        <span matTextPrefix>$&nbsp;</span>
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div> 
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Triple</mat-label>
+                                        <input 
+                                            matInput 
+                                            [formControlName]="'triple'" 
+                                            class="example-right-align" 
+                                            placeholder="0.00"
+                                            mask="separator.2"
+                                            thousandSeparator=","
+                                            decimalMarker="."
+                                            [leadZero]="true"
+                                        >
+                                        <span matTextPrefix>$&nbsp;</span>
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>                            
+                        </div>
+
+
+                        <div class="grid grid-cols-4 gap-4 mt-1">
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Cuádruple</mat-label>
+                                        <input 
+                                            matInput  
+                                            [formControlName]="'cuadruple'" 
+                                            class="example-right-align" 
+                                            placeholder="0.00"
+                                            mask="separator.2"
+                                            thousandSeparator=","
+                                            decimalMarker="."
+                                            [leadZero]="true"
+                                        >
+                                        <span matTextPrefix>$&nbsp;</span>
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>                            
+                        </div>
+
+
+
+                        <!-- Infantes -->
+                        <div class="ml-4 mt-5 font-medium tracking-tight text-secondary">Infantes</div>
+
+                        <div class="grid grid-cols-6 gap-4 mt-1">
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Edad mínima</mat-label>
+                                        <input matInput type="number" [formControlName]="'infante_edad_minima'" class="example-right-align" placeholder="0">
+                                        <!-- <span matTextPrefix>$&nbsp;</span>
+                                        <span matTextSuffix>.00</span> -->
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Edad máxima</mat-label>
+                                        <input matInput type="number" [formControlName]="'infante_edad_maxima'" class="example-right-align" placeholder="0">
+                                        <!-- <span matTextPrefix>$&nbsp;</span>
+                                        <span matTextSuffix>.00</span> -->
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div> 
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Precio por menores</mat-label>
+                                        <input 
+                                            matInput 
+                                            [formControlName]="'infante_precio_menores'" 
+                                            class="example-right-align" 
+                                            placeholder="0.00"
+                                            mask="separator.2"
+                                            thousandSeparator=","
+                                            decimalMarker="."
+                                            [leadZero]="true"
+                                        >
+                                        <span matTextPrefix>$&nbsp;</span>
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>                            
+                        </div>       
+                        
+
+                        <!-- Menores -->
+                        <div class="ml-4 mt-5 font-medium tracking-tight text-secondary">Menores</div>
+
+                        <div class="grid grid-cols-6 gap-4 mt-1">
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Edad mínima</mat-label>
+                                        <input matInput type="number" [formControlName]="'edad_minima'" class="example-right-align" placeholder="0">
+                                        <!-- <span matTextPrefix>$&nbsp;</span>
+                                        <span matTextSuffix>.00</span> -->
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Edad máxima</mat-label>
+                                        <input matInput type="number" [formControlName]="'edad_maxima'" class="example-right-align" placeholder="0">
+                                        <!-- <span matTextPrefix>$&nbsp;</span>
+                                        <span matTextSuffix>.00</span> -->
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div> 
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Precio por menores</mat-label>
+                                        <input 
+                                            matInput 
+                                            [formControlName]="'precio_menores'" 
+                                            class="example-right-align" 
+                                            placeholder="0.00"
+                                            mask="separator.2"
+                                            thousandSeparator=","
+                                            decimalMarker="."
+                                            [leadZero]="true"
+                                        >
+                                        <span matTextPrefix>$&nbsp;</span>
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>                            
+                        </div>   
+                        
+                        
+                        <!-- Junior -->
+                        <div class="ml-4 mt-5 font-medium tracking-tight text-secondary">Junior</div>
+
+
+                        <div class="flex mt-1">
+                            <div class="flex flex-col">
+                              <div class="flex flex-col">                                
+                                <mat-checkbox class="ml-1" (change)="onAplicaChange()" [(ngModel)]="aplica" [ngModelOptions]="{standalone: true}" [color]="'primary'">
+                                    Aplica
+                                </mat-checkbox>                                
+                              </div>
+                            </div>
+                        </div>     
+
+                        <div class="grid grid-cols-6 gap-4 mt-1">
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Edad mínima</mat-label>
+                                        <input matInput type="number" [formControlName]="'junior_edad_minima'" class="example-right-align" placeholder="0">
+                                        <!-- <span matTextPrefix>$&nbsp;</span>
+                                        <span matTextSuffix>.00</span> -->
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Edad máxima</mat-label>
+                                        <input matInput type="number" [formControlName]="'junior_edad_maxima'" class="example-right-align" placeholder="0">
+                                        <!-- <span matTextPrefix>$&nbsp;</span>
+                                        <span matTextSuffix>.00</span> -->
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div> 
+                            <div class="col-span-2">
+                                <div class="flex-auto sm:pl-3">
+                                    <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                        <mat-label>Precio por menores</mat-label>
+                                        <input 
+                                            matInput 
+                                            [formControlName]="'junior_precio_menores'" 
+                                            class="example-right-align" 
+                                            placeholder="0.00"
+                                            mask="separator.2"
+                                            thousandSeparator=","
+                                            decimalMarker="."
+                                            [leadZero]="true"
+                                        >
+                                        <span matTextPrefix>$&nbsp;</span>
+                                    </mat-form-field>                                         
+                                </div> 
+                            </div>                            
+                        </div>       
+                        
+
+
+                        <!-- Cantidad de habitaciónes disponibles -->
+                        <!-- <div class="ml-4 mt-5 font-medium tracking-tight text-secondary">Cantidad de habitaciónes disponibles</div> -->
+
+                        <div class="flex mt-1">
+                            <div class="flex-auto sm:pl-3">
+                                <mat-form-field class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                        
+                                    <mat-label>Cantidad de habitaciones</mat-label>
+                                    <input matInput type="number" [formControlName]="'habitaciones_disponibles'" class="example-right-align" placeholder="0">                                    
+                                </mat-form-field>                                         
+                            </div>   
+                        </div>
+
+
+                        <!-- Vigencia de la disponibilidad -->
+                        <!-- <div class="ml-4 mt-5 font-medium tracking-tight text-secondary">Vigencia de la disponibilidad</div> -->
+
+                        <div class="flex mt-1">
+                            <mat-form-field                                    
+                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                <mat-label>Vigencia de la disponibilidad</mat-label>
+                                <input
+                                    matInput
+                                    [matDatepicker]="picker2"
+                                    [formControlName]="'vigencia'"
+                                    [placeholder]="'Vigencia'">
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="picker2">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>                                
+                        </div>
+                                                                                                                          
+                        
+                    </div>
+
+                <!-- end card -->
+                </div>   
+               
+
+                
+                <!-- Slide  -->
+                <section class="example-section mt-5">                    
+                    <mat-slide-toggle
+                        [formControlName]="'estatus'"
+                        class="example-margin"
+                        [(ngModel)]="isChecked"
+                        [color]="color"                        
+                        [checked]="checked"
+                        [disabled]="disabled">
+                        Activar/Desactivar
+                    </mat-slide-toggle>
+                </section>                     
+
+
+                <!-- Botones -->
+                <div class="flex flex-row space-x-1 mt-1 mt-1.5 justify-end">                  
+                    
+                    <button 
+                        mat-flat-button 
+                        w-full 
+                        color="primary"
+                        (click)="cancel()"
+                    >                            
+                        Cancelar
+                    </button>
+
+                    <button
+                        mat-flat-button
+                        w-full
+                        color="primary"
+                        (click)="create()"
+                    >
+                        Guardar
+                    </button>              
+                                        
+                </div>
+
+            </form>                                                                                                     
+
+    </div>
+
+</div>

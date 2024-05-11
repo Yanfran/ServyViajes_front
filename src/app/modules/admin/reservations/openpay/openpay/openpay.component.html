@@ -1,0 +1,143 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+
+
+        <h1>Componente</h1>
+
+        <!-- <form
+            class="mt-8"
+            [formGroup]="createForm"
+            #signUpNgForm="ngForm"> 
+                                
+                <div class="mat-elevation-z8 mt-8"> 
+
+                    <div class="flex flex-col p-4 pb-4 bg-card rounded-2xl shadow overflow-hidden">
+                        
+                        <div class="ml-4 font-medium tracking-tight text-secondary">Datos generales del descuento</div>
+
+                        <div class="flex mt-4">
+                            <mat-form-field  class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                            
+                                <mat-label>Nombre</mat-label>   
+                                <input matInput maxlength="150" [formControlName]="'nombre'" [placeholder]="'Nombre del descuento'">                            
+                                <mat-error *ngIf="createForm.get('nombre').hasError('required')">
+                                    El nombre es requerido.
+                                </mat-error>                                
+                                <mat-error *ngIf="createForm.get('nombre').hasError('maxlength')">
+                                    El nombre no debe tener más de 150 caracteres.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>                  
+                        
+                        <div class="flex flex-col sm:flex-row">  
+                            <div class="flex-auto sm:pr-3">                                
+                                <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                    <mat-label>Porcentaje</mat-label>   
+                                    <input matInput type="number" maxlength="80" [formControlName]="'porcentaje'" [placeholder]="'Porcentaje aplicable (%)'">
+                                    <mat-error *ngIf="createForm.get('porcentaje').hasError('required')">
+                                        El porcentaje es requerido.
+                                    </mat-error>                                
+                                    <mat-error *ngIf="createForm.get('porcentaje').hasError('maxlength')">
+                                        El porcentaje no debe tener más de 80 caracteres.
+                                    </mat-error>
+                                </mat-form-field>                                                                                      
+                            </div>  
+                        
+                            <div class="flex-auto sm:pl-3">
+                                <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                    <mat-label>Vigencia</mat-label>  
+                                    <input
+                                        matInput
+                                        [matDatepicker]="picker2"
+                                        [formControlName]="'vigencia'"
+                                        [placeholder]="'Vigencia'">
+                                    <mat-datepicker-toggle
+                                        matSuffix
+                                        [for]="picker2">
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                    <mat-error *ngIf="createForm.get('vigencia').hasError('required')">
+                                        La vigencia es requerida.
+                                    </mat-error>             
+                                </mat-form-field>                                
+                            </div>
+                        </div>
+
+
+                        <div class="flex mt-4">
+                             <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                    <mat-label>Código de descuento</mat-label>  
+                                    <input matInput maxlength="250" [formControlName]="'codigo_descuento'" [placeholder]="'Código de descuento'">                                                                  
+                                    <mat-error *ngIf="createForm.get('codigo_descuento').hasError('required')">
+                                        El código de descuento es requerido.
+                                    </mat-error>                                
+                                    <mat-error *ngIf="createForm.get('codigo_descuento').hasError('maxlength')">
+                                        El código de descuento no debe tener más de 250 caracteres.
+                                    </mat-error>
+                             </mat-form-field>    
+                        </div>
+
+
+
+                        <div class="flex mt-4">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">
+                                <mat-label>Cantidad de usos permitidos</mat-label> 
+                                <input matInput type="number" maxlength="250" [formControlName]="'cantidad'" [placeholder]="'Cantidad de usos permitidos'">                                                                  
+                                <mat-error *ngIf="createForm.get('cantidad').hasError('required')">
+                                    La cantidad de usos permitidos es requerida.
+                                </mat-error>                                
+                                <mat-error *ngIf="createForm.get('cantidad').hasError('maxlength')">
+                                    La cantidad de usos permitidos no debe tener más de 250 caracteres.
+                                </mat-error>
+                            </mat-form-field>    
+                       </div>
+                                                                                                  
+                        
+                    </div>
+                
+                </div>   
+               
+
+                
+                
+                <section class="example-section mt-5">                    
+                    <mat-slide-toggle
+                        [formControlName]="'estatus'"
+                        class="example-margin"
+                        [(ngModel)]="isChecked"
+                        [color]="color"                        
+                        [checked]="checked"
+                        [disabled]="disabled">
+                        Activar/Desactivar
+                    </mat-slide-toggle>
+                </section>                     
+
+
+                
+                <div class="flex flex-row space-x-1 mt-3 mt-1.5 justify-end">                  
+                    
+                    <button 
+                        mat-flat-button 
+                        w-full 
+                        color="primary"
+                        
+                    >                            
+                        Cancelar
+                    </button>
+
+                    <button
+                        mat-flat-button
+                        w-full
+                        color="primary"                        
+                    >
+                        Guardar
+                    </button>              
+                                        
+                </div>
+
+            </form>                                                                                                      -->
+
+    </div>
+
+</div>

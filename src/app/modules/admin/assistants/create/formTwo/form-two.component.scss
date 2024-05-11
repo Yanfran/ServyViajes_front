@@ -1,0 +1,44 @@
+.addFile {
+    border-radius: 105px !important;
+    height: 0px !important;
+}
+
+
+
+.example-container mat-form-field+mat-form-field {
+    margin-left: 8px;
+}
+
+
+
+
+.example-container mat-form-field+mat-form-field {
+    margin-left: 8px;
+}
+
+.example-left-align {
+    text-align: left;
+}
+
+input.example-left-align::-webkit-outer-spin-button,
+input.example-left-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+input.example-left-align {
+    -moz-appearance: textfield;
+}
+
+
+.example-right-align {
+    text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+input.example-right-align {
+    -moz-appearance: textfield;
+}

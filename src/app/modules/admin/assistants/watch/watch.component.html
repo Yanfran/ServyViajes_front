@@ -1,0 +1,477 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent"
+    >
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500"
+                        >ServyViajes</a
+                    >
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_mini:chevron-right'"
+                    ></mat-icon>
+                    <a class="ml-1 text-primary-500">Asistentes</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
+                >
+                    Asistentes
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                    Ver asistente                    
+                </h2>
+            </div>
+            <div class="flex items-center ml-6">
+                <button
+                    class="hidden sm:inline-flex ml-3"
+                    [routerLink]="['/assistants']"
+                    mat-flat-button
+                    [color]="'primary'"
+                >
+                    <mat-icon
+                        class="icon-size-5"
+                        svgIcon="heroicons_solid:arrow-left"
+                    ></mat-icon>
+                    <span class="ml-2">Regresar</span>
+                </button>
+            </div>
+        </div>
+
+        <form 
+                class="mt-8" 
+                [formGroup]="createForm" 
+                #createAssistants="ngForm"
+                enctype="multipart/form-data"
+        >
+                
+            <!-- start card -->
+            <div class="mat-elevation-z8 mt-8"> 
+
+                <div class="flex flex-col p-4 pb-4 bg-card rounded-2xl shadow overflow-hidden">
+
+                    <!-- Datos generales del asistente -->
+                    <div class="ml-4 font-medium tracking-tight text-secondary">Datos generales del asistente</div>
+
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                            
+                            <mat-label>Código beca</mat-label>
+                            <input matInput class="notAllowed" readonly="true" [formControlName]="'codigo_beca'" [placeholder]="'Código beca'">                                                            
+                        </mat-form-field>
+                    </div>
+                                            
+                    
+                    <div class="flex flex-col sm:flex-row mt-3">  
+                        <!-- <div class="flex-auto sm:pr-3">
+                            <mat-form-field                                      
+                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                <mat-label>Grado academico</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [formControlName]="'grado_academico'" [placeholder]="'Grado academico'">                                                                        
+                            </mat-form-field>                                   
+                        </div>   -->
+                    
+                        <div class="flex-auto sm:pl-3">
+                            <mat-form-field                                  
+                            class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                
+                            <mat-label>Nombre</mat-label>
+                            <input matInput class="notAllowed" readonly="true" [formControlName]="'nombre'" [placeholder]="'Nombre'">                                                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                        <div class="flex-auto sm:pr-3">
+                            <mat-form-field                                      
+                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                <mat-label>Apellido paterno</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [formControlName]="'apellido_paterno'" [placeholder]="'Apellido paterno'">                                                                        
+                            </mat-form-field>   
+                        </div>  
+                    
+                        <div class="flex-auto sm:pl-3">
+                            <mat-form-field                                      
+                                class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                    
+                                <mat-label>Apellido materno</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [formControlName]="'apellido_materno'" [placeholder]="'Apellido materno'">                                                                    
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                        <div class="flex-auto sm:pr-3">
+                            <mat-form-field                                      
+                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                <mat-label>Correo electronico</mat-label>
+                                <input matInput class="notAllowed" readonly="true" type="email"  [formControlName]="'correo_electronico'" [placeholder]="'Correo electronico'">                                                                                                           
+                            </mat-form-field>   
+                        </div>  
+                    
+                        <div class="flex-auto sm:pl-3">
+                            <mat-form-field                                      
+                                class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                
+                                <mat-label>Teléfono</mat-label>
+                            <input matInput class="notAllowed" readonly="true" type="number" maxlength="20" [formControlName]="'telefono'" [placeholder]="'Teléfono'">                                                                                              
+                            </mat-form-field>
+                        </div>
+                    </div>                                       
+
+                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                        <div class="flex-auto sm:pr-3">
+                            <div class="flex-auto sm:pr-3">
+                                <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                            
+                                    <mat-label>País</mat-label>
+                                    <input matInput class="notAllowed" readonly="true" [value]="IsTheContry" [placeholder]="'País'">
+                                </mat-form-field>
+                            </div>                            
+                        </div> 
+                        
+                        <div class="flex-auto sm:pl-3">
+                            <mat-form-field                                  
+                            class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                
+                                <mat-label>Estado</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [formControlName]="'estado'" [placeholder]="'Estado'">                                                                    
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="flex-auto sm:pl-3">
+                            <mat-form-field                                  
+                            class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                
+                                <mat-label>Ciudad</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [formControlName]="'ciudad'" [placeholder]="'Ciudad'">                                                                    
+                            </mat-form-field>
+                        </div>
+                    </div>
+                                                
+
+                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                        <div class="flex-auto sm:pr-3">
+                            <mat-form-field  class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                <mat-label>Especialidad</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [formControlName]="'especialidad'" [placeholder]="'Especialidad'">                                                                        
+                            </mat-form-field>   
+                        </div>  
+                    
+                        <div class="flex-auto sm:pl-3">
+                            <mat-form-field  class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                
+                                <mat-label>Institución</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [formControlName]="'institucion'" [placeholder]="'Institución'">                                                                    
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- Selección de evento -->
+                    <div class="ml-4 font-medium tracking-tight text-secondary">Selección de evento</div>
+                    
+
+
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                            
+                            <mat-label>Evento</mat-label>
+                            <input matInput class="notAllowed" readonly="true" [value]="IsTheEvent" [placeholder]="'Evento'">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                            
+                            <mat-label>Categoria</mat-label>
+                            <input matInput class="notAllowed" readonly="true" [value]="IsTheCategory" [placeholder]="'Categoria'">
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="flex-auto sm:pr-3">
+                        <mat-form-field                                      
+                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                            <mat-label>Grado academico</mat-label>
+                            <input matInput class="notAllowed" readonly="true" [formControlName]="'grado_academico'" [placeholder]="'Grado academico'">                                                                        
+                        </mat-form-field>                                   
+                    </div>
+
+
+                    <div class="flex mb-2.5">
+                        <mat-form-field                                
+                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                                
+                            <mat-label>Comentarios</mat-label>
+                            <textarea
+                                [placeholder]="'Comentarios'"   
+                                [formControlName]="'comentario'"
+                                matInput class="notAllowed" readonly="true"
+                                cdkTextareaAutosize
+                                [cdkAutosizeMinRows]="3">
+                            </textarea>                                
+                        </mat-form-field>
+                    </div>
+                    
+
+                    <!-- Facturación -->
+                    <div class="ml-4 mb-4 font-medium tracking-tight text-secondary">Facturación</div>
+
+                    <!-- <div class="ml-4 mt-3 font-medium tracking-tight text-on-accent-400">¿Requiere recibo fiscal?</div>
+                   
+
+
+                    <!-- Datos -->
+                    <!-- <div class="ml-4 font-medium tracking-tight text-secondary">Datos</div> -->
+                    
+                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                        <div class="flex-auto sm:pr-3">
+                            <mat-form-field 
+                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                <mat-label>RFC</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [formControlName]="'rfc'" [placeholder]="'RFC'">                                                                        
+                            </mat-form-field>   
+                        </div>  
+                    
+                        <div class="flex-auto sm:pl-3">
+                            <mat-form-field                                      
+                                class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                    
+                                <mat-label>Nombre fiscal</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [formControlName]="'nombre_fiscal'" [placeholder]="'Nombre fiscal'">                                                                        
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                    <div class="flex flex-col sm:flex-row mb-2.5">  
+                        <div class="flex-auto sm:pr-3">
+                            <mat-form-field                                      
+                                class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                                    
+                                <mat-label>Correo facturación</mat-label>
+                                <input matInput class="notAllowed" readonly="true" type="email" [formControlName]="'correo_facturacion'" [placeholder]="'Correo facturación'">                                                                                                       
+                            </mat-form-field>   
+                        </div>  
+                    
+                        <div class="flex-auto sm:pl-3">
+                            <mat-form-field                                      
+                                class="fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                                    
+                                <mat-label>Código postal</mat-label>
+                                <input matInput class="notAllowed" readonly="true" maxlength="20" [formControlName]="'codigo_postal'" [placeholder]="'CP'">                                                                        
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                    <div class="flex flex-col sm:flex-row mb-2.5">  
+
+
+                        <div class="flex-auto sm:pr-3">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                            
+                                <mat-label>Regimen fiscal</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [value]="IsTheRegime" [placeholder]="'Regimen fiscal'">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex-auto sm:pr-3">
+                            <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-2">                            
+                                <mat-label>CFDI</mat-label>
+                                <input matInput class="notAllowed" readonly="true" [value]="IsTheCfdi" [placeholder]="'CFDI'">
+                            </mat-form-field>
+                        </div>
+                        
+                       
+                    </div>  
+
+
+                    <div class="flex">
+                        <mat-form-field                                
+                            class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded">                                
+                            <mat-label>Comentario facturación</mat-label>
+                            <textarea
+                                [placeholder]="'Comentario facturación'"
+                                [formControlName]="'comentario_facturacion'"   
+                                matInput class="notAllowed" readonly="true"                                    
+                                cdkTextareaAutosize
+                                [cdkAutosizeMinRows]="3">
+                            </textarea>                                
+                        </mat-form-field>
+                    </div>
+                
+                    
+                    <div class="flex flex-col sm:flex-row">
+                        <div class="flex-none h-14">                        
+                        </div>
+                        <div class="flex-grow flex justify-center items-center h-14"> <!-- Agregadas las clases para centrar -->
+                            <button 
+                                class="addFile"
+                                mat-fab extended
+                                w-full 
+                                [color]="!IsTheConstancy ? 'primary' : 'accent'"                                    
+                                (click)="IsTheConstancy ? openModal(IsTheConstancy, 'constancias') : ''"
+                            >
+                            <mat-icon [svgIcon]="!IsTheConstancy ? 'heroicons_solid:x-mark' : 'heroicons_mini:eye'"></mat-icon>                                    
+                                {{ !IsTheConstancy ? 'Sin constancia' : 'Ver constancia' }}                                    
+                            </button>
+                        </div>
+                        <div class="flex-none h-14">                        
+                        </div>
+                    </div> 
+
+
+                      <!-- windows two -->
+                    <!-- Invoice -->
+                    <!-- <div class="w-240 min-w-240 p-5 rounded-2xl print:w-auto print:p-0 print:rounded-none print:shadow-none print:bg-transparent">                                                        -->
+                        <!-- Datos generales del asistente -->
+                        <!-- <div class="font-medium tracking-tight text-secondary">Datos generales del asistente</div> -->
+
+                        <div class="grid grid-cols-12 gap-x-1 mt-16 p-4 pb-4">                                
+                            <!-- Spacer -->
+                            <div class="col-span-12 mt-5"></div>
+
+                            <!-- CONCEPTO -->
+                            <div class="col-span-10 self-center font-medium tracking-tight text-secondary">CONCEPTO</div>
+                            <div class="col-span-2 text-right text-lg">Sub total</div>
+
+                            <!-- Divider -->
+                            <div class="col-span-12 my-3 border-b"></div>
+
+                            <!-- MEDICO INCLUYE CENA -->
+                            <div class="col-span-10 self-center font-medium tracking-tight text-secondary">
+                                <div>{{ IsTheEvent }}</div>
+                            </div>
+                            <div class="col-span-2 text-right text-lg">{{ IsTheCosto | currency: 'USD':true }}</div>                                                                                            
+
+                            <!-- Divider -->
+                            <div class="col-span-12 my-3 border-b"></div>
+
+                            <!-- Total -->
+                            <div class="col-span-10 self-center text-2xl font-medium tracking-tight text-secondary">TOTAL</div>
+                            <div class="col-span-2 text-right text-2xl font-medium">{{ IsTheCosto | currency: 'USD':true }}</div>                            
+                        </div>                                                        
+                    <!-- </div> -->
+
+
+                    <div class="flex mt-4">
+                        <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">                            
+                            <mat-label>Metodo de pago</mat-label>
+                            <input matInput class="notAllowed" readonly="true" [value]="IsThePaymentType" [placeholder]="'Metodo de pago'">
+                        </mat-form-field>
+                    </div>
+                   
+
+                    <div class="p-10" style="margin-top: -50px!important;">
+                        <div class="font-medium">                                
+                            Al registrarse se te enviará un correo confirmando tu registro, asi como los datos 
+                            de pago. Una vez realizada el pago  deberás regresar al registro a subir el comprobante 
+                            correspondiente.
+                        </div>                                                                                        
+                    </div>
+
+
+                    <div class="flex flex-col mr-3">
+                        <table class="border-collapse border border-slate-400 ml-3 mt-5 mb-5">
+                            <thead>
+                                <tr>
+                                    <!-- <th class="border border-slate-300">Día</th> -->
+                                    <th class="border border-slate-300">Fecha</th>
+                                    <th class="border border-slate-300">Monto</th>
+                                    <th class="border border-slate-300">Movimiento</th>
+                                    <th class="border border-slate-300">Estatus</th>
+                                    <th class="border border-slate-300">Acciones</th>                                     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let comprobante of comprobantes">
+                                    <td class="border border-slate-300 text-center">{{ comprobante.date }}
+                                    </td>
+                                    <td class="border border-slate-300 text-center">${{ comprobante.amount |
+                                        number:'1.2-2' }}
+                                    </td>
+                                    <td class="border border-slate-300 text-center">{{
+                                        comprobante.motion }}</td>
+                                    <td class="border border-slate-300 text-center">
+                                        <div class="btn-estatus w-5 h-5 px-1 my-1">
+                                            <span class="estatus_asistentes"
+                                                [style.background-color]="getStatusColor(comprobante.estatus)">
+                                                {{ getStatusText(comprobante.estatus) }}
+                                            </span>
+                                        </div>
+                                    </td>  
+                                    <td class="border border-slate-300 text-center">
+                                        <div class="flex justify-center items-center">                                           
+                                            <span *ngIf="comprobante.voucher"
+                                                class="flex items-center shrink-0 min-w-4 w-8 h-8 px-1 my-1 mr-2 rounded-full bg-primary-500"
+                                                (click)="openModalThree(comprobante.voucher)">
+                                                <mat-icon title="Ver" svgIcon="heroicons_mini:eye" style="
+                                                    color: rgba(
+                                                        255,
+                                                        255,
+                                                        255,
+                                                        0.938
+                                                    ) !important;
+                                                    cursor: pointer;
+                                                "></mat-icon>
+                                            </span>                                                                                        
+                                        </div>
+                                    </td>                                  
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Comprobante de pago -->
+                    <!-- <div style="margin-left: 15px;" class="font-medium tracking-tight text-secondary">Comprobante de pago</div>
+
+                    <div class="flex flex-col sm:flex-row">
+                        <div class="flex-none h-14">                        
+                        </div>
+                        <div class="flex-grow flex justify-center items-center h-14">
+                            <button 
+                                class="addFile"
+                                mat-fab extended
+                                w-full 
+                                [color]="!IsThePaymentProofs ? 'primary' : 'accent'"                                    
+                                (click)="IsThePaymentProofs ? openModal(IsThePaymentProofs, 'comprobantes') : ''"
+                            >
+                            <mat-icon [svgIcon]="!IsThePaymentProofs ? 'heroicons_solid:x-mark' : 'heroicons_mini:eye'"></mat-icon>                                    
+                                {{ !IsThePaymentProofs ? 'Sin comprobante' : 'Ver comprobante' }}                                    
+                            </button>
+                        </div>
+                        <div class="flex-none h-14">                        
+                        </div>
+                    </div> -->
+
+
+                    <div class="grid grid-cols-12 gap-x-1 ">
+                        <div class="col-span-6 mt-5">
+                            <div class="flex-auto sm:pr-3">
+                            </div>
+                        </div>
+                        <div class="col-span-6 mt-5">
+
+                            <div class="flex-auto sm:pl-3">
+                                <mat-form-field class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded custom-mat-form-field-1">
+                                    <mat-label>Estatus</mat-label>
+                                    <input matInput class="notAllowed" readonly="true" [value]="getEstatusText(createForm.get('estatus_de_pago').value)" readonly>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+            <!-- end card -->
+            </div>                           
+
+        </form>    
+
+    </div>
+</div>

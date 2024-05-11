@@ -1,0 +1,152 @@
+<div class="flex flex-col flex-auto min-w-0">
+     <!-- Header -->
+     <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent"
+    >
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500"
+                        >ServyViajes</a
+                    >
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_mini:chevron-right'"
+                    ></mat-icon>
+                    <a class="ml-1 text-primary-500">Menú</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
+                >
+                    Menú
+                </h2>
+            </div>
+        </div>
+    </div>
+    <!-- Main -->
+    <div class="flex-auto border-t -mt-px pt-4 sm:pt-6">
+        <div class="w-full max-w-screen-xl mx-auto">
+            <div
+                class="grid grid-cols-1 px-5 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0"
+            >
+                <!-- Menú -->
+                <div
+                    class="sm:col-span-2 md:col-span-4 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden"
+                >
+                    <!-- <div
+                        class="flex flex-col sm:flex-row items-start justify-between"
+                    >
+                        <div
+                            class="text-lg font-medium tracking-tight leading-6 truncate"
+                        >                            
+                        </div>
+                    </div> -->
+                    <!-- <div class="grid grid-cols-1 lg:grid-cols-2 grid-flow-row gap-6 w-full mt-8 sm:mt-4">                                     -->
+                    <!-- Overview -->
+                    <div class="flex flex-col">
+                        <div class="flex-auto grid grid-cols-8 gap-4 mt-6">
+                           
+                            <!-- Verifica si hay al menos una categoría disponible -->
+                            <ng-container *ngIf="assistants.length > 0 || events.length > 0 || categories.length > 0 || hotels.length > 0 || discounts.length > 0; else noOptions">
+                                <!-- Asistentes -->
+                                <div *ngFor="let assistant of assistants" style="cursor: pointer" [routerLink]="[assistant.routerLink]"
+                                    class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400">
+                                    <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
+                                        {{ resumen.assistants }}
+                                    </div>
+                                    <div class="mt-1 text-sm sm:text-lg font-medium">
+                                        Asistentes
+                                    </div>
+                                </div>
+
+                                <!-- Eventos -->
+                                <div *ngFor="let event of events" style="cursor: pointer" [routerLink]="[event.routerLink]"
+                                    class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400">
+                                    <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
+                                        {{ resumen.events }}
+                                    </div>
+                                    <div class="mt-1 text-sm sm:text-lg font-medium">
+                                        Eventos
+                                    </div>
+                                </div>
+
+                                <!-- Categorías -->
+                                <div *ngFor="let category of categories" style="cursor: pointer" [routerLink]="[category.routerLink]"
+                                    class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400">
+                                    <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
+                                        {{ resumen.categories }}
+                                    </div>
+                                    <div class="mt-1 text-sm sm:text-lg font-medium">
+                                        Categorías
+                                    </div>
+                                </div>
+
+                                <!-- Hoteles -->
+                                <div *ngFor="let hotel of hotels" style="cursor: pointer" [routerLink]="[hotel.routerLink]"
+                                    class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400">
+                                    <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
+                                        {{ resumen.hotels }}
+                                    </div>
+                                    <div class="mt-1 text-sm sm:text-lg font-medium">
+                                        Hoteles
+                                    </div>
+                                </div>
+
+
+                                
+                                <!-- Reservaciones -->
+                                <div *ngFor="let reservation of reservations" style="cursor: pointer" [routerLink]="[reservation.routerLink]"
+                                    class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400">
+                                    <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
+                                        {{ resumen.reservations }}
+                                    </div>
+                                    <div class="mt-1 text-sm sm:text-lg font-medium">
+                                        Reservaciones
+                                    </div>
+                                </div>
+
+                                <!-- Descuentos -->
+                                <div *ngFor="let discount of discounts" style="cursor: pointer" [routerLink]="[discount.routerLink]"
+                                    class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400">
+                                    <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
+                                        {{ resumen.discounts }}
+                                    </div>
+                                    <div class="mt-1 text-sm sm:text-lg font-medium">
+                                        Descuentos
+                                    </div>
+                                </div>
+
+                                <!-- Habitaciones por hoteles -->
+                                <div *ngFor="let room of rooms_by_hotels" style="cursor: pointer" [routerLink]="[room.routerLink]"
+                                    class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400">
+                                    <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
+                                        {{ resumen.rooms_by_hotels }}
+                                    </div>
+                                    <div class="mt-1 text-sm sm:text-lg font-medium">
+                                        Habitaciones por hoteles
+                                    </div>
+                                </div>
+
+                            </ng-container>
+
+                            <!-- Mensaje cuando no hay opciones disponibles -->
+                            <ng-template #noOptions>
+                                <div class="col-span-8">
+                                    Aun no hay opciones disponibles
+                                </div>
+                            </ng-template>
+                            
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

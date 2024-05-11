@@ -1,0 +1,519 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500"
+                        >ServyViajes</a
+                    >
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_mini:chevron-right'"
+                    ></mat-icon>
+                    <a class="ml-1 text-primary-500">Perfil</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
+                >
+                    Perfil
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <app-role-based-visibility [allowedRoles]="[1]">
+            
+            <form
+                [formGroup]="createForm"
+                #signUpNgForm="ngForm"                
+            >
+
+                <div class="mat-elevation-z8 rounded-2xl"> 
+                    <div class="flex flex-col p-8 bg-card rounded-2xl shadow overflow-hidden">
+
+
+                        <!--seccion datos generales del hotel-->
+                        <div class="border-2 border-gray-300 rounded-lg ml-3 p-4 relative">
+                            <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                Datos generales
+                            </h2>
+                            
+                            <!-- contenido dentro del borde -->
+                            <div class="flex flex-col mt-4">
+                                <div class="flex flex-col gt-xs:flex-row">
+                                    <mat-form-field
+                                        [ngClass]="formFieldHelpers"
+                                        class="flex-auto gt-xs:pr-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Nombre</mat-label>
+                                        <input
+                                            matInput
+                                            [formControlName]="'name'"
+                                        />
+                                        <mat-error *ngIf="createForm.get('name').hasError('required')">
+                                            El nombre es requerido.
+                                        </mat-error>
+                                    </mat-form-field>
+                                     
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="flex flex-col gt-md:flex-row">
+                                    <mat-form-field
+                                        [ngClass]="formFieldHelpers"
+                                        class="flex-auto gt-md:pr-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Correo electrónico</mat-label>
+                                        <input
+                                            class="notAllowed"
+                                            matInput
+                                            [formControlName]="'email'"
+                                            readonly
+                                        />
+                                        <mat-error *ngIf="createForm.get('email').hasError('required')">
+                                            El correo electronico es requerido.
+                                        </mat-error> 
+                                    </mat-form-field>
+                                    
+                                    <mat-form-field
+                                        [ngClass]="formFieldHelpers"
+                                        class="flex-auto gt-md:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Teléfono móvil</mat-label>
+                                        <input
+                                            matInput
+                                            [formControlName]="'telefono_movil'"
+                                            maxlength="10"
+                                        />
+                                        <mat-error *ngIf="createForm.get('telefono_movil').hasError('required')">
+                                            El teléfono móvil es requerido.
+                                        </mat-error>                                
+                                        <mat-error *ngIf="createForm.get('telefono_movil').hasError('minlength')">
+                                            El teléfono móvil no debe tener menos de 10 caracteres.
+                                        </mat-error>
+                                        <mat-error *ngIf="createForm.get('telefono_movil').hasError('maxlength')">
+                                            El teléfono móvil no debe tener más de 10 caracteres.
+                                        </mat-error>
+                                        <mat-error *ngIf="createForm.get('telefono_movil').hasError('pattern')">
+                                            El teléfono móvil debe contener solo números.
+                                        </mat-error>  
+                                        
+                                    </mat-form-field>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--seccion cambio de contraseña-->
+                        <div class="border-2 border-gray-300 rounded-lg ml-3 mt-8 p-4 relative">
+                            <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                Cambiar contraseña (Opcional)
+                            </h2>
+                            
+                            <!-- contenido dentro del borde -->
+                            <div class="flex flex-col mt-4">
+                                <div class="flex">
+                                    <!-- Password field -->
+                                    <mat-form-field
+                                        class="flex-auto gt-md:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Nueva contraseña</mat-label>
+                                        <input
+                                            matInput
+                                            type="password"
+                                            [formControlName]="'password'"
+                                            #passwordField
+                                            (input)="updateFieldPasswordAdmin()"
+                                            autocomplete="off"
+                                        />
+                                        <button
+                                            mat-icon-button
+                                            type="button"
+                                            (click)="
+                                                passwordField.type === 'password'
+                                                    ? (passwordField.type = 'text')
+                                                    : (passwordField.type =
+                                                        'password')
+                                            "
+                                            matSuffix
+                                        >
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                *ngIf="passwordField.type ==='password'"
+                                                [svgIcon]="'heroicons_solid:eye'"
+                                            >
+                                            </mat-icon>
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                *ngIf="passwordField.type === 'text'"
+                                                [svgIcon]="'heroicons_solid:eye-slash'"
+                                            >
+                                            </mat-icon>
+                                        </button>
+                                        <mat-error *ngIf="createForm.get('password').hasError('minlength')">
+                                            La contraseña debe contener minimo 6 caracteres
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                            <div class="flex">
+                                <!-- Password field -->
+                                <mat-form-field
+                                    class="flex-auto gt-md:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                >
+                                    <mat-label>Confirmar nueva contraseña</mat-label>
+                                    <input
+                                        matInput
+                                        type="password"
+                                        [formControlName]="'passwordConfirm'"
+                                        #passwordConfirmField
+                                        autocomplete="off"
+                                    />
+                                    <button
+                                        mat-icon-button
+                                        type="button"
+                                        (click)="
+                                            passwordConfirmField.type === 'password'
+                                                ? (passwordConfirmField.type = 'text')
+                                                : (passwordConfirmField.type =
+                                                    'password')
+                                        "
+                                        matSuffix
+                                    >
+                                        <mat-icon
+                                            class="icon-size-5"
+                                            *ngIf="
+                                                passwordConfirmField.type ===
+                                                'password'
+                                            "
+                                            [svgIcon]="'heroicons_solid:eye'"
+                                        ></mat-icon>
+                                        <mat-icon
+                                            class="icon-size-5"
+                                            *ngIf="
+                                                passwordConfirmField.type === 'text'
+                                            "
+                                            [svgIcon]="
+                                                'heroicons_solid:eye-slash'
+                                            "
+                                        ></mat-icon>
+                                    </button>
+                                    <mat-error *ngIf="createForm.get('passwordConfirm').hasError('required')">
+                                        La confirmación de la contraseña es requerida
+                                    </mat-error>
+                                    <mat-error *ngIf="createForm.get('passwordConfirm').hasError('mustMatch')">
+                                        Las contraseñas deben coincidir
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div> 
+                        <!--aqui termina la seccion de contraseña-->
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="flex flex-row space-x-1 mt-3 mb-4 mr-2 justify-end">                  
+                                        
+                    <button 
+                        mat-flat-button w-full color="primary"
+                        (click)="redirectToMenu()"
+                    >                            
+                        Cancelar
+                    </button>
+
+                    <button 
+                        mat-flat-button w-full color="primary"
+                        (click)="updateAdmin()"
+                        [disabled]="createForm.invalid"
+                    >                            
+                        Guardar
+                    </button>                                                                                                                                                                    
+                                        
+                </div> 
+
+            </form>            
+        </app-role-based-visibility>
+
+        <app-role-based-visibility [allowedRoles]="[2]">
+                                                
+            <form [formGroup]="formAssistant" #signUpNgForm="ngForm">
+                <div class="mat-elevation-z8 rounded-2xl"> 
+
+                    <div class="flex flex-col p-8 bg-card rounded-2xl shadow overflow-hidden">
+
+
+                        <!--seccion datos generales del hotel-->
+                        <div class="border-2 border-gray-300 rounded-lg ml-3 p-4 relative">
+                            <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                Datos generales
+                            </h2>
+                            
+                            <!-- contenido dentro del borde -->
+                            <div class="flex mt-4">
+                                <div class="flex w-full pr-3">
+                                    <mat-form-field
+                                        class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Nombre</mat-label>
+                                        <input
+                                            class="notAllowed"
+                                            matInput
+                                            [formControlName]="'nombre'"
+                                            readonly
+                                        />
+                                        <mat-error *ngIf="formAssistant.get('nombre').hasError('required')">
+                                            El nombre es requerido.
+                                        </mat-error>
+                                    </mat-form-field>
+                                     
+                                </div>
+
+                                <div class="flex w-full pr-3">
+                                    <mat-form-field
+                                        class="flex-auto gt-xs:pr-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Apellido paterno</mat-label>
+                                        <input
+                                            class="notAllowed"
+                                            matInput
+                                            [formControlName]="'apellido_paterno'"
+                                            readonly
+                                        />
+                                        <mat-error *ngIf="formAssistant.get('apellido_paterno').hasError('required')">
+                                            El apellido paterno es requerido.
+                                        </mat-error>
+                                    </mat-form-field>              
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="flex w-full pr-3">
+                                    <mat-form-field
+                                        class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Apellido materno</mat-label>
+                                        <input
+                                            class="notAllowed"
+                                            matInput
+                                            [formControlName]="'apellido_materno'"
+                                            readonly
+                                        />
+                                        <mat-error *ngIf="formAssistant.get('apellido_materno').hasError('required')">
+                                            El apellido paterno es requerido.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="flex w-full pr-3">
+                                    <mat-form-field
+                                        [ngClass]="formFieldHelpers"
+                                        class="flex-auto fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Correo electrónico</mat-label>
+                                        <input
+                                            class="notAllowed"
+                                            matInput
+                                            [formControlName]="'email'"
+                                            readonly
+                                        />
+                                        <mat-error *ngIf="formAssistant.get('email').hasError('required')">
+                                            El correo electronico es requerido.
+                                        </mat-error> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="flex w-full pr-3">
+                                    <mat-form-field
+                                        [ngClass]="formFieldHelpers"
+                                        class="flex-auto gt-md:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Teléfono móvil</mat-label>
+                                        <input
+                                            matInput
+                                            [formControlName]="'telefono_movil'"
+                                            maxlength="10"
+                                        />
+                                        <mat-error *ngIf="formAssistant.get('telefono_movil').hasError('required')">
+                                            El teléfono móvil es requerido.
+                                        </mat-error>                                
+                                        <mat-error *ngIf="formAssistant.get('telefono_movil').hasError('minlength')">
+                                            El teléfono móvil no debe tener menos de 10 caracteres.
+                                        </mat-error>
+                                        <mat-error *ngIf="formAssistant.get('telefono_movil').hasError('maxlength')">
+                                            El teléfono móvil no debe tener más de 10 caracteres.
+                                        </mat-error>
+                                        <mat-error *ngIf="formAssistant.get('telefono_movil').hasError('pattern')">
+                                            El teléfono móvil debe contener solo números.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="flex w-full pr-3">
+                                    <mat-form-field
+                                        [ngClass]="formFieldHelpers"
+                                        class="flex-auto gt-md:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Ciudad</mat-label>
+                                        <input
+                                            matInput
+                                            [formControlName]="'ciudad'"
+                                        />
+                                        <mat-error *ngIf="formAssistant.get('ciudad').hasError('required')">
+                                            La ciudad es requerida.
+                                        </mat-error> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--seccion cambio de contraseña-->
+                        <div class="border-2 border-gray-300 rounded-lg ml-3 mt-8 p-4 relative">
+                            <h2 class="absolute top-0 left-4 bg-white px-2 -mt-4 font-medium text-gray-600">
+                                Cambiar contraseña (Opcional)
+                            </h2>
+                            
+                            <!-- contenido dentro del borde -->
+                            <div class="flex mt-4">
+                                <div class="flex w-full pr-3">
+                                    <!-- Password field -->
+                                    <mat-form-field
+                                        class="flex-auto gt-md:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Nueva contraseña</mat-label>
+                                        <input
+                                            matInput
+                                            type="password"
+                                            [formControlName]="'password'"
+                                            #passwordFieldA
+                                            (input)="updateFieldPasswordAssistant()"
+                                            autocomplete="off"
+                                        />
+                                        <button
+                                            mat-icon-button
+                                            type="button"
+                                            (click)="
+                                                passwordFieldA.type === 'password'
+                                                    ? (passwordFieldA.type = 'text')
+                                                    : (passwordFieldA.type =
+                                                        'password')
+                                            "
+                                            matSuffix
+                                        >
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                *ngIf="passwordFieldA.type ==='password'"
+                                                [svgIcon]="'heroicons_solid:eye'"
+                                            >
+                                            </mat-icon>
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                *ngIf="passwordFieldA.type === 'text'"
+                                                [svgIcon]="'heroicons_solid:eye-slash'"
+                                            >
+                                            </mat-icon>
+                                        </button>
+                                        <mat-error *ngIf="formAssistant.get('password').hasError('minlength')">
+                                            La contraseña debe contener minimo 6 caracteres
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                            <div class="flex">
+                                <div class="flex w-full pr-3">
+                                    <!-- Password field -->
+                                    <mat-form-field
+                                        class="flex-auto gt-md:pl-3 fuse-mat-dense fuse-mat-bold fuse-mat-rounded"
+                                    >
+                                        <mat-label>Confirmar nueva contraseña</mat-label>
+                                        <input
+                                            matInput
+                                            type="password"
+                                            [formControlName]="'passwordConfirm'"
+                                            #passwordConfirmFieldA
+                                            autocomplete="off"
+                                        />
+                                        <button
+                                            mat-icon-button
+                                            type="button"
+                                            (click)="
+                                                passwordConfirmFieldA.type === 'password'
+                                                    ? (passwordConfirmFieldA.type = 'text')
+                                                    : (passwordConfirmFieldA.type =
+                                                        'password')
+                                            "
+                                            matSuffix
+                                        >
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                *ngIf="
+                                                    passwordConfirmFieldA.type ===
+                                                    'password'
+                                                "
+                                                [svgIcon]="'heroicons_solid:eye'"
+                                            ></mat-icon>
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                *ngIf="
+                                                    passwordConfirmFieldA.type === 'text'
+                                                "
+                                                [svgIcon]="
+                                                    'heroicons_solid:eye-slash'
+                                                "
+                                            ></mat-icon>
+                                        </button>
+                                        <mat-error *ngIf="formAssistant.get('passwordConfirm').hasError('required')">
+                                            La confirmación de la contraseña es requerida
+                                        </mat-error>
+                                        <mat-error *ngIf="formAssistant.get('passwordConfirm').hasError('mustMatch')">
+                                            Las contraseñas deben coincidir
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>  
+                            </div>
+                        </div> 
+                        <!--aqui termina la seccion de contraseña-->
+                    </div>                                   
+                </div>                             
+
+                <!-- Botones -->
+                <div class="flex flex-row space-x-1 mt-3 mb-4 mr-2 justify-end">                  
+                        
+                    <button 
+                        mat-flat-button w-full color="primary"
+                        (click)="redirectToMenu()"
+                    >                            
+                        Cancelar
+                    </button>
+
+                    <button 
+                        mat-flat-button w-full color="primary" 
+                        (click)="updateAssistant()"
+                        [disabled]="formAssistant.invalid"
+                    >                            
+                        Guardar
+                    </button>                                                                                                                                                                    
+                                        
+                </div> 
+
+            </form>                            
+                                   
+        </app-role-based-visibility>        
+
+    </div>
+</div>

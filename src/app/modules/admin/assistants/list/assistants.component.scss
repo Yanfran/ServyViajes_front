@@ -1,0 +1,72 @@
+.table-th{
+    width: 10% !important;
+}
+.table-td{
+    font-size: 16px !important;
+}
+
+table {
+    width: 100%;
+}
+
+.custom-mat-form-field-1 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+.custom-mat-form-field-2 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+.estatus_asistentes{
+    // background-color: #4f46e5;    
+    padding: 5px 25px;
+    border-radius: 13px;               
+    color: white;
+}
+
+@media (min-width: 360px) and (max-width: 1401px) {
+    .btn-estatus > span{
+        padding: 5px 25px;              
+    }
+    // .estatus_asistentes{
+    //     font-size: 10px;
+    //     margin: 5px -30px;    
+    // }
+}
+
+// .demo-table {
+//     width: 100%;
+//   }
+
+// .mat-column-evento {
+//     width: 82px!important;
+//     border-right: 1px solid currentColor;
+//     padding-right: 24px;
+//     text-align: center;
+//   }
+
+.mat-column-evento {
+    min-width: 250px;
+}
+.mat-column-nombre {
+    min-width: 150px;
+}
+.mat-column-telefono {
+    min-width: 130px;
+}
+.mat-column-categoria {
+    min-width: 150px;
+}
+.mat-column-tipo_de_pago {
+    min-width: 250px;
+}
+
+
+
+// .mat-cell {
+//     display: block;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+// }
+

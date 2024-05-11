@@ -1,0 +1,52 @@
+.bad{
+    margin-top: -10px;
+    margin-left: 50%;    
+}
+
+.table-th{
+    width: 10% !important;
+}
+.table-td{
+    font-size: 16px !important;
+}
+
+table {
+    width: 100%;
+}
+
+.custom-mat-form-field-1 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+.custom-mat-form-field-2 {
+    width: 100% !important; /* Ajusta el ancho según tus necesidades, en este caso 50% */
+}
+
+.isActive{
+    background-color: #4f46e5;    
+    padding: 5px 20px;
+    border-radius: 13px;               
+    color: white;                    
+}
+
+.isInative{
+    background-color: #dc2626; 
+    padding: 5px 15px;
+    border-radius: 13px;   
+    color: white;        
+    
+}
+
+
+.mat-column-nombre {
+    min-width: 250px;
+}
+.mat-column-sede {
+    min-width: 250px;
+}
+.mat-column-fecha_inicio {
+    min-width: 130px;
+}
+.mat-column-fecha_termino {
+    min-width: 130px;
+}

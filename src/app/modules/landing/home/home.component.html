@@ -1,0 +1,243 @@
+
+<div class="flex flex-col w-full h-full">
+    <nav class="bg-gray-900 fixed top-0 left-0 right-0 z-10">
+        <div class="mx-auto max-w-screen-2xl px-2 sm:px-8 lg:px-8">
+          <div class="relative flex h-16 items-center justify-between">
+            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              <!-- Mobile menu button-->
+              <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" (click)="showMobileMenu = !showMobileMenu">
+                <span class="absolute -inset-0.5"></span>
+                <span class="sr-only">Open main menu</span>
+                <!--
+                  Icon when menu is closed.
+      
+                  Menu open: "hidden", Menu closed: "block"
+                -->
+                <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <!--
+                  Icon when menu is open.
+      
+                  Menu open: "block", Menu closed: "hidden"
+                -->
+                <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div class="flex flex-shrink-0 items-center">
+                <img class="h-14 w-auto" src="assets/images/logo/white.png" alt="Your Company">
+              </div>
+              <div class="hidden sm:ml-6 sm:block">
+                <div class="flex space-x-4 mt-2">
+                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                  
+                  <a class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white rounded-md px-3 py-2 text-lg font-medium" [routerLink]="['/home']">Inicio</a>
+                  <!---dropdawn eventos-->
+                  <!--
+                  <div class="relative" (click)="showListEvents = !showListEvents">
+
+                    <div >
+                      <button class="block h-10 w-auto py-2 px-3 rounded-md overflow-hidden focus:outline-none text-blue-900 text-lg font-medium hover:bg-blue-900 hover:text-white">
+                        <div class="flex">
+                          <span>Eventos</span>
+                          <mat-icon class="justify-center items-center">keyboard_arrow_down</mat-icon>
+                        </div>
+                      </button>
+                    -->
+                    
+                      <!-- Contenedor del menú desplegable -->
+                      <!-- <div class="absolute left-0 mt-2 w-80 bg-white rounded-lg shadow-lg" *ngIf="showListEvents"> -->
+                        <!-- Contenido del menú desplegable -->
+                        <!-- <a *ngFor="let evento of listaEventos" [routerLink]="['/evento', evento.id]" class="block px-4 py-2 text-blue-900 hover:bg-blue-900 hover:text-white text-lg font-medium">
+                          {{ evento.evento.nombre }}
+                        </a> 
+                        
+                      </div>
+                    </div>
+                  
+                  </div>-->
+                  <a (click)="scrollToSection('contactanos')" class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer">Contacto</a>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <!-- aqui va el boton de whats-->
+              <img class="h-9 w-auto mt-3 mb-3 hidden sm:ml-6 sm:block" src="assets/icons/phone-icon2.png">
+              <h3 class="text-indigo-50 text-lg font-medium mr-8 hidden sm:ml-4 sm:block">Tel: {{ landing.telefono_movil }}</h3>
+              <!-- Profile dropdown -->
+              <div class="relative ml-3">
+                <div>
+                    <a class="bg-indigo-50 text-gray-900 rounded-md px-3 py-2 text-lg font-medium cursor-pointer" (click)="redirectSingUp()">
+                        Iniciar sesión
+                    </a>
+                </div>
+      
+                <!--
+                  Dropdown menu, show/hide based on menu state.
+      
+                  Entering: "transition ease-out duration-100"
+                    From: "transform opacity-0 scale-95"
+                    To: "transform opacity-100 scale-100"
+                  Leaving: "transition ease-in duration-75"
+                    From: "transform opacity-100 scale-100"
+                    To: "transform opacity-0 scale-95"
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="sm:hidden" id="mobile-menu">
+          <div class="space-y-1 px-2 pb-3 pt-2" *ngIf="showMobileMenu">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white block rounded-md px-3 py-2 text-base font-medium" [routerLink]="['/home']">Inicio</a>
+            <!---dropdawn eventos-->
+            <!---
+            <div class="relative" (click)="showListEvents = !showListEvents">
+
+              <div >
+                <button class="block h-10 w-auto py-2 px-3 rounded-md overflow-hidden focus:outline-none text-blue-900 text-base font-medium hover:bg-blue-900 hover:text-white">
+                -->
+                  <!-- Botón que activa el dropdown -->
+                  <!-- Icono o texto para el botón -->
+                  <!-- <div class="flex">
+                    <span>Eventos</span>
+                    <mat-icon class="justify-center items-center">keyboard_arrow_down</mat-icon>
+                  </div>
+                </button> -->
+              
+                <!-- Contenedor del menú desplegable -->
+                <!-- <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg" *ngIf="showListEvents"> -->
+                  <!-- Contenido del menú desplegable -->
+                  <!-- <a *ngFor="let evento of listaEventos" [routerLink]="['/evento', evento.id]" class="block px-4 py-2 text-blue-900 hover:bg-blue-900 hover:text-white text-base font-medium">
+                    {{ evento.evento.nombre }}
+                  </a>
+                  
+                </div>
+              </div>
+            
+            </div> -->
+            <a (click)="scrollToSection('contactanos')" class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white block rounded-md px-3 py-2 text-base font-medium cursor-pointer">Contacto</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="bg-white h-full pt-20">
+
+        <div class="max-w-360 mx-auto flex justify-center items-center px-6 bg-white">
+          <owl-carousel-o [options]="carouselOptions">
+            <ng-container *ngFor="let banner of banners">
+              <ng-template carouselSlide>
+                <img 
+                  class="max-w-360 max-h-128 sm:h-64 lg:h-128 responsive-phone-carusel" 
+                  [src]="URL+'/assets/images/'+banner.banner" alt="Slide Image"
+                >
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:flex sm:flex-col lg:flex-row bg-white">
+          <div class="p-6">
+            <img class="rounded-lg img-nosotros" [src]="landing.imagen">
+          </div>
+          <div class="p-6">
+            <h3 class="titulo text-blue-900 text-center pb-4">Nosotros</h3>
+            <div class="text-blue-900 text-description text-justify">
+              {{ landing.nosotros }}
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="max-w-7xl mx-auto sm:flex sm:flex-col-reverse lg:flex-row bg-white">
+          <div class="p-6">
+            <h3 class="titulo text-blue-900 text-center pb-4">Mensaje</h3>
+            <div class="text-blue-900 text-description text-justify">
+              {{ landing.mensaje }}
+            </div>
+          </div>
+          <div class="p-6">
+            <img class="rounded-lg img-mensaje" [src]="landing.imagen_mensaje">
+          </div>
+        </div>
+        
+        <div id="contactanos" class="container columns-1 mx-8 bg-white p-6 pb-20 mb-10 rounded-b-lg">
+            <h3 class="titulo text-blue-900 pb-4 text-center">Contáctanos</h3>
+            <div class="flex justify-center">
+                <table>
+                    <tr class="">
+                        <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-telefono.png"></td>
+                        <td>
+                          <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
+                            {{ landing.telefono_fijo }}
+                          </h3>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-mail.png"></td>
+                        <td>
+                          <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
+                            {{ landing.correo_contacto }}
+                          </h3>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-facebook.png"></td>
+                        <td>
+                          <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
+                            {{ landing.url_facebook}}
+                          </h3>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-hogar.png"></td>
+                        <td>
+                            <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
+                              {{ landing.domicilio }}
+                            </h3>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+        
+</div>
+<!-- codigo por defecto  --->
+<!-- <div class="flex flex-col items-center justify-center w-full h-full">
+    <div class="w-full max-w-3xl">
+        <div class="max-w-none mx-auto prose prose-sm">
+            <img
+                class="w-20"
+                src="assets/images/logo/logo.svg"
+                alt="Logo image">
+            <h1>Landing Module</h1>
+            <p>
+                This can be the landing or the welcome page of your application. If you have an SSR (Server Side Rendering) setup, or if you don't need to have Search engine
+                visibility and optimizations, you can even use this page as your primary landing page.
+            </p>
+            <p>
+                This is a separate "module", it has its own directory and routing setup and also it's completely separated from the actual application. This is also a simple example of
+                a multiple applications setup that uses the same codebase. You can have different entry points and essentially have different applications within the same codebase.
+            </p>
+        </div>
+        <div>
+            <a
+                class="mt-8"
+                mat-flat-button
+                [color]="'primary'"
+                [routerLink]="'/dashboards/project'">
+                <span>Launch the App</span>
+                <mat-icon
+                    class="ml-2 icon-size-5"
+                    [svgIcon]="'heroicons_mini:arrow-long-right'"></mat-icon>
+            </a>
+        </div>
+    </div>
+</div> -->

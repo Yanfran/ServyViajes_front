@@ -1,0 +1,218 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent"
+    >
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500"
+                        >ServyViajes</a
+                    >
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_mini:chevron-right'"
+                    ></mat-icon>
+                    <a class="ml-1 text-primary-500">Habitaciones por hoteles</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
+                >
+                    Habitaciones por hoteles
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                    Catálogo de habitaciones por hoteles
+                </h2>                
+            </div>
+            <div class="flex items-center ml-6">
+                <!-- <button
+                    class="hidden sm:inline-flex"
+                    mat-stroked-button>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:document-chart-bar'"></mat-icon>
+                    <span class="ml-2">Reports</span>
+                </button>
+                <button
+                    class="hidden sm:inline-flex ml-3"
+                    mat-stroked-button>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:cog-8-tooth'"></mat-icon>
+                    <span class="ml-2">Settings</span>
+                </button> -->
+                <button
+                    [routerLink]="['/create/rooms_by_hotels']"
+                    class="hidden sm:inline-flex ml-3"                    
+                    mat-flat-button
+                    [color]="'primary'"
+                >                
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:plus-circle'"
+                    ></mat-icon>
+                    <span class="ml-2">Nueva habitación</span>
+
+                    <!-- [svgIcon]="'heroicons_solid:arrow-up-tray'"></mat-icon> -->
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Filter -->
+        <div class="">
+            <form class="flex flex-row mt-7">
+                <div class="basis-1/4">
+                    <mat-form-field class="flex-auto sm:pl-3 fuse-mat-dense fuse-mat-bold custom-mat-form-field-1">
+                      <mat-select [(ngModel)]="hotelFilter" [placeholder]="'Seleccione un hotel'" name="hotelFilter" (ngModelChange)="load()">
+                        <mat-option *ngFor="let hotel of hoteles" [value]="hotel.nombre">
+                          {{ hotel.nombre }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                </div>                              
+            </form>
+        </div>
+
+        <div class="overflow-x-auto mt-6">
+            <table
+                mat-table
+                [dataSource]="dataSource"
+                class="table-auto w-full mt-2"
+            >                
+
+                <ng-container matColumnDef="nombre" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef>Nombre de hotel</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.hotel.nombre }}
+                    </td>
+                </ng-container>
+
+                <!-- Plan Column -->
+                <ng-container matColumnDef="plan" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Tipo de plan</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        {{ element.plan.nombre }}
+                    </td>
+                </ng-container> 
+                
+                <!-- habitacion Column -->
+                <ng-container matColumnDef="habitacion" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Tipo de habitación</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        {{ element.tipo_habitacion }}
+                    </td>
+                </ng-container>                
+
+
+                <!-- Cantidad registrada Column -->
+                <ng-container matColumnDef="cantidad_registrada" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Cantidad registrada</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        {{ element.cantidad_registrada }}
+                    </td>
+                </ng-container>
+
+
+                <!-- Habitacines disponibles Column -->
+                <ng-container matColumnDef="habitacines_disponibles" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Cantidad disponible</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        {{ element.cantidad_registrada - element.habitaciones_disponibles }}
+                    </td>
+                </ng-container>                
+                
+                <!-- Vigencia de disponibilidad Column -->                    
+                <ng-container matColumnDef="vigencia_de_disponibilidad" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">                        
+                        Vigencia de disponibilidad
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center">                         
+                        {{ element.vigencia | date:'dd/MM/yyyy' }}                                                                    
+                    </td>
+                </ng-container>                    
+
+
+                <ng-container matColumnDef="estatus" class="w-1/4">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">
+                      Estatus
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center">                                                                        
+                        <span [class]="element.estatus === 1 ? 'isActive' : 'isInative'">
+                            {{ element.estatus === 1 ? 'Activo' : 'Inactivo' }}
+                        </span>                                                    
+                    </td>
+                </ng-container>    
+
+                <!-- Acciones Column -->
+                <ng-container matColumnDef="acciones" class="w-1/2">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">
+                        Acciones
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="flex justify-center space-x-1">                            
+                            <button                                
+                                mat-icon-button
+                                matTooltip="Basic"
+                                aria-label="eye"
+                                (click)="ver(element)"
+                            >
+                                <mat-icon
+                                    svgIcon="heroicons_mini:eye"
+                                ></mat-icon>
+                            </button>
+                            
+                            <button                                
+                                mat-icon-button
+                                matTooltip="Basic"
+                                aria-label="pencil"                                
+                                (click)="editar(element)"
+                            >                            
+                                <mat-icon
+                                    svgIcon="heroicons_mini:pencil"
+                                ></mat-icon>
+                            </button>                            
+                            
+                            <button
+                                mat-icon-button
+                                matTooltip="Basic"
+                                aria-label="delete"                                                            
+                                (click)="delete(element.id)"
+                            >                            
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+            </table>
+        </div>
+
+        <mat-paginator
+            [pageSizeOptions]="[10, 20, 30]"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+    </div>
+</div>
