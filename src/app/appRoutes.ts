@@ -5,6 +5,10 @@ import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { RoleGuard } from './core/auth/guards/role.guard';
 
+import { FormsFieldsComponent } from 'app/modules/admin/ui/forms/fields/fields.component';
+import { FormsLayoutsComponent } from 'app/modules/admin/ui/forms/layouts/layouts.component';
+import { FormsWizardsComponent } from 'app/modules/admin/ui/forms/wizards/wizards.component';
+
 // @formatter:off
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -12,6 +16,10 @@ import { RoleGuard } from './core/auth/guards/role.guard';
 export const appRoutes: Route[] = [
     // Redirect empty path to '/example'
     { path: '', pathMatch: 'full', redirectTo: 'home' },
+    
+    { path: 'forms-fields', component: FormsFieldsComponent },
+    { path: 'forms-layouts', component: FormsLayoutsComponent },
+    { path: 'forms-wizards', component: FormsWizardsComponent },
 
     // Redirect signed-in user to the '/example'
     //
