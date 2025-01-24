@@ -278,21 +278,101 @@
                 <input id="legalizationApostille" type="checkbox" formControlName="legalizationApostille" class="mr-2"> Apostille / Legalization
               </label>
             </div>
+
+            <div class="col-span-8">
+              
+              <div class="grid grid-cols-8 gap-4">
+
+                <div class="col-span-7">
+                  <label for="coupon-code" class="block text-sm font-medium text-gray-700">Coupon Code</label>
+                  <input id="coupon-code" type="text" placeholder="Enter coupon code" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                </div>
+  
+                <div class="col-span-1 relative">
+                  <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 absolute bottom-0">Apply</button>
+                </div>
+
+              </div>
+              
+            </div>
           
             <div class="col-span-2">
               <span>Total: {{ total }}</span>
             </div>
 
-            <div class="col-span-6"></div>
+            <!-- <div class="col-span-6"></div>
           
             <div class="col-span-2">
               <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
-            </div>
+            </div> -->
           </form>
-          
           
         </div>
         
+        <div class="w-full md:w-6/12 mx-auto pb-10">
+          <form class="grid grid-cols-8 gap-4">
+
+            <!-- <div id="card-element"></div>
+            <button (click)="handlePayment()" type="button" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-20">Pagar</button> -->
+
+            
+              
+        
+            <div class="col-span-8">
+              <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+              <input id="email" type="email" placeholder="you@example.com" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+        
+            <div class="col-span-8">
+              <label>Stripe Credit Card <span>*</span></label>
+              <!-- <div id="card-element" style="margin-bottom: 20px;"></div> -->
+              <div id="card-errors" role="alert" style="color: red;"></div>
+            </div>
+
+            <div class="col-span-8">
+              
+              <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-7">
+                  <label for="card-number-element" class="block text-sm font-medium text-gray-700">Número de Tarjeta</label>
+                  <div id="card-number-element" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" style="margin-bottom: 20px;"></div>
+                </div>
+            
+                <div class="col-span-3">
+                  <label for="card-expiry-element" class="block text-sm font-medium text-gray-700">Fecha de Expiración</label>
+                  <div id="card-expiry-element" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" style="margin-bottom: 20px;"></div>
+                </div>
+            
+                <div class="col-span-2">
+                  <label for="card-cvc-element" class="block text-sm font-medium text-gray-700">CVC</label>
+                  <div id="card-cvc-element" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" style="margin-bottom: 20px;"></div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="col-span-8">
+              <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+              <select id="country" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="ve">Venezuela</option>
+                <!-- Añade más opciones de países según sea necesario -->
+              </select>
+            </div>
+
+            <div class="col-span-8">
+              <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-3">
+
+                  <button (click)="handlePayment()" type="button" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-20">Pagar</button>
+
+                </div>
+              </div>
+            </div>
+            
+
+          </form>
+
+          
+          
+        </div>
         
         <div id="contactanos" class="container columns-1 mx-8 bg-white p-6 pb-10 rounded-b-lg">
             <h3 class="titulo text-blue-900 pb-4 text-center">Contáctanos</h3>

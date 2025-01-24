@@ -22,16 +22,19 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 // import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
 import { PDFDocument } from 'pdf-lib';
 
+import { loadStripe } from '@stripe/stripe-js';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
-    selector     : 'landing-home',
-    templateUrl  : './home.component.html',
+    selector: 'landing-home',
+    templateUrl: './home.component.html',
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./home.component.scss'],
-    standalone   : true,
-    imports      : [
-        MatButtonModule, 
-        RouterLink, 
-        MatIconModule, 
+    standalone: true,
+    imports: [
+        MatButtonModule,
+        RouterLink,
+        MatIconModule,
         CommonModule,
         CarouselModule,
         MatFormFieldModule,
@@ -45,8 +48,7 @@ import { PDFDocument } from 'pdf-lib';
         MatCheckboxModule,
     ],
 })
-export class LandingHomeComponent
-{
+export class LandingHomeComponent {
     showListEvents: boolean = false;
     showMobileMenu: boolean = false;
 
@@ -63,20 +65,20 @@ export class LandingHomeComponent
         navSpeed: 700,
         navText: ['Anterior', 'Siguiente'],
         responsive: {
-          0: {
-            items: 1
-          },
-          768: {
-            items: 1
-          },
-          992: {
-            items: 1
-          }
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            992: {
+                items: 1
+            }
         },
         autoplay: true, // Habilita el autoplay
         toplayTimeout: 3000 // Cambia las imágenes cada 3 segundos (3000 milisegundos)
-        
-      };
+
+    };
     /**
      * Constructor
      */
@@ -84,12 +86,20 @@ export class LandingHomeComponent
     form: FormGroup;
     total: number = 0;
 
+    // Stripe
+    // Public
+    stripePromise = loadStripe('pk_test_51Qko6pRJhPntHxRGR7lwL1gTN5EHkLU0XYYBPbNjxWaHHWtftbrLhtbgLTxuwqESOaQ9WnS1qsl1ceIYJcjdxTRI00DTdHpv8D');
+    elements: any;
+    cardNumber: any;
+    cardExpiry: any;
+    cardCvc: any;
+
     constructor(private _landingHomeService: LandingHomeService,
         private router: Router,
         private _landingEventosService: LandingEventosService,
-        private fb: FormBuilder
-        )
-    {
+        private fb: FormBuilder,
+        private http: HttpClient
+    ) {
         this.landing = {
             nosotros: '',
             mensaje: '',
@@ -114,6 +124,36 @@ export class LandingHomeComponent
             certificationOptions: [false],
             legalizationApostille: [false],
         });
+    }
+
+    async ngOnInit() {
+        const stripe = await this.stripePromise;
+        this.elements = stripe.elements();
+
+        const style = {
+            base: {
+              color: '#32325d',
+              fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+              fontSmoothing: 'antialiased',
+              fontSize: '16px',
+              '::placeholder': {
+                color: '#aab7c4'
+              }
+            },
+            invalid: {
+              color: '#fa755a',
+              iconColor: '#fa755a'
+            }
+          };
+        
+        this.cardNumber = this.elements.create('cardNumber', { style: style });
+        this.cardNumber.mount('#card-number-element');
+
+        this.cardExpiry = this.elements.create('cardExpiry', { style: style });
+        this.cardExpiry.mount('#card-expiry-element');
+
+        this.cardCvc = this.elements.create('cardCvc', { style: style });
+        this.cardCvc.mount('#card-cvc-element');
     }
 
     getLanding() {
@@ -203,9 +243,78 @@ export class LandingHomeComponent
         this.form.patchValue({ numberOfPages: numPages });
         console.log(`Number of pages: ${numPages}`);
     }
-    
+
     onSubmit(): void {
         console.log(this.form.value);
         // Lógica para manejar el envío del formulario y calcular el total
+    }
+
+    // async handlePayment() {
+    //     const stripe = await this.stripePromise;
+    //     stripe.createPaymentMethod
+    //     const { error, paymentIntent } = await stripe.createPayment({
+    //       amount: 1000, // Monto en centavos
+    //       currency: 'usd',
+    //       payment_method: {
+    //         card: this.card,
+    //         billing_details: {
+    //           name: 'Nombre del Cliente',
+    //         },
+    //       },
+    //     });
+
+    //     if (error) {
+    //       console.error('Error:', error);
+    //     } else {
+    //       console.log('Pago exitoso:', paymentIntent);
+    //     }
+    // }
+
+    async handlePayment() {
+        const stripe = await this.stripePromise;
+
+        // Solicita el client_secret al backend (aquí uso un ejemplo de cómo hacerlo sin backend, pero es recomendable usar uno)
+        // const clientSecret = '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';
+
+        // Crear el PaymentIntent directamente desde el frontend (solo para pruebas, no recomendado en producción)
+        // Secret
+        const response = await fetch('https://api.stripe.com/v1/payment_intents', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Bearer sk_test_51Qko6pRJhPntHxRGF6sDciSXkmLH3sSNuHCuAOLohBiqaEQotoNFlD0Oghxkyn9TdGR2voPQiNDLUmt0hw2Mytze008Ly9Gj9Y'
+            },
+            body: new URLSearchParams({
+                'amount': '1000', // Monto en centavos
+                'currency': 'usd'
+            })
+        });
+
+        const paymentIntent = await response.json();
+        const clientSecret = paymentIntent.client_secret;
+
+        const { error, paymentIntent: confirmedPaymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: this.cardNumber,
+                billing_details: {
+                    name: 'Nombre del Cliente',
+                },
+            },
+        });
+
+        // const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        //     payment_method: {
+        //         card: this.card,
+        //         billing_details: {
+        //             name: 'Nombre del Cliente',
+        //         },
+        //     },
+        // });
+
+        if (error) {
+            console.error('Error:', error);
+        } else {
+            console.log('Pago exitoso:', paymentIntent);
+        }
     }
 }
