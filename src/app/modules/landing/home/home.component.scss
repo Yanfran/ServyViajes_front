@@ -13,6 +13,12 @@ h1, h2, h3, h4, h5, p, span, a, option, select, div {
 owl-carousel-o {
     width: 100%;
 }
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
 /*responsive secction*/
 /*pc, laptop*/
 @media only screen and (min-width: 1280px) {

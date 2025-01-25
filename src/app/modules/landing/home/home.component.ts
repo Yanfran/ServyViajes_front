@@ -94,6 +94,9 @@ export class LandingHomeComponent {
     cardExpiry: any;
     cardCvc: any;
 
+    sub: number = 0;
+    iva: number = 0;
+
     constructor(private _landingHomeService: LandingHomeService,
         private router: Router,
         private _landingEventosService: LandingEventosService,
@@ -244,11 +247,6 @@ export class LandingHomeComponent {
         console.log(`Number of pages: ${numPages}`);
     }
 
-    onSubmit(): void {
-        console.log(this.form.value);
-        // Lógica para manejar el envío del formulario y calcular el total
-    }
-
     // async handlePayment() {
     //     const stripe = await this.stripePromise;
     //     stripe.createPaymentMethod
@@ -316,5 +314,32 @@ export class LandingHomeComponent {
         } else {
             console.log('Pago exitoso:', paymentIntent);
         }
+    }
+
+    SubTotal(): number {
+
+        var sub = 0;
+
+        var sub = this.form.get('numberOfPages').value * 55;
+
+        if(this.form.get('certificationOptions').value){
+            sub += 100;
+        }
+
+        if(this.form.get('legalizationApostille').value){
+            sub += 100;
+        }
+
+        this.sub = sub;
+        return sub;
+    }
+
+    Iva(): number {
+        var iva = 0;
+
+        iva = this.sub * 0.16;
+
+        this.iva = iva;
+        return iva;
     }
 }
