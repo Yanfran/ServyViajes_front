@@ -1,42 +1,46 @@
-
 <div class="flex flex-col w-full h-full">
-    <nav class="bg-gray-900 fixed top-0 left-0 right-0 z-10">
-        <div class="mx-auto max-w-screen-2xl px-2 sm:px-8 lg:px-8">
-          <div class="relative flex h-16 items-center justify-between">
-            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              <!-- Mobile menu button-->
-              <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" (click)="showMobileMenu = !showMobileMenu">
-                <span class="absolute -inset-0.5"></span>
-                <span class="sr-only">Open main menu</span>
-                <!--
+  <nav class="bg-gray-900 fixed top-0 left-0 right-0 z-10">
+    <div class="mx-auto max-w-screen-2xl px-2 sm:px-8 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button type="button"
+            class="relative inline-flex items-center justify-center rounded-md p-2 text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            aria-controls="mobile-menu" aria-expanded="false" (click)="showMobileMenu = !showMobileMenu">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Open main menu</span>
+            <!--
                   Icon when menu is closed.
       
                   Menu open: "hidden", Menu closed: "block"
                 -->
-                <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-                <!--
+            <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!--
                   Icon when menu is open.
       
                   Menu open: "block", Menu closed: "hidden"
                 -->
-                <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div class="flex flex-shrink-0 items-center">
-                <img class="h-14 w-auto" src="assets/images/logo/logo-weber-white.png" alt="Your Company">
-              </div>
-              <div class="hidden sm:ml-6 sm:block">
-                <div class="flex space-x-4 mt-2">
-                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  
-                  <a class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white rounded-md px-3 py-2 text-lg font-medium" [routerLink]="['/home']">Inicio</a>
-                  <!---dropdawn eventos-->
-                  <!--
+            <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex flex-shrink-0 items-center">
+            <img class="h-14 w-auto" src="assets/images/logo/logo-weber-white.png" alt="Your Company">
+          </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4 mt-2">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+
+              <a class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white rounded-md px-3 py-2 text-lg font-medium"
+                [routerLink]="['/home']">Inicio</a>
+              <!---dropdawn eventos-->
+              <!--
                   <div class="relative" (click)="showListEvents = !showListEvents">
 
                     <div >
@@ -47,11 +51,11 @@
                         </div>
                       </button>
                     -->
-                    
-                      <!-- Contenedor del menú desplegable -->
-                      <!-- <div class="absolute left-0 mt-2 w-80 bg-white rounded-lg shadow-lg" *ngIf="showListEvents"> -->
-                        <!-- Contenido del menú desplegable -->
-                        <!-- <a *ngFor="let evento of listaEventos" [routerLink]="['/evento', evento.id]" class="block px-4 py-2 text-blue-900 hover:bg-blue-900 hover:text-white text-lg font-medium">
+
+              <!-- Contenedor del menú desplegable -->
+              <!-- <div class="absolute left-0 mt-2 w-80 bg-white rounded-lg shadow-lg" *ngIf="showListEvents"> -->
+              <!-- Contenido del menú desplegable -->
+              <!-- <a *ngFor="let evento of listaEventos" [routerLink]="['/evento', evento.id]" class="block px-4 py-2 text-blue-900 hover:bg-blue-900 hover:text-white text-lg font-medium">
                           {{ evento.evento.nombre }}
                         </a> 
                         
@@ -59,23 +63,26 @@
                     </div>
                   
                   </div>-->
-                  <a (click)="scrollToSection('contactanos')" class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer">Contacto</a>
-                </div>
-              </div>
+              <a (click)="scrollToSection('contactanos')"
+                class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer">Contacto</a>
             </div>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <!-- aqui va el boton de whats-->
-              <img class="h-9 w-auto mt-3 mb-3 hidden sm:ml-6 sm:block" src="assets/icons/phone-icon2.png">
-              <h3 class="text-indigo-50 text-lg font-medium mr-8 hidden sm:ml-4 sm:block">Tel: {{ landing.telefono_movil }}</h3>
-              <!-- Profile dropdown -->
-              <div class="relative ml-3">
-                <div>
-                    <a class="bg-indigo-50 text-gray-900 rounded-md px-3 py-2 text-lg font-medium cursor-pointer" (click)="redirectSingUp()">
-                        Iniciar sesión
-                    </a>
-                </div>
-      
-                <!--
+          </div>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <!-- aqui va el boton de whats-->
+          <img class="h-9 w-auto mt-3 mb-3 hidden sm:ml-6 sm:block" src="assets/icons/phone-icon2.png">
+          <h3 class="text-indigo-50 text-lg font-medium mr-8 hidden sm:ml-4 sm:block">Tel: {{ landing.telefono_movil }}
+          </h3>
+          <!-- Profile dropdown -->
+          <div class="relative ml-3">
+            <div>
+              <a class="bg-indigo-50 text-gray-900 rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                (click)="redirectSingUp()">
+                Iniciar sesión
+              </a>
+            </div>
+
+            <!--
                   Dropdown menu, show/hide based on menu state.
       
                   Entering: "transition ease-out duration-100"
@@ -85,35 +92,36 @@
                     From: "transform opacity-100 scale-100"
                     To: "transform opacity-0 scale-95"
                 -->
-              </div>
-            </div>
           </div>
         </div>
-      
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="sm:hidden" id="mobile-menu">
-          <div class="space-y-1 px-2 pb-3 pt-2" *ngIf="showMobileMenu">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white block rounded-md px-3 py-2 text-base font-medium" [routerLink]="['/home']">Inicio</a>
-            <!---dropdawn eventos-->
-            <!---
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="sm:hidden" id="mobile-menu">
+      <div class="space-y-1 px-2 pb-3 pt-2" *ngIf="showMobileMenu">
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+        <a class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+          [routerLink]="['/home']">Inicio</a>
+        <!---dropdawn eventos-->
+        <!---
             <div class="relative" (click)="showListEvents = !showListEvents">
 
               <div >
                 <button class="block h-10 w-auto py-2 px-3 rounded-md overflow-hidden focus:outline-none text-blue-900 text-base font-medium hover:bg-blue-900 hover:text-white">
                 -->
-                  <!-- Botón que activa el dropdown -->
-                  <!-- Icono o texto para el botón -->
-                  <!-- <div class="flex">
+        <!-- Botón que activa el dropdown -->
+        <!-- Icono o texto para el botón -->
+        <!-- <div class="flex">
                     <span>Eventos</span>
                     <mat-icon class="justify-center items-center">keyboard_arrow_down</mat-icon>
                   </div>
                 </button> -->
-              
-                <!-- Contenedor del menú desplegable -->
-                <!-- <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg" *ngIf="showListEvents"> -->
-                  <!-- Contenido del menú desplegable -->
-                  <!-- <a *ngFor="let evento of listaEventos" [routerLink]="['/evento', evento.id]" class="block px-4 py-2 text-blue-900 hover:bg-blue-900 hover:text-white text-base font-medium">
+
+        <!-- Contenedor del menú desplegable -->
+        <!-- <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg" *ngIf="showListEvents"> -->
+        <!-- Contenido del menú desplegable -->
+        <!-- <a *ngFor="let evento of listaEventos" [routerLink]="['/evento', evento.id]" class="block px-4 py-2 text-blue-900 hover:bg-blue-900 hover:text-white text-base font-medium">
                     {{ evento.evento.nombre }}
                   </a>
                   
@@ -121,14 +129,15 @@
               </div>
             
             </div> -->
-            <a (click)="scrollToSection('contactanos')" class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white block rounded-md px-3 py-2 text-base font-medium cursor-pointer">Contacto</a>
-          </div>
-        </div>
-      </nav>
+        <a (click)="scrollToSection('contactanos')"
+          class="text-indigo-50 hover:bg-white hover:bg-opacity-12 hover:text-white block rounded-md px-3 py-2 text-base font-medium cursor-pointer">Contacto</a>
+      </div>
+    </div>
+  </nav>
 
-      <div class="bg-white h-full pt-20">
+  <div class="bg-white h-full pt-20">
 
-        <!-- <div class="max-w-360 mx-auto flex justify-center items-center px-6 bg-white ">
+    <!-- <div class="max-w-360 mx-auto flex justify-center items-center px-6 bg-white ">
           <owl-carousel-o [options]="carouselOptions">
             <ng-container *ngFor="let banner of banners">
               <ng-template carouselSlide>
@@ -141,35 +150,35 @@
           </owl-carousel-o>
         </div> -->
 
-        <div class="max-w-7xl mx-auto bg-white pb-10">
+    <div class="max-w-7xl mx-auto bg-white pb-10">
 
-          <div class="grid grid-cols-8 gap-4">
-            <div class="col-span-5">
+      <div class="grid grid-cols-8 gap-4">
+        <div class="col-span-5">
 
-              <div class="p-6">
-                <!-- <img class="rounded-lg img-nosotros" [src]="landing.imagen"> -->
-                <img class="rounded-lg" [src]="landing.imagen">
-              </div>
+          <div class="p-6">
+            <!-- <img class="rounded-lg img-nosotros" [src]="landing.imagen"> -->
+            <img class="rounded-lg" [src]="landing.imagen">
+          </div>
 
-            </div>
-            <div class="col-span-3 flex justify-center items-center">
+        </div>
+        <div class="col-span-3 flex justify-center items-center">
 
-              <div class="p-6">
-                <h3 class="titulo text-blue-900 text-center pb-4">Nosotros</h3>
-                <div class="text-blue-900 text-description text-justify">
-                  {{ landing.nosotros }}
-                </div>
-              </div>
-
+          <div class="p-6">
+            <h3 class="titulo text-blue-900 text-center pb-4">Nosotros</h3>
+            <div class="text-blue-900 text-description text-justify">
+              {{ landing.nosotros }}
             </div>
           </div>
 
-          
-          
         </div>
-        
+      </div>
 
-        <!-- <div class="max-w-7xl mx-auto sm:flex sm:flex-col-reverse lg:flex-row bg-white">
+
+
+    </div>
+
+
+    <!-- <div class="max-w-7xl mx-auto sm:flex sm:flex-col-reverse lg:flex-row bg-white">
           <div class="p-6">
             <h3 class="titulo text-blue-900 text-center pb-4">Mensaje</h3>
             <div class="text-blue-900 text-description text-justify">
@@ -180,9 +189,9 @@
             <img class="rounded-lg img-mensaje" [src]="landing.imagen_mensaje">
           </div>
         </div> -->
-        
-        
-        <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
+    <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput formControlName="name" required>
@@ -223,43 +232,58 @@
           <button mat-raised-button type="submit">Submit</button>
         </form> -->
 
-        <div class="w-full md:w-6/12 mx-auto pb-10">
+    <div class="w-full md:w-6/12 mx-auto pb-10">
 
-          <form [formGroup]="form" class="grid grid-cols-8 gap-4">
-            <div class="col-span-4">
-              <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-              <input id="name" formControlName="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-          
-            <div class="col-span-4">
-              <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-              <input id="phone" formControlName="phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-          
-            <div class="col-span-8">
-              <label for="languageToTranslate" class="block text-sm font-medium text-gray-700">
-                <input id="languageToTranslate" type="checkbox" formControlName="languageToTranslate" class="mr-2"> Language to translate
-              </label>
-            </div>
-          
-            <div class="col-span-8">
-              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-              <input id="email" type="email" formControlName="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-          
-            <div class="col-span-8">
-              <label for="file" class="block text-sm font-medium text-gray-700">File Upload</label>
-              <input id="file" type="file" accept=".pdf" (change)="onFileSelected($event)" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-          
-            <div class="col-span-8">
-              <!-- <label for="numberOfPages" class="block text-sm font-medium text-gray-700">Number of pages to translate</label> -->
-              <span class="block text-sm font-medium text-gray-700">Number of pages to translate: {{ form.get('numberOfPages').value }}</span>
-              <input id="numberOfPages" type="hidden" formControlName="numberOfPages" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              
-            </div>
-          
-            <!-- <div class="col-span-2">
+      <form [formGroup]="form" class="grid grid-cols-8 gap-4">
+        <div class="col-span-4">
+          <label for="name" class="block text-sm font-medium text-gray-700"
+            [ngClass]="{'text-red-500': !i_v_name}">Name</label>
+          <input id="name" formControlName="name"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            [ngClass]="{'border-red-500': !i_v_name}">
+        </div>
+
+        <div class="col-span-4">
+          <label for="phone" class="block text-sm font-medium text-gray-700"
+            [ngClass]="{'text-red-500': !i_v_phone}">Phone</label>
+          <input id="phone" formControlName="phone"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            [ngClass]="{'border-red-500': !i_v_phone}">
+        </div>
+
+        <div class="col-span-8">
+          <label for="languageToTranslate" class="block text-sm font-medium text-gray-700">
+            <input id="languageToTranslate" type="checkbox" formControlName="languageToTranslate" class="mr-2"> Language
+            to translate
+          </label>
+        </div>
+
+        <div class="col-span-8">
+          <label for="email" class="block text-sm font-medium text-gray-700"
+            [ngClass]="{'text-red-500': !i_v_email}">Email</label>
+          <input id="email" type="email" formControlName="email"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            [ngClass]="{'border-red-500': !i_v_email}">
+        </div>
+
+        <div class="col-span-8">
+          <label for="file" class="block text-sm font-medium text-gray-700" [ngClass]="{'text-red-500': !i_v_file}">File
+            Upload</label>
+          <input id="file" type="file" accept=".pdf" (change)="onFileSelected($event)"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            [ngClass]="{'border-red-500': !i_v_file}">
+        </div>
+
+        <div class="col-span-8">
+          <!-- <label for="numberOfPages" class="block text-sm font-medium text-gray-700">Number of pages to translate</label> -->
+          <span class="block text-sm font-medium text-gray-700">Number of pages to translate: {{
+            form.get('numberOfPages').value }}</span>
+          <input id="numberOfPages" type="hidden" formControlName="numberOfPages"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+        </div>
+
+        <!-- <div class="col-span-2">
               <label for="certificationOptions" class="block text-sm font-medium text-gray-700">Certification options</label>
               <select id="certificationOptions" formControlName="certificationOptions" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <option value="apostille">Apostille</option>
@@ -267,178 +291,207 @@
               </select>
             </div> -->
 
-            <div class="col-span-8">
-              <label for="certificationOptions" class="block text-sm font-medium text-gray-700">
-                <input id="certificationOptions" type="checkbox" formControlName="certificationOptions" class="mr-2"> Certification options
-              </label>
+        <div class="col-span-8">
+          <label for="certificationOptions" class="block text-sm font-medium text-gray-700">
+            <input id="certificationOptions" type="checkbox" formControlName="certificationOptions" class="mr-2">
+            Certification options
+          </label>
+        </div>
+
+        <div class="col-span-8">
+          <label for="legalizationApostille" class="block text-sm font-medium text-gray-700">
+            <input id="legalizationApostille" type="checkbox" formControlName="legalizationApostille" class="mr-2">
+            Apostille / Legalization
+          </label>
+        </div>
+
+        <div class="col-span-8">
+
+          <div class="grid grid-cols-8 gap-4">
+
+            <div class="col-span-7">
+              <label for="coupon-code" class="block text-sm font-medium text-gray-700">Coupon Code</label>
+              <input id="coupon-code" type="text" placeholder="Enter coupon code"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </div>
 
-            <div class="col-span-8">
-              <label for="legalizationApostille" class="block text-sm font-medium text-gray-700">
-                <input id="legalizationApostille" type="checkbox" formControlName="legalizationApostille" class="mr-2"> Apostille / Legalization
-              </label>
+            <div class="col-span-1 relative">
+              <button type="button"
+                class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 absolute bottom-0">Apply</button>
             </div>
 
-            <div class="col-span-8">
-              
-              <div class="grid grid-cols-8 gap-4">
+          </div>
 
-                <div class="col-span-7">
-                  <label for="coupon-code" class="block text-sm font-medium text-gray-700">Coupon Code</label>
-                  <input id="coupon-code" type="text" placeholder="Enter coupon code" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
-  
-                <div class="col-span-1 relative">
-                  <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 absolute bottom-0">Apply</button>
-                </div>
+        </div>
 
-              </div>
-              
-            </div>
-          
-            <!-- <div class="col-span-2">
+        <!-- <div class="col-span-2">
               <span>Total: {{ total }}</span>
             </div> -->
 
-            <!-- <div class="col-span-6"></div>
+        <!-- <div class="col-span-6"></div>
           
             <div class="col-span-2">
               <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
             </div> -->
-          </form>
-          
-        </div>
+      </form>
 
-        <div class="container mx-aut grid grid-cols-1 md:grid-cols-5 gap-4">
-        
-          <div class="col-span-3">
-            <div class="w-full pb-10">
-              <form class="grid grid-cols-8 gap-4">
+    </div>
 
-                <!-- <div id="card-element"></div>
+    <div class="container mx-aut grid grid-cols-1 md:grid-cols-5 gap-4">
+
+      <div class="col-span-3">
+        <div class="w-full pb-10">
+          <form [formGroup]="formStripe" class="grid grid-cols-8 gap-4">
+
+            <!-- <div id="card-element"></div>
                 <button (click)="handlePayment()" type="button" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-20">Pagar</button> -->
-            
-                <div class="col-span-8">
-                  <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-                  <input id="email" type="email" placeholder="you@example.com" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
-            
-                <div class="col-span-8">
-                  <label>Stripe Credit Card <span>*</span></label>
-                  <!-- <div id="card-element" style="margin-bottom: 20px;"></div> -->
-                  <div id="card-errors" role="alert" style="color: red;"></div>
-                </div>
 
-                <div class="col-span-8">
-                  
-                  <div class="grid grid-cols-12 gap-4">
-                    <div class="col-span-7">
-                      <label for="card-number-element" class="block text-sm font-medium text-gray-700">Número de Tarjeta</label>
-                      <div id="card-number-element" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" style="margin-bottom: 20px;"></div>
-                    </div>
-                
-                    <div class="col-span-3">
-                      <label for="card-expiry-element" class="block text-sm font-medium text-gray-700">Fecha de Expiración</label>
-                      <div id="card-expiry-element" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" style="margin-bottom: 20px;"></div>
-                    </div>
-                
-                    <div class="col-span-2">
-                      <label for="card-cvc-element" class="block text-sm font-medium text-gray-700">CVC</label>
-                      <div id="card-cvc-element" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" style="margin-bottom: 20px;"></div>
-                    </div>
-                  </div>
-                </div>
-            
-                <div class="col-span-8">
-                  <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-                  <select id="country" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option value="ve">Venezuela</option>
-                    <!-- Añade más opciones de países según sea necesario -->
-                  </select>
-                </div>
+            <div class="col-span-8">
 
-                <div class="col-span-8">
-                  <div class="grid grid-cols-12 gap-4">
-                    <div class="col-span-3">
+              <label for="email" class="block text-sm font-medium text-gray-700" [ngClass]="{'text-red-500': !i_v_s_email}">Correo electrónico</label>
+              <input id="email" type="email" placeholder="you@example.com" formControlName="email"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': !i_v_s_email}"/>
 
-                      <button (click)="handlePayment()" type="button" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-20">Pagar</button>
-
-                    </div>
-                  </div>
-                </div>
-                
-
-              </form>
-
-              
-              
             </div>
-          </div>
 
-          <div class="col-span-2">
-            <div class="w-full">
-              <div class="border p-4 rounded-md shadow-sm">
-                <h2 class="text-lg font-medium text-gray-700 mb-4">Factura</h2>
-                <ul class="list-disc pl-5 text-gray-700">
-                  <li class="relative">Page PDF {{form.get('numberOfPages').value}} : <span class="absolute right-0">{{ (form.get('numberOfPages').value * 55).toFixed(2).toString() }} €</span></li>
-                  <li class="relative" *ngIf="form.get('certificationOptions').value">Certification: <span class="absolute right-0">{{ (100).toFixed(2).toString() }} €</span> </li>
-                  <li class="relative" *ngIf="form.get('legalizationApostille').value">Apostille: <span class="absolute right-0">{{ (100).toFixed(2).toString() }} €</span></li>
-                </ul>
-                <div class="mt-4">
-                  <p class="font-medium text-gray-700 relative">Sub total: <span class="absolute right-0"> {{ SubTotal().toFixed(2).toString() }} €</span> </p>
-                  <p class="font-medium text-gray-700 relative">IVA: <span class="absolute right-0"> {{ Iva().toFixed(2).toString() }} € </span> </p>
-                  <p class="font-medium text-gray-700 relative">Total: <span class="absolute right-0"> {{ (this.iva + this.sub).toFixed(2).toString() }} €</span> </p>
+            <div class="col-span-8">
+              <label>Stripe Credit Card <span>*</span></label>
+            </div>
+
+            <div class="col-span-8">
+
+              <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-7">
+                  <label
+                    for="card-number-element"
+                    class="block text-sm font-medium text-gray-700"
+                    [ngClass]="{'text-red-500': !i_v_s_number}"
+                  >
+                    Número de Tarjeta
+                  </label>
+                  <div id="card-number-element"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    [ngClass]="{'border-red-500': !i_v_s_number}"
+                    style="margin-bottom: 20px;"></div>
+                </div>
+
+                <div class="col-span-3">
+                  <label for="card-expiry-element" class="block text-sm font-medium text-gray-700" [ngClass]="{'text-red-500': !i_v_s_expiry}">
+                    Fecha de Expiración
+                  </label>
+                  <div id="card-expiry-element"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    [ngClass]="{'border-red-500': !i_v_s_expiry}"
+                    style="margin-bottom: 20px;"></div>
+                </div>
+
+                <div class="col-span-2">
+                  <label for="card-cvc-element" class="block text-sm font-medium text-gray-700" [ngClass]="{'text-red-500': !i_v_s_cvc}">CVC</label>
+                  <div id="card-cvc-element"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    [ngClass]="{'border-red-500': !i_v_s_cvc}"
+                    style="margin-bottom: 20px;"></div>
                 </div>
               </div>
             </div>
-          </div>
+
+            <div class="col-span-8">
+              <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+              <select id="country"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="ve">Venezuela</option>
+                <!-- Añade más opciones de países según sea necesario -->
+              </select>
+            </div>
+
+            <div class="col-span-8">
+              <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-3">
+
+                  <button (click)="handlePayment()" type="button"
+                    class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-20">Pagar</button>
+
+                </div>
+              </div>
+            </div>
+
+
+          </form>
 
         </div>
-        
-        <div id="contactanos" class="container columns-1 mx-8 bg-white p-6 pb-10 rounded-b-lg">
-            <h3 class="titulo text-blue-900 pb-4 text-center">Contáctanos</h3>
-            <div class="flex justify-center">
-                <table>
-                    <tr class="">
-                        <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-telefono.png"></td>
-                        <td>
-                          <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
-                            {{ landing.telefono_fijo }}
-                          </h3>
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-mail.png"></td>
-                        <td>
-                          <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
-                            {{ landing.correo_contacto }}
-                          </h3>
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-facebook.png"></td>
-                        <td>
-                          <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
-                            {{ landing.url_facebook}}
-                          </h3>
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-hogar.png"></td>
-                        <td>
-                            <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
-                              {{ landing.domicilio }}
-                            </h3>
-                        </td>
-                    </tr>
-                </table>
+      </div>
+
+      <div class="col-span-2">
+        <div class="w-full">
+          <div class="border p-4 rounded-md shadow-sm">
+            <h2 class="text-lg font-medium text-gray-700 mb-4">Factura</h2>
+            <ul class="list-disc pl-5 text-gray-700">
+              <li class="relative">Page PDF {{form.get('numberOfPages').value}} : <span class="absolute right-0">{{
+                  (form.get('numberOfPages').value * 55).toFixed(2).toString() }} €</span></li>
+              <li class="relative" *ngIf="form.get('certificationOptions').value">Certification: <span
+                  class="absolute right-0">{{ (100).toFixed(2).toString() }} €</span> </li>
+              <li class="relative" *ngIf="form.get('legalizationApostille').value">Apostille: <span
+                  class="absolute right-0">{{ (100).toFixed(2).toString() }} €</span></li>
+            </ul>
+            <div class="mt-4">
+              <p class="font-medium text-gray-700 relative">Sub total: <span class="absolute right-0"> {{
+                  SubTotal().toFixed(2).toString() }} €</span> </p>
+              <p class="font-medium text-gray-700 relative">IVA: <span class="absolute right-0"> {{
+                  Iva().toFixed(2).toString() }} € </span> </p>
+              <p class="font-medium text-gray-700 relative">Total: <span class="absolute right-0"> {{ (this.iva +
+                  this.sub).toFixed(2).toString() }} €</span> </p>
             </div>
-            
+          </div>
         </div>
-        
-        
+      </div>
+
     </div>
-        
+
+    <div id="contactanos" class="container columns-1 mx-8 bg-white p-6 pb-10 rounded-b-lg">
+      <h3 class="titulo text-blue-900 pb-4 text-center">Contáctanos</h3>
+      <div class="flex justify-center">
+        <table>
+          <tr class="">
+            <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-telefono.png"></td>
+            <td>
+              <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
+                {{ landing.telefono_fijo }}
+              </h3>
+            </td>
+          </tr>
+          <tr class="">
+            <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-mail.png"></td>
+            <td>
+              <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
+                {{ landing.correo_contacto }}
+              </h3>
+            </td>
+          </tr>
+          <tr class="">
+            <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-facebook.png"></td>
+            <td>
+              <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
+                {{ landing.url_facebook}}
+              </h3>
+            </td>
+          </tr>
+          <tr class="">
+            <td><img class="sm:h-6 sm:w-6 md:h-8 md:w-auto mt-3 mb-3" src="assets/icons/icon-hogar.png"></td>
+            <td>
+              <h3 class="text-blue-900 font-bold sm:text-lg lg:text-xl ml-4">
+                {{ landing.domicilio }}
+              </h3>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
+
+  </div>
+
 </div>
 <!-- codigo por defecto  --->
 <!-- <div class="flex flex-col items-center justify-center w-full h-full">
