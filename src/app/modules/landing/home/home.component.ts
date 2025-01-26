@@ -298,62 +298,74 @@ export class LandingHomeComponent {
 
         if (this.ValInputs()) {
 
+            var paymentIntent;
 
-            const stripe = await this.stripePromise;
+            try {
 
-            // Solicita el client_secret al backend (aquí uso un ejemplo de cómo hacerlo sin backend, pero es recomendable usar uno)
-            // const clientSecret = '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';
+                const total = this.obtenerMonto();
 
-            // Crear el PaymentIntent directamente desde el frontend (solo para pruebas, no recomendado en producción)
-            // Secret
-            const response = await fetch('https://api.stripe.com/v1/payment_intents', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': 'Bearer sk_test_51Qko6pRJhPntHxRGF6sDciSXkmLH3sSNuHCuAOLohBiqaEQotoNFlD0Oghxkyn9TdGR2voPQiNDLUmt0hw2Mytze008Ly9Gj9Y'
-                },
-                body: new URLSearchParams({
-                    'amount': '1000', // Monto en centavos
-                    'currency': 'eur'
-                })
-            });
+                const monto = total * 100;
 
-            const paymentIntent = await response.json();
-            const clientSecret = paymentIntent.client_secret;
+                const stripe = await this.stripePromise;
 
-            const { error, paymentIntent: confirmedPaymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-                payment_method: {
-                    card: this.cardNumber,
-                    billing_details: {
-                        name: 'Nombre del Cliente',
+                // Solicita el client_secret al backend (aquí uso un ejemplo de cómo hacerlo sin backend, pero es recomendable usar uno)
+                // const clientSecret = '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';
+
+                // Crear el PaymentIntent directamente desde el frontend (solo para pruebas, no recomendado en producción)
+                // Secret
+                const response = await fetch('https://api.stripe.com/v1/payment_intents', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Authorization': 'Bearer sk_test_51Qko6pRJhPntHxRGF6sDciSXkmLH3sSNuHCuAOLohBiqaEQotoNFlD0Oghxkyn9TdGR2voPQiNDLUmt0hw2Mytze008Ly9Gj9Y'
                     },
-                },
-            });
+                    body: new URLSearchParams({
+                        'amount': monto+'', // Monto en centavos
+                        'currency': 'eur'
+                    })
+                });
 
-            // const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-            //     payment_method: {
-            //         card: this.card,
-            //         billing_details: {
-            //             name: 'Nombre del Cliente',
-            //         },
-            //     },
-            // });
+                paymentIntent = await response.json();
+                const clientSecret = paymentIntent.client_secret;
 
-            if (error) {
-                console.error('Error:', error);
-            } else {
+                const { error, paymentIntent: confirmedPaymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: this.cardNumber,
+                        billing_details: {
+                            name: this.form.get('name').value,
+                            email: this.formStripe.get('email').value,
+                        },
+                    },
+                });
+
+                if (error) {
+                    console.warn('Error:', error);
+                    throw new Error(error.message);
+
+                }
+
                 console.log('Pago exitoso:', paymentIntent);
+
+            }
+            catch (error) {
+
+                console.log(paymentIntent.id);
+                if(paymentIntent.id){
+                    await this.refundPayment(paymentIntent.id);
+                }
+                
+                this.ErrorSwal(error);
             }
         }
 
-        
+
     }
 
     SubTotal(): number {
 
         var sub = 0;
 
-        var sub = this.form.get('numberOfPages').value * 55;
+        sub = this.form.get('numberOfPages').value * 55;
 
         if (this.form.get('certificationOptions').value) {
             sub += 100;
@@ -417,22 +429,22 @@ export class LandingHomeComponent {
             val = false;
         }
 
-        if(!i_s_email){
+        if (!i_s_email) {
             this.i_v_s_email = false;
             val = false;
         }
 
-        if(!valCard){
+        if (!valCard) {
             this.i_v_s_number = false;
             val = false;
         }
 
-        if(!valExpiry){
+        if (!valExpiry) {
             this.i_v_s_expiry = false;
             val = false;
         }
 
-        if(!valCvc){
+        if (!valCvc) {
             this.i_v_s_cvc = false;
             val = false;
         }
@@ -456,14 +468,55 @@ export class LandingHomeComponent {
         this.i_v_s_expiry = true;
         this.i_v_s_cvc = true;
     }
-    
-    ErrorSwal(msg: string){
+
+    async refundPayment(paymentIntentId: string) {
+        const response = await fetch(`https://api.stripe.com/v1/refunds`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Bearer sk_test_51Qko6pRJhPntHxRGF6sDciSXkmLH3sSNuHCuAOLohBiqaEQotoNFlD0Oghxkyn9TdGR2voPQiNDLUmt0hw2Mytze008Ly9Gj9Y'
+            },
+            body: new URLSearchParams({
+                'payment_intent': paymentIntentId
+            })
+        });
+
+        const refund = await response.json();
+        if (refund.error) {
+            console.error('Error en el reembolso:', refund.error);
+        } else {
+            console.log('Reembolso exitoso:', refund);
+        }
+    }
+
+    obtenerMonto(): number{
+
+        var total = 0;
+
+        total = this.form.get('numberOfPages').value * 55;
+
+        if (this.form.get('certificationOptions').value) {
+            total += 100;
+        }
+
+        if (this.form.get('legalizationApostille').value) {
+            total += 100;
+        }
+
+        var iva = total * 0.16;
+
+        total += iva;
+
+        return total;
+    }
+
+    ErrorSwal(msg: string) {
         Swal.fire({
-            title: '',
+            title: 'Error',
             text: msg,
             icon: 'error',
             confirmButtonText: 'Ok'
         }).then((result) => {
-        });   
+        });
     }
 }
