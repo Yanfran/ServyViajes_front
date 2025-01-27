@@ -332,7 +332,7 @@ export class LandingHomeComponent {
                     payment_method: {
                         card: this.cardNumber,
                         billing_details: {
-                            name: this.form.get('name').value,
+                            // name: this.form.get('name').value,
                             email: this.formStripe.get('email').value,
                         },
                     },
