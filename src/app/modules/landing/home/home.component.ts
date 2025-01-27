@@ -27,6 +27,8 @@ import { HttpClient } from '@angular/common/http';
 
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
+import { PdfService } from 'app/services/pdf/pdf.service';
+
 @Component({
     selector: 'landing-home',
     templateUrl: './home.component.html',
@@ -122,7 +124,8 @@ export class LandingHomeComponent {
         private router: Router,
         private _landingEventosService: LandingEventosService,
         private fb: FormBuilder,
-        private http: HttpClient
+        private http: HttpClient,
+        private _pdfService: PdfService,
     ) {
         this.landing = {
             nosotros: '',
@@ -147,6 +150,7 @@ export class LandingHomeComponent {
             numberOfPages: [0],
             certificationOptions: [false],
             legalizationApostille: [false],
+            cupon: [''],
         });
         this.formStripe = this.fb.group({
             email: ['']
@@ -320,7 +324,7 @@ export class LandingHomeComponent {
                         'Authorization': 'Bearer sk_test_51Qko6pRJhPntHxRGF6sDciSXkmLH3sSNuHCuAOLohBiqaEQotoNFlD0Oghxkyn9TdGR2voPQiNDLUmt0hw2Mytze008Ly9Gj9Y'
                     },
                     body: new URLSearchParams({
-                        'amount': monto+'', // Monto en centavos
+                        'amount': monto + '', // Monto en centavos
                         'currency': 'eur'
                     })
                 });
@@ -344,16 +348,50 @@ export class LandingHomeComponent {
 
                 }
 
+                // console.log("1", this.form.get('name').value);
+                // console.log("2", this.form.get('email').value);
+                // console.log("3", this.form.get('phone').value);
+                // console.log("4", this.form.get('file').value);
+                // console.log("5", this.form.get('numberOfPages').value);
+                // console.log("6", this.form.get('certificationOptions').value);
+                // console.log("7", this.form.get('legalizationApostille').value);
+                // console.log("8", this.form.get('cupon').value);
+                // console.log("9", this.formStripe.get('email').value);
+                // console.log("10", paymentIntent.id);
+                // console.log("11", total);
+
+                const base64 = this.convertFileToBase64(this.form.get('file').value);
+
+                if(!base64){
+                    throw new Error("Error al cargar el archivo, por favor intente subirlo nuevamente.");
+                }
+
+                const data = {
+                    'name': this.form.get('name').value,
+                    'email': this.form.get('email').value,
+                    'phone': this.form.get('phone').value,
+                    'file': this.form.get('file').value,
+                    'number_page': this.form.get('numberOfPages').value,
+                    'certification': this.form.get('certificationOptions').value,
+                    'apostille': this.form.get('legalizationApostille').value,
+                    'cupon': this.form.get('cupon').value,
+                    'email_stripe': this.formStripe.get('email').value,
+                    'transaction_stripe': paymentIntent.id,
+                    'total': total,
+                };
+
+                await this.SavePdf(data);
+
                 console.log('Pago exitoso:', paymentIntent);
 
             }
             catch (error) {
 
                 console.log(paymentIntent.id);
-                if(paymentIntent.id){
+                if (paymentIntent.id) {
                     await this.refundPayment(paymentIntent.id);
                 }
-                
+
                 this.ErrorSwal(error);
             }
         }
@@ -489,7 +527,7 @@ export class LandingHomeComponent {
         }
     }
 
-    obtenerMonto(): number{
+    obtenerMonto(): number {
 
         var total = 0;
 
@@ -518,5 +556,54 @@ export class LandingHomeComponent {
             confirmButtonText: 'Ok'
         }).then((result) => {
         });
+    }
+
+    convertFileToBase64(file: File) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            var base64File = reader.result as string;
+            console.log(base64File); // Aquí tienes el archivo en Base64
+            return base64File;
+        };
+        reader.onerror = (error) => {
+            console.log('Error: ', error);
+            return "";
+        };
+        reader.readAsDataURL(file);
+
+        return "";
+    }
+
+    SavePdf(data) {
+        this._pdfService.saveOrder(data).subscribe(
+            (response: any) => {
+
+                if (response.result) {
+
+                    // const data = response.data;
+                    // this.asignarValores(data);
+
+                    Swal.fire({
+                        title: 'Correcto',
+                        text: "",
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                    });
+
+                } else {
+                    console.error(
+                        'Error al obtener al guardar:',
+                        response.message
+                    );
+
+                    this.ErrorSwal(response.message);
+                }
+            },
+            (error) => {
+                console.error('Error al obtener al guardar:', error);
+                this.ErrorSwal(error.message);
+            }
+        );
     }
 }
