@@ -360,9 +360,11 @@ export class LandingHomeComponent {
                 // console.log("10", paymentIntent.id);
                 // console.log("11", total);
 
-                const base64 = this.convertFileToBase64(this.form.get('file').value);
+                const base64 = await this.convertFileToBase64(this.form.get('file').value);
 
-                if(!base64){
+                console.log("base64: ", base64);
+
+                if (base64 == "") {
                     throw new Error("Error al cargar el archivo, por favor intente subirlo nuevamente.");
                 }
 
@@ -370,7 +372,7 @@ export class LandingHomeComponent {
                     'name': this.form.get('name').value,
                     'email': this.form.get('email').value,
                     'phone': this.form.get('phone').value,
-                    'file': this.form.get('file').value,
+                    'file': base64,
                     'number_page': this.form.get('numberOfPages').value,
                     'certification': this.form.get('certificationOptions').value,
                     'apostille': this.form.get('legalizationApostille').value,
@@ -558,20 +560,19 @@ export class LandingHomeComponent {
         });
     }
 
-    convertFileToBase64(file: File) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            var base64File = reader.result as string;
-            console.log(base64File); // Aquí tienes el archivo en Base64
-            return base64File;
-        };
-        reader.onerror = (error) => {
-            console.log('Error: ', error);
-            return "";
-        };
-        reader.readAsDataURL(file);
-
-        return "";
+    async convertFileToBase64(file: File): Promise<string> {
+        return new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64File = reader.result as string;
+                resolve(base64File);
+            };
+            reader.onerror = (error) => {
+                console.log('Error: ', error);
+                reject("");
+            };
+            reader.readAsDataURL(file);
+        });
     }
 
     SavePdf(data) {

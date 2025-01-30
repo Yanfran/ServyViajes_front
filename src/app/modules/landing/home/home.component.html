@@ -1,5 +1,5 @@
 <div class="flex flex-col w-full h-full">
-  <nav class="bg-gray-900 fixed top-0 left-0 right-0 z-10">
+  <nav class="bg-gray-900 fixed top-0 left-0 right-0 z-10 bg-purple-primary">
     <div class="mx-auto max-w-screen-2xl px-2 sm:px-8 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -135,7 +135,7 @@
     </div>
   </nav>
 
-  <div class="bg-white h-full pt-20">
+  <div class="bg-white h-full">
 
     <!-- <div class="max-w-360 mx-auto flex justify-center items-center px-6 bg-white ">
           <owl-carousel-o [options]="carouselOptions">
@@ -150,9 +150,41 @@
           </owl-carousel-o>
         </div> -->
 
-    <div class="max-w-7xl mx-auto bg-white pb-10">
+    <div class=" mx-auto bg-white pb-10 pt-20 bg-purple-primary">
 
-      <div class="grid grid-cols-8 gap-4">
+      <div class="grid grid-cols-8 gap-4 max-w-7xl">
+        
+        <div class="col-span-1"></div>
+        <div class="col-span-4 flex justify-center items-center">
+
+          <div class="p-6">
+            <h2 class="text-2xl text-white mb-4">Schnell, Einfach und Zuverlässig</h2>
+            <h3 class="titulo text-white text-center pb-4">Ihr Spezialist für beglaubigte Übersetzungen</h3>
+            <div class="flex justify-center">
+              <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-amber-400 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500" (click)="scrollToSection('sectionPay')">
+                ORDER NOW FOR €55/PAGE.
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="col-span-1"></div> -->
+        <div class="col-span-2">
+
+          <div class="p-6">
+            <img class="rounded-lg" src="https://weber-language-services.com/wp-content/uploads/2025/01/Contenido-de-patrick-2-1024x1024.png">
+          </div>
+          
+
+        </div>
+
+        <div class="col-span-1"></div>
+      </div>
+    </div>
+
+    <div class=" mx-auto bg-white pb-10 pt-20">
+
+      <div class="grid grid-cols-8 gap-4 max-w-7xl">
         <div class="col-span-5">
 
           <div class="p-6">
@@ -232,126 +264,154 @@
           <button mat-raised-button type="submit">Submit</button>
         </form> -->
 
-    <div class="w-full md:w-6/12 mx-auto pb-10">
+    <div class="w-full mx-auto py-30 bg-green-primary" id="sectionPay">
 
-      <form [formGroup]="form" class="grid grid-cols-8 gap-4">
+      <div class="grid grid-cols-8 gap-4 px-20">
+        <!-- <div class="col-span-1"></div> -->
         <div class="col-span-4">
-          <label for="name" class="block text-sm font-medium text-gray-700"
-            [ngClass]="{'text-red-500': !i_v_name}">Name</label>
-          <input id="name" formControlName="name"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            [ngClass]="{'border-red-500': !i_v_name}">
-        </div>
 
-        <div class="col-span-4">
-          <label for="phone" class="block text-sm font-medium text-gray-700"
-            [ngClass]="{'text-red-500': !i_v_phone}">Phone</label>
-          <input id="phone" formControlName="phone"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            [ngClass]="{'border-red-500': !i_v_phone}">
-        </div>
+          <h2 class="text-2xl text-white mb-4">
+            Aprovecha unser Angebot von 10 % aus dem Nachlass in Ihrer ersten traducción.
+          </h2>
+          <h3 class="titulo text-white text-center pb-4">
+            Sie müssen nur klicken und bestellen, bevor das Angebot endet!
+          </h3>
 
-        <div class="col-span-8">
-          <label for="languageToTranslate" class="block text-sm font-medium text-gray-700">
-            <input id="languageToTranslate" type="checkbox" formControlName="languageToTranslate" class="mr-2"> Language
-            to translate
-          </label>
-        </div>
-
-        <div class="col-span-8">
-          <label for="email" class="block text-sm font-medium text-gray-700"
-            [ngClass]="{'text-red-500': !i_v_email}">Email</label>
-          <input id="email" type="email" formControlName="email"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            [ngClass]="{'border-red-500': !i_v_email}">
-        </div>
-
-        <div class="col-span-8">
-          <label for="file" class="block text-sm font-medium text-gray-700" [ngClass]="{'text-red-500': !i_v_file}">File
-            Upload</label>
-          <input id="file" type="file" accept=".pdf" (change)="onFileSelected($event)"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            [ngClass]="{'border-red-500': !i_v_file}">
-        </div>
-
-        <div class="col-span-8">
-          <!-- <label for="numberOfPages" class="block text-sm font-medium text-gray-700">Number of pages to translate</label> -->
-          <span class="block text-sm font-medium text-gray-700">Number of pages to translate: {{
-            form.get('numberOfPages').value }}</span>
-          <input id="numberOfPages" type="hidden" formControlName="numberOfPages"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-
-        </div>
-
-        <!-- <div class="col-span-2">
-              <label for="certificationOptions" class="block text-sm font-medium text-gray-700">Certification options</label>
-              <select id="certificationOptions" formControlName="certificationOptions" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <option value="apostille">Apostille</option>
-                <option value="legalization">Legalization</option>
-              </select>
-            </div> -->
-
-        <div class="col-span-8">
-          <label for="certificationOptions" class="block text-sm font-medium text-gray-700">
-            <input id="certificationOptions" type="checkbox" formControlName="certificationOptions" class="mr-2">
-            Certification options
-          </label>
-        </div>
-
-        <div class="col-span-8">
-          <label for="legalizationApostille" class="block text-sm font-medium text-gray-700">
-            <input id="legalizationApostille" type="checkbox" formControlName="legalizationApostille" class="mr-2">
-            Apostille / Legalization
-          </label>
-        </div>
-
-        <div class="col-span-8">
-
-          <div class="grid grid-cols-8 gap-4">
-
-            <div class="col-span-7">
-              <label for="coupon-code" class="block text-sm font-medium text-gray-700">Coupon Code</label>
-              <input id="coupon-code" type="text" placeholder="Enter coupon code" formControlName="cupon"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
-
-            <div class="col-span-1 relative">
-              <button type="button"
-                class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 absolute bottom-0">Apply</button>
-            </div>
-
+          <div class="flex justify-center pb-10">
+            <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-amber-400 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500" (click)="scrollToSection('sectionPay')">
+              ORDER NOW FOR €55/PAGE.
+            </button>
           </div>
 
+          <div class="relative h-30">
+            <img class="w-50 h-30 absolute bottom-0 right-0" src="https://woofunnels.s3.us-east-1.amazonaws.com/templates/template-assets/images/e-learning/left-arrow.png">
+          </div>
+
+          <div>
+            <img src="https://weber-language-services.com/wp-content/uploads/2025/01/Contenido-de-patrick-1024x1024.png">
+          </div>
         </div>
 
-        <!-- <div class="col-span-2">
-              <span>Total: {{ total }}</span>
-            </div> -->
+        <!-- <div class="col-span-1"></div> -->
 
-        <!-- <div class="col-span-6"></div>
-          
-            <div class="col-span-2">
-              <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
-            </div> -->
-      </form>
+        <div class="col-span-4 bg-white rounded p-5">
 
-    </div>
+          <form [formGroup]="form" class="grid grid-cols-8 gap-4 pb-5">
 
-    <div class="container mx-aut grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div class="col-span-4">
+              <label for="name" class="block text-sm font-medium text-gray-700"
+                [ngClass]="{'text-red-500': !i_v_name}">Name</label>
+              <input id="name" formControlName="name"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': !i_v_name}">
+            </div>
 
-      <div class="col-span-3">
-        <div class="w-full pb-10">
-          <form [formGroup]="formStripe" class="grid grid-cols-8 gap-4">
+            <div class="col-span-4">
+              <label for="phone" class="block text-sm font-medium text-gray-700"
+                [ngClass]="{'text-red-500': !i_v_phone}">Phone</label>
+              <input id="phone" formControlName="phone"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': !i_v_phone}">
+            </div>
+
+            <div class="col-span-8">
+              <label for="languageToTranslate" class="block text-sm font-medium text-gray-700">
+                <input id="languageToTranslate" type="checkbox" formControlName="languageToTranslate" class="mr-2">
+                Language
+                to translate
+              </label>
+            </div>
+
+            <div class="col-span-8">
+              <label for="email" class="block text-sm font-medium text-gray-700"
+                [ngClass]="{'text-red-500': !i_v_email}">Email</label>
+              <input id="email" type="email" formControlName="email"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': !i_v_email}">
+            </div>
+
+            <div class="col-span-8">
+              <label for="file" class="block text-sm font-medium text-gray-700"
+                [ngClass]="{'text-red-500': !i_v_file}">File
+                Upload</label>
+              <input id="file" type="file" accept=".pdf" (change)="onFileSelected($event)"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': !i_v_file}">
+            </div>
+
+            <div class="col-span-8">
+              <!-- <label for="numberOfPages" class="block text-sm font-medium text-gray-700">Number of pages to translate</label> -->
+              <span class="block text-sm font-medium text-gray-700">Number of pages to translate: {{
+                form.get('numberOfPages').value }}</span>
+              <input id="numberOfPages" type="hidden" formControlName="numberOfPages"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+            </div>
+
+            <!-- <div class="col-span-2">
+                  <label for="certificationOptions" class="block text-sm font-medium text-gray-700">Certification options</label>
+                  <select id="certificationOptions" formControlName="certificationOptions" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="apostille">Apostille</option>
+                    <option value="legalization">Legalization</option>
+                  </select>
+                </div> -->
+
+            <div class="col-span-8">
+              <label for="certificationOptions" class="block text-sm font-medium text-gray-700">
+                <input id="certificationOptions" type="checkbox" formControlName="certificationOptions" class="mr-2">
+                Certification options
+              </label>
+            </div>
+
+            <div class="col-span-8">
+              <label for="legalizationApostille" class="block text-sm font-medium text-gray-700">
+                <input id="legalizationApostille" type="checkbox" formControlName="legalizationApostille" class="mr-2">
+                Apostille / Legalization
+              </label>
+            </div>
+
+            <div class="col-span-8">
+
+              <div class="grid grid-cols-8 gap-4">
+
+                <div class="col-span-7">
+                  <label for="coupon-code" class="block text-sm font-medium text-gray-700">Coupon Code</label>
+                  <input id="coupon-code" type="text" placeholder="Enter coupon code" formControlName="cupon"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                </div>
+
+                <div class="col-span-1 relative">
+                  <button type="button"
+                    class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 absolute bottom-0">Apply</button>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- <div class="col-span-2">
+                  <span>Total: {{ total }}</span>
+                </div> -->
+
+            <!-- <div class="col-span-6"></div>
+              
+                <div class="col-span-2">
+                  <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
+                </div> -->
+          </form>
+
+          <form [formGroup]="formStripe" class="grid grid-cols-8 gap-4 pb-5">
 
             <!-- <div id="card-element"></div>
                 <button (click)="handlePayment()" type="button" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-20">Pagar</button> -->
 
             <div class="col-span-8">
 
-              <label for="email" class="block text-sm font-medium text-gray-700" [ngClass]="{'text-red-500': !i_v_s_email}">Correo electrónico</label>
+              <label for="email" class="block text-sm font-medium text-gray-700"
+                [ngClass]="{'text-red-500': !i_v_s_email}">Correo electrónico</label>
               <input id="email" type="email" placeholder="you@example.com" formControlName="email"
                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                [ngClass]="{'border-red-500': !i_v_s_email}"/>
+                [ngClass]="{'border-red-500': !i_v_s_email}" />
 
             </div>
 
@@ -363,35 +423,31 @@
 
               <div class="grid grid-cols-12 gap-4">
                 <div class="col-span-7">
-                  <label
-                    for="card-number-element"
-                    class="block text-sm font-medium text-gray-700"
-                    [ngClass]="{'text-red-500': !i_v_s_number}"
-                  >
+                  <label for="card-number-element" class="block text-sm font-medium text-gray-700"
+                    [ngClass]="{'text-red-500': !i_v_s_number}">
                     Número de Tarjeta
                   </label>
                   <div id="card-number-element"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    [ngClass]="{'border-red-500': !i_v_s_number}"
-                    style="margin-bottom: 20px;"></div>
+                    [ngClass]="{'border-red-500': !i_v_s_number}" style="margin-bottom: 20px;"></div>
                 </div>
 
                 <div class="col-span-3">
-                  <label for="card-expiry-element" class="block text-sm font-medium text-gray-700" [ngClass]="{'text-red-500': !i_v_s_expiry}">
+                  <label for="card-expiry-element" class="block text-sm font-medium text-gray-700"
+                    [ngClass]="{'text-red-500': !i_v_s_expiry}">
                     Fecha de Expiración
                   </label>
                   <div id="card-expiry-element"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    [ngClass]="{'border-red-500': !i_v_s_expiry}"
-                    style="margin-bottom: 20px;"></div>
+                    [ngClass]="{'border-red-500': !i_v_s_expiry}" style="margin-bottom: 20px;"></div>
                 </div>
 
                 <div class="col-span-2">
-                  <label for="card-cvc-element" class="block text-sm font-medium text-gray-700" [ngClass]="{'text-red-500': !i_v_s_cvc}">CVC</label>
+                  <label for="card-cvc-element" class="block text-sm font-medium text-gray-700"
+                    [ngClass]="{'text-red-500': !i_v_s_cvc}">CVC</label>
                   <div id="card-cvc-element"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    [ngClass]="{'border-red-500': !i_v_s_cvc}"
-                    style="margin-bottom: 20px;"></div>
+                    [ngClass]="{'border-red-500': !i_v_s_cvc}" style="margin-bottom: 20px;"></div>
                 </div>
               </div>
             </div>
@@ -410,7 +466,7 @@
                 <div class="col-span-3">
 
                   <button (click)="handlePayment()" type="button"
-                    class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-20">Pagar</button>
+                    class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pagar</button>
 
                 </div>
               </div>
@@ -419,11 +475,6 @@
 
           </form>
 
-        </div>
-      </div>
-
-      <div class="col-span-2">
-        <div class="w-full">
           <div class="border p-4 rounded-md shadow-sm">
             <h2 class="text-lg font-medium text-gray-700 mb-4">Factura</h2>
             <ul class="list-disc pl-5 text-gray-700">
@@ -443,8 +494,12 @@
                   this.sub).toFixed(2).toString() }} €</span> </p>
             </div>
           </div>
+
         </div>
+
+        <!-- <div class="col-span-1"></div> -->
       </div>
+
 
     </div>
 
