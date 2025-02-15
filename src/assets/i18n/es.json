@@ -1,0 +1,53 @@
+{
+    "nav_home": "Inicio",
+    "nav_contacto": "Contacto",
+    "nav_login": "Iniciar sesión",
+
+    "section_1_text_1":"Rápido, fácil y confiable",
+    "section_1_text_2":"Su especialista en traducciones juradas",
+    "section_1_text_3":"PEDIR AHORA POR 55€/PÁGINA",
+
+    "section_2_text_1":"Traducciones juradas de documentos oficiales: rápidas y sencillas",
+    "section_2_text_2":"¿Necesita una traducción jurada de documentos oficiales y quiere que el proceso sea lo más fácil y rápido posible? ¡Entonces has venido al lugar correcto! Sin engorrosas solicitudes de traducción jurada ni tiempos de espera para recibir ofertas: con nosotros todo es sencillo y se realiza de inmediato.",
+
+    "section_3_title": "Tramitación sencilla y rápida de sus traducciones certificadas",
+    "section_3_text_1": "Subir documento",
+    "section_3_p_1": "Sube tu documento en segundos.",
+    "section_3_text_2": "Pagar directamente",
+    "section_3_p_2": "Seleccione el número de páginas y vea el precio de su traducción certificada de inmediato. Usted paga directamente, sin largas idas y venidas.",
+    "section_3_text_3": "Tratamiento inmediato",
+    "section_3_p_3": "Su documento será remitido directamente a un traductor jurado, certificado, autorizado judicialmente o designado públicamente y procesado sin demora.",
+    "section_3_text_4": "Envío por correo a domicilio",
+    "section_3_p_4": "La traducción certificada se envía directamente del traductor a su domicilio por correo postal.",
+
+    "section_4_left_1": "Aprovecha nuestra oferta del 10 % de descuento en tu primera traducción.",
+    "section_4_left_2": "¡Solo tienes que hacer clic y realizar tu pedido antes de que se acabe la oferta!",
+
+    "section_4_right_1": "Nombre",
+    "section_4_right_2": "Teléfono",
+    "section_4_right_3": "Idioma a traducir",
+    "section_4_right_4": "Correo electrónico",
+    "section_4_right_5": "Subir archivo",
+    "section_4_right_6": "Número de páginas a traducir",
+    "section_4_right_7": "Opciones de certificación",
+    "section_4_right_8": "Apostilla / Legalización",
+    "section_4_right_9": "Código de cupón",
+    "section_4_right_10": "Aplicar",
+    "section_4_right_11": "Correo electrónico",
+    "section_4_right_12": "Tarjeta de crédito Stripe",
+    "section_4_right_13": "Número de Tarjeta",
+    "section_4_right_14": "Fecha de Expiración",
+    "section_4_right_15": "CVC",
+    "section_4_right_16": "Pagar",
+    "section_4_right_17": "Factura",
+    "section_4_right_18": "Página PDF",
+    "section_4_right_19": "Certificación",
+    "section_4_right_20": "Apostilla",
+    "section_4_right_21": "Sub total",
+    "section_4_right_22": "IVA",
+    "section_4_right_23": "Total",
+    "section_4_right_24": "Idioma original",
+    "section_4_right_25": "Idioma a traducir",
+    "section_4_right_26": "Seleccione"
+    
+}

@@ -119,6 +119,7 @@ export class LandingHomeComponent {
     i_v_s_cvc: boolean = true;
 
     isModalOpen = false;
+    translate : any = {};
 
     constructor(private _landingHomeService: LandingHomeService,
         private router: Router,
@@ -127,6 +128,9 @@ export class LandingHomeComponent {
         private http: HttpClient,
         private _pdfService: PdfService,
     ) {
+
+        
+
         this.landing = {
             nosotros: '',
             mensaje: '',
@@ -158,6 +162,11 @@ export class LandingHomeComponent {
     }
 
     async ngOnInit() {
+
+        console.log(1, this.translate);
+        await this.loadTranslations("de");
+        console.log(2, this.translate);
+
         const stripe = await this.stripePromise;
         this.elements = stripe.elements();
 
@@ -607,4 +616,13 @@ export class LandingHomeComponent {
             }
         );
     }
+
+    async loadTranslations(lang: string) {
+        try {
+          const data = await this._landingHomeService.getTranslation(lang).toPromise();
+          this.translate = data;
+        } catch (error) {
+          console.error('Error loading translations:', error);
+        }
+      }
 }

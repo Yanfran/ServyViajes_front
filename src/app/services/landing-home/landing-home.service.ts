@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class LandingHomeService {
 
   private URL = environment.apiUrl;
+  private baseUrl = 'assets/i18n/'
 
   constructor(private http: HttpClient) { }
 
@@ -35,6 +36,10 @@ export class LandingHomeService {
     });
 
     return this.http.get(`${this.URL}/public/landing`, { headers: headers});
+  }
+
+  getTranslation(lang: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}${lang}.json`);
   }
 
 }
