@@ -111,6 +111,8 @@ export class LandingHomeComponent {
     i_v_file: boolean = true;
     i_v_certification: boolean = true;
     i_v_apostille: boolean = true;
+    lang_v_1: boolean = true;
+    lang_v_2: boolean = true;
 
     // validator stripe
     i_v_s_email: boolean = true;
@@ -152,6 +154,8 @@ export class LandingHomeComponent {
             email: [''],
             file: [null],
             numberOfPages: [0],
+            lang_1: "",
+            lang_2: "",
             certificationOptions: [false],
             legalizationApostille: [false],
             cupon: [''],
@@ -382,6 +386,8 @@ export class LandingHomeComponent {
                     'email': this.form.get('email').value,
                     'phone': this.form.get('phone').value,
                     'file': base64,
+                    'lang_1': this.form.get('lang_1').value,
+                    'lang_2': this.form.get('lang_2').value,
                     'number_page': this.form.get('numberOfPages').value,
                     'certification': this.form.get('certificationOptions').value,
                     'apostille': this.form.get('legalizationApostille').value,
@@ -446,6 +452,9 @@ export class LandingHomeComponent {
         const i_email = this.form.get('email').value;
         const i_file = this.form.get('file').value;
 
+        const lang_1 = this.form.get('lang_1').value;
+        const lang_2 = this.form.get('lang_2').value;
+
         // Stripe
         const i_s_email = this.formStripe.get('email').value;
 
@@ -475,6 +484,22 @@ export class LandingHomeComponent {
 
         if (!i_file) {
             this.i_v_file = false;
+            val = false;
+        }
+
+        if (!lang_1) {
+            this.lang_v_1 = false;
+            val = false;
+        }
+
+        if (!lang_2) {
+            this.lang_v_2 = false;
+            val = false;
+        }
+
+        if (lang_1 == lang_2) {
+            this.lang_v_1 = false;
+            this.lang_v_2 = false;
             val = false;
         }
 
@@ -510,6 +535,8 @@ export class LandingHomeComponent {
         this.i_v_phone = true;
         this.i_v_email = true;
         this.i_v_file = true;
+        this.lang_v_1 = true;
+        this.lang_v_2 = true;
 
         // Stripe
         this.i_v_s_email = true;

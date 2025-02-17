@@ -517,7 +517,10 @@
             <div class="col-span-4">
               <label for="idioma_1" class="block text-sm font-medium text-gray-700">{{translate.section_4_right_24}}</label>
               <select id="idioma_1"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                formControlName="lang_1"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500 color-red-500': !lang_v_1}"
+                >
                 <option value="">{{translate.section_4_right_26}}</option>
                 <option value="be">Belarusian</option>
                 <option value="bg">Bulgarian</option>
@@ -535,7 +538,10 @@
             <div class="col-span-4">
               <label for="idioma_2" class="block text-sm font-medium text-gray-700">{{translate.section_4_right_25}}</label>
               <select id="idioma_2"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                formControlName="lang_2"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500 color-red-500': !lang_v_2}"
+                >
                 <option value="">{{translate.section_4_right_26}}</option>
                 <option value="be">Belarusian</option>
                 <option value="bg">Bulgarian</option>
