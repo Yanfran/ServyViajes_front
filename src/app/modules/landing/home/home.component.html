@@ -68,20 +68,19 @@
             </div>
           </div>
 
-          
+
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
           <div class="hidden sm:ml-6 sm:block">
-            <div class="flex space-x-4 mt-2">
+            <div class="flex space-x-4">
               <select id="translate"
                 class="mt-1 block w-full px-3 py-2 text-white border border-white rounded-md shadow-sm focus:outline-none focus:ring-white focus:border-white sm:text-sm bg-purple-primary"
-                (change)="loadTranslations($event.target.value)"
-                >
+                (change)="loadTranslations($event.target.value)">
                 <option value="de">De</option>
                 <option value="es">Es</option>
                 <option value="en">En</option>
-              </select>              
+              </select>
             </div>
           </div>
 
@@ -171,10 +170,10 @@
       <div class="grid grid-cols-8 gap-4 max-w-7xl">
 
         <div class="col-span-1"></div>
-        <div class="col-span-4 flex justify-center items-center">
+        <div class="col-span-8 md:col-span-4 flex justify-center items-center">
 
           <div class="p-6">
-            <h2 class="text-2xl text-white mb-4">{{translate.section_1_text_1}}</h2>
+            <h2 class="text-2xl text-white mb-4 text-center md:text-left">{{translate.section_1_text_1}}</h2>
             <h3 class="titulo text-white text-center pb-4">{{translate.section_1_text_2}}</h3>
             <div class="flex justify-center">
               <button type="button"
@@ -186,8 +185,10 @@
           </div>
 
         </div>
-        <!-- <div class="col-span-1"></div> -->
-        <div class="col-span-2">
+
+        <div class="sm:col-span-2 md:hidden"></div>
+
+        <div class="col-span-8 sm:col-span-4 md:col-span-2">
 
           <div class="p-6">
             <img class="rounded-lg"
@@ -201,7 +202,7 @@
       </div>
     </div>
 
-    <div class=" mx-auto bg-white pb-10 pt-20">
+    <div class=" mx-auto bg-white md:pb-10 md:pt-20">
 
       <div class="grid grid-cols-10 gap-4">
         <!--
@@ -224,11 +225,12 @@
         </div>
       -->
 
-        <div class="col-span-4">
+        <div class="col-span-10 md:col-span-4" style="align-self: center;">
 
-          <div class="p-6">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/QCkfUciAMx0?si=Am6V7DWdjlkVp10J"
-              title="YouTube video player" frameborder="0"
+          <div class="relative" style="padding-bottom: 56.25% !important;">
+            <iframe class="absolute w-full p-6" style="height: 100%; left: 0;"
+              src="https://www.youtube.com/embed/QCkfUciAMx0?si=Am6V7DWdjlkVp10J" title="YouTube video player"
+              frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
@@ -237,16 +239,16 @@
 
         <div class="col-span-1"></div>
 
-        <div class="col-span-5 flex justify-center items-center">
+        <div class="col-span-10 md:col-span-5 flex justify-center items-center">
 
-          <div class="p-6">
-            <h3 class="titulo text-blue-900 text-center pb-4">
+          <div class="px-6">
+            <h3 class="titulo text-blue-900 text-center pb-10">
               {{translate.section_2_text_1}}
             </h3>
             <div class="text-blue-900 text-description text-justify">
               {{translate.section_2_text_2}}
             </div>
-            <div class="flex justify-center mt-10">
+            <div class="flex justify-center my-10">
               <button type="button"
                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-amber-400 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                 {{translate.section_1_text_3}}
@@ -258,23 +260,23 @@
         </div>
 
         <div class="col-span-2"></div>
-        <div class="col-span-6 text-center  mt-20 mb-10">
-          <h3 class="titulo text-blue-900 text-center pb-4">
+        <div class="col-span-10 md:col-span-6 text-center md:mt-20 mb-10">
+          <h3 class="titulo text-blue-900 text-center">
             {{translate.section_3_title}}
           </h3>
         </div>
-        <div class="col-span-2"></div>
+        <div class="hidden md:block col-span-2"></div>
 
-        <div class="col-span-1"></div>
+        <div class="hidden md:block col-span-1"></div>
 
-        <div class="col-span-2 text-center">
+        <div class="col-span-10 md:col-span-2 text-center pb-5">
 
           <div class="flex justify-center items-center mb-10">
 
-            <div class="w-20 h-20 flex justify-center items-center" style="background-color: #131D76; border-radius: 100%;">
+            <div class="w-20 h-20 flex justify-center items-center"
+              style="background-color: #131D76; border-radius: 100%;">
               <svg aria-hidden="true" class="e-font-icon-svg e-fas-file-upload w-8" viewBox="0 0 384 512"
-                xmlns="http://www.w3.org/2000/svg"
-                style="fill: white;">
+                xmlns="http://www.w3.org/2000/svg" style="fill: white;">
                 <path
                   d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm65.18 216.01H224v80c0 8.84-7.16 16-16 16h-32c-8.84 0-16-7.16-16-16v-80H94.82c-14.28 0-21.41-17.29-11.27-27.36l96.42-95.7c6.65-6.61 17.39-6.61 24.04 0l96.42 95.7c10.15 10.07 3.03 27.36-11.25 27.36zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z">
                 </path>
@@ -283,83 +285,89 @@
 
           </div>
 
-          <h3 class="titulo text-blue-900 text-center pb-4">
+          <h3 class="titulo text-blue-900 text-center pb-3">
             {{translate.section_3_text_1}}
           </h3>
 
-          <div class="text-blue-900 text-description text-center">
+          <div class="text-blue-900 text-description text-center px-3">
             {{translate.section_3_p_1}}
           </div>
 
         </div>
 
-        <div class="col-span-2 text-center">
+        <div class="col-span-10 md:col-span-2 text-center pb-5">
 
           <div class="flex justify-center items-center mb-10">
 
-            <div class="w-20 h-20 flex justify-center items-center" style="background-color: #1DBB90; border-radius: 100%;">
+            <div class="w-20 h-20 flex justify-center items-center"
+              style="background-color: #1DBB90; border-radius: 100%;">
               <svg aria-hidden="true" class="e-font-icon-svg e-fas-file-upload w-8" viewBox="0 0 384 512"
-                xmlns="http://www.w3.org/2000/svg"
-                style="fill: white;">
-                <path d="M310.706 413.765c-1.314-6.63-7.835-10.872-14.424-9.369-10.692 2.439-27.422 5.413-45.426 5.413-56.763 0-101.929-34.79-121.461-85.449h113.689a12 12 0 0 0 11.708-9.369l6.373-28.36c1.686-7.502-4.019-14.631-11.708-14.631H115.22c-1.21-14.328-1.414-28.287.137-42.245H261.95a12 12 0 0 0 11.723-9.434l6.512-29.755c1.638-7.484-4.061-14.566-11.723-14.566H130.184c20.633-44.991 62.69-75.03 117.619-75.03 14.486 0 28.564 2.25 37.851 4.145 6.216 1.268 12.347-2.498 14.002-8.623l11.991-44.368c1.822-6.741-2.465-13.616-9.326-14.917C290.217 34.912 270.71 32 249.635 32 152.451 32 74.03 92.252 45.075 176H12c-6.627 0-12 5.373-12 12v29.755c0 6.627 5.373 12 12 12h21.569c-1.009 13.607-1.181 29.287-.181 42.245H12c-6.627 0-12 5.373-12 12v28.36c0 6.627 5.373 12 12 12h30.114C67.139 414.692 145.264 480 249.635 480c26.301 0 48.562-4.544 61.101-7.788 6.167-1.595 10.027-7.708 8.788-13.957l-8.818-44.49z"></path>
+                xmlns="http://www.w3.org/2000/svg" style="fill: white;">
+                <path
+                  d="M310.706 413.765c-1.314-6.63-7.835-10.872-14.424-9.369-10.692 2.439-27.422 5.413-45.426 5.413-56.763 0-101.929-34.79-121.461-85.449h113.689a12 12 0 0 0 11.708-9.369l6.373-28.36c1.686-7.502-4.019-14.631-11.708-14.631H115.22c-1.21-14.328-1.414-28.287.137-42.245H261.95a12 12 0 0 0 11.723-9.434l6.512-29.755c1.638-7.484-4.061-14.566-11.723-14.566H130.184c20.633-44.991 62.69-75.03 117.619-75.03 14.486 0 28.564 2.25 37.851 4.145 6.216 1.268 12.347-2.498 14.002-8.623l11.991-44.368c1.822-6.741-2.465-13.616-9.326-14.917C290.217 34.912 270.71 32 249.635 32 152.451 32 74.03 92.252 45.075 176H12c-6.627 0-12 5.373-12 12v29.755c0 6.627 5.373 12 12 12h21.569c-1.009 13.607-1.181 29.287-.181 42.245H12c-6.627 0-12 5.373-12 12v28.36c0 6.627 5.373 12 12 12h30.114C67.139 414.692 145.264 480 249.635 480c26.301 0 48.562-4.544 61.101-7.788 6.167-1.595 10.027-7.708 8.788-13.957l-8.818-44.49z">
+                </path>
               </svg>
             </div>
 
           </div>
 
-          <h3 class="titulo text-blue-900 text-center pb-4">
+          <h3 class="titulo text-blue-900 text-center pb-3">
             {{translate.section_3_text_2}}
           </h3>
 
-          <div class="text-blue-900 text-description text-center">
+          <div class="text-blue-900 text-description text-center px-3">
             {{translate.section_3_p_2}}
           </div>
 
         </div>
 
-        <div class="col-span-2 text-center">
+        <div class="col-span-10 md:col-span-2 text-center pb-5">
 
           <div class="flex justify-center items-center mb-10">
 
-            <div class="w-20 h-20 flex justify-center items-center" style="background-color: #A764FF; border-radius: 100%;">
+            <div class="w-20 h-20 flex justify-center items-center"
+              style="background-color: #A764FF; border-radius: 100%;">
               <svg aria-hidden="true" class="e-font-icon-svg e-fas-file-upload w-8" viewBox="0 0 384 512"
-                xmlns="http://www.w3.org/2000/svg"
-                style="fill: white;">
-                <path d="M216 23.86c0-23.8-30.65-32.77-44.15-13.04C48 191.85 224 200 224 288c0 35.63-29.11 64.46-64.85 63.99-35.17-.45-63.15-29.77-63.15-64.94v-85.51c0-21.7-26.47-32.23-41.43-16.5C27.8 213.16 0 261.33 0 320c0 105.87 86.13 192 192 192s192-86.13 192-192c0-170.29-168-193-168-296.14z"></path>
+                xmlns="http://www.w3.org/2000/svg" style="fill: white;">
+                <path
+                  d="M216 23.86c0-23.8-30.65-32.77-44.15-13.04C48 191.85 224 200 224 288c0 35.63-29.11 64.46-64.85 63.99-35.17-.45-63.15-29.77-63.15-64.94v-85.51c0-21.7-26.47-32.23-41.43-16.5C27.8 213.16 0 261.33 0 320c0 105.87 86.13 192 192 192s192-86.13 192-192c0-170.29-168-193-168-296.14z">
+                </path>
               </svg>
             </div>
 
           </div>
 
-          <h3 class="titulo text-blue-900 text-center pb-4">
+          <h3 class="titulo text-blue-900 text-center pb-3">
             {{translate.section_3_text_3}}
           </h3>
 
-          <div class="text-blue-900 text-description text-center">
+          <div class="text-blue-900 text-description text-center px-3">
             {{translate.section_3_p_3}}
           </div>
 
         </div>
 
-        <div class="col-span-2 text-center">
+        <div class="col-span-10 md:col-span-2 text-center pb-5">
 
           <div class="flex justify-center items-center mb-10">
 
-            <div class="w-20 h-20 flex justify-center items-center" style="background-color: #DBAE1E; border-radius: 100%;">
+            <div class="w-20 h-20 flex justify-center items-center"
+              style="background-color: #DBAE1E; border-radius: 100%;">
               <svg aria-hidden="true" class="e-font-icon-svg e-far-paper-plane w-8" viewBox="0 0 512 512"
-                xmlns="http://www.w3.org/2000/svg"
-                style="fill: white; ">
-                <path d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H112C85.5 0 64 21.5 64 48v48H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h272c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H40c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h208c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h208c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H64v128c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"></path>
+                xmlns="http://www.w3.org/2000/svg" style="fill: white; ">
+                <path
+                  d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H112C85.5 0 64 21.5 64 48v48H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h272c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H40c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h208c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h208c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H64v128c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z">
+                </path>
               </svg>
             </div>
 
           </div>
 
-          <h3 class="titulo text-blue-900 text-center pb-4">
+          <h3 class="titulo text-blue-900 text-center pb-3">
             {{translate.section_3_text_4}}
           </h3>
 
-          <div class="text-blue-900 text-description text-center">
+          <div class="text-blue-900 text-description text-center px-3">
             {{translate.section_3_p_4}}
           </div>
 
@@ -428,13 +436,13 @@
           <button mat-raised-button type="submit">Submit</button>
         </form> -->
 
-    <div class="w-full mx-auto py-30 bg-green-primary" id="sectionPay">
+    <div class="w-full mx-auto md:py-30 bg-green-primary" id="sectionPay">
 
-      <div class="grid grid-cols-8 gap-4 px-20">
+      <div class="grid grid-cols-8 gap-4 md:px-20">
         <!-- <div class="col-span-1"></div> -->
-        <div class="col-span-4">
+        <div class="col-span-8 md:col-span-4 p-5 pb-0 md:px-0">
 
-          <h2 class="text-2xl text-white mb-4">
+          <h2 class="text-2xl text-white mb-4 text-center md:text-left">
             {{translate.section_4_left_1}}
           </h2>
           <h3 class="titulo text-white text-center pb-4">
@@ -449,12 +457,12 @@
             </button>
           </div>
 
-          <div class="relative h-30">
+          <div class="relative h-30 hidden md:block">
             <img class="w-50 h-30 absolute bottom-0 right-0"
               src="https://woofunnels.s3.us-east-1.amazonaws.com/templates/template-assets/images/e-learning/left-arrow.png">
           </div>
 
-          <div>
+          <div class="hidden md:block">
             <img
               src="https://weber-language-services.com/wp-content/uploads/2025/01/Contenido-de-patrick-1024x1024.png">
           </div>
@@ -462,11 +470,11 @@
 
         <!-- <div class="col-span-1"></div> -->
 
-        <div class="col-span-4 bg-white rounded p-5">
+        <div class="col-span-8 md:col-span-4 rounded p-5">
 
-          <form [formGroup]="form" class="grid grid-cols-8 gap-4 pb-5">
+          <form [formGroup]="form" class="grid grid-cols-8 gap-4 p-5 pb-0 bg-white rounded-t">
 
-            <div class="col-span-4">
+            <div class="col-span-8 sm:col-span-4">
               <label for="name" class="block text-sm font-medium text-gray-700"
                 [ngClass]="{'text-red-500': !i_v_name}">{{translate.section_4_right_1}}</label>
               <input id="name" formControlName="name"
@@ -474,7 +482,7 @@
                 [ngClass]="{'border-red-500': !i_v_name}">
             </div>
 
-            <div class="col-span-4">
+            <div class="col-span-8 sm:col-span-4">
               <label for="phone" class="block text-sm font-medium text-gray-700"
                 [ngClass]="{'text-red-500': !i_v_phone}">{{translate.section_4_right_2}}</label>
               <input id="phone" formControlName="phone"
@@ -514,13 +522,12 @@
 
             </div>
 
-            <div class="col-span-4">
-              <label for="idioma_1" class="block text-sm font-medium text-gray-700">{{translate.section_4_right_24}}</label>
-              <select id="idioma_1"
-                formControlName="lang_1"
+            <div class="col-span-8 sm:col-span-4">
+              <label for="idioma_1"
+                class="block text-sm font-medium text-gray-700">{{translate.section_4_right_24}}</label>
+              <select id="idioma_1" formControlName="lang_1"
                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                [ngClass]="{'border-red-500 color-red-500': !lang_v_1}"
-                >
+                [ngClass]="{'border-red-500 color-red-500': !lang_v_1}">
                 <option value="">{{translate.section_4_right_26}}</option>
                 <option value="be">Belarusian</option>
                 <option value="bg">Bulgarian</option>
@@ -535,13 +542,12 @@
               </select>
             </div>
 
-            <div class="col-span-4">
-              <label for="idioma_2" class="block text-sm font-medium text-gray-700">{{translate.section_4_right_25}}</label>
-              <select id="idioma_2"
-                formControlName="lang_2"
+            <div class="col-span-8 sm:col-span-4">
+              <label for="idioma_2"
+                class="block text-sm font-medium text-gray-700">{{translate.section_4_right_25}}</label>
+              <select id="idioma_2" formControlName="lang_2"
                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                [ngClass]="{'border-red-500 color-red-500': !lang_v_2}"
-                >
+                [ngClass]="{'border-red-500 color-red-500': !lang_v_2}">
                 <option value="">{{translate.section_4_right_26}}</option>
                 <option value="be">Belarusian</option>
                 <option value="bg">Bulgarian</option>
@@ -582,15 +588,16 @@
 
               <div class="grid grid-cols-10 gap-4">
 
-                <div class="col-span-8">
-                  <label for="coupon-code" class="block text-sm font-medium text-gray-700">{{translate.section_4_right_9}}</label>
+                <div class="col-span-10 sm:col-span-8">
+                  <label for="coupon-code"
+                    class="block text-sm font-medium text-gray-700">{{translate.section_4_right_9}}</label>
                   <input id="coupon-code" type="text" placeholder="Enter coupon code" formControlName="cupon"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 </div>
 
-                <div class="col-span-2 relative">
+                <div class="col-span-10 sm:col-span-2 relative">
                   <button type="button"
-                    class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 absolute bottom-0">{{translate.section_4_right_10}}</button>
+                    class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:absolute sm:bottom-0">{{translate.section_4_right_10}}</button>
                 </div>
 
               </div>
@@ -608,7 +615,7 @@
                 </div> -->
           </form>
 
-          <form [formGroup]="formStripe" class="grid grid-cols-8 gap-4 pb-5">
+          <form [formGroup]="formStripe" class="grid grid-cols-8 gap-4 p-5 mb-5 bg-white rounded-b">
 
             <!-- <div id="card-element"></div>
                 <button (click)="handlePayment()" type="button" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-20">Pagar</button> -->
@@ -630,7 +637,7 @@
             <div class="col-span-8">
 
               <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-6">
+                <div class="col-span-12 sm:col-span-6">
                   <label for="card-number-element" class="block text-sm font-medium text-gray-700"
                     [ngClass]="{'text-red-500': !i_v_s_number}">
                     {{translate.section_4_right_13}}
@@ -640,7 +647,7 @@
                     [ngClass]="{'border-red-500': !i_v_s_number}" style="margin-bottom: 20px;"></div>
                 </div>
 
-                <div class="col-span-4">
+                <div class="col-span-8 sm:col-span-4">
                   <label for="card-expiry-element" class="block text-sm font-medium text-gray-700"
                     [ngClass]="{'text-red-500': !i_v_s_expiry}">
                     {{translate.section_4_right_14}}
@@ -650,7 +657,7 @@
                     [ngClass]="{'border-red-500': !i_v_s_expiry}" style="margin-bottom: 20px;"></div>
                 </div>
 
-                <div class="col-span-2">
+                <div class="col-span-4 sm:col-span-2">
                   <label for="card-cvc-element" class="block text-sm font-medium text-gray-700"
                     [ngClass]="{'text-red-500': !i_v_s_cvc}">{{translate.section_4_right_15}}</label>
                   <div id="card-cvc-element"
@@ -671,7 +678,7 @@
 
             <div class="col-span-8">
               <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-3">
+                <div class="col-span-12 md:col-span-3">
 
                   <button (click)="handlePayment()" type="button"
                     class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{{translate.section_4_right_16}}</button>
@@ -683,32 +690,38 @@
 
           </form>
 
-          <div class="border p-4 rounded-md shadow-sm">
+          <div class="border p-4 rounded-md shadow-sm bg-white">
             <h2 class="text-lg font-medium text-gray-700 mb-4">{{translate.section_4_right_17}}</h2>
             <ul class="list-disc pl-5 text-gray-700">
 
               <li class="relative">
-                {{translate.section_4_right_18}} {{form.get('numberOfPages').value}} : <span class="absolute right-0">{{ (form.get('numberOfPages').value * 55).toFixed(2).toString() }} €</span>
+                {{translate.section_4_right_18}} {{form.get('numberOfPages').value}} : <span class="absolute right-0">{{
+                  (form.get('numberOfPages').value * 55).toFixed(2).toString() }} €</span>
               </li>
 
               <li class="relative" *ngIf="form.get('certificationOptions').value">
-                {{translate.section_4_right_19}}: <span class="absolute right-0">{{ (100).toFixed(2).toString() }} €</span>
+                {{translate.section_4_right_19}}: <span class="absolute right-0">{{ (100).toFixed(2).toString() }}
+                  €</span>
               </li>
 
               <li class="relative" *ngIf="form.get('legalizationApostille').value">
-                {{translate.section_4_right_20}}: <span class="absolute right-0">{{ (100).toFixed(2).toString() }} €</span>
+                {{translate.section_4_right_20}}: <span class="absolute right-0">{{ (100).toFixed(2).toString() }}
+                  €</span>
               </li>
 
             </ul>
             <div class="mt-4">
               <p class="font-medium text-gray-700 relative">
-                {{translate.section_4_right_21}}: <span class="absolute right-0"> {{ SubTotal().toFixed(2).toString() }} €</span>
+                {{translate.section_4_right_21}}: <span class="absolute right-0"> {{ SubTotal().toFixed(2).toString() }}
+                  €</span>
               </p>
               <p class="font-medium text-gray-700 relative">
-                {{translate.section_4_right_22}}: <span class="absolute right-0"> {{ Iva().toFixed(2).toString() }} €</span>
+                {{translate.section_4_right_22}}: <span class="absolute right-0"> {{ Iva().toFixed(2).toString() }}
+                  €</span>
               </p>
               <p class="font-medium text-gray-700 relative">
-                {{translate.section_4_right_23}}: <span class="absolute right-0"> {{ (this.iva + this.sub).toFixed(2).toString() }} €</span>
+                {{translate.section_4_right_23}}: <span class="absolute right-0"> {{ (this.iva +
+                  this.sub).toFixed(2).toString() }} €</span>
               </p>
             </div>
           </div>
@@ -721,7 +734,321 @@
 
     </div>
 
-    <div id="contactanos" class="container columns-1 mx-8 bg-white p-6 pb-10 rounded-b-lg">
+    <div class="w-full bg-white">
+
+      <div class="grid grid-cols-10 gap-4">
+
+        <div class="col-span-2"></div>
+        <div class="col-span-10 md:col-span-6 text-center md:mt-20 mb-10">
+          <h3 class="titulo text-blue-900 text-center">
+            {{translate.section_5_title}}
+          </h3>
+        </div>
+        <div class="hidden md:block col-span-2"></div>
+
+        <div class="hidden md:block col-span-1"></div>
+
+        <div class="col-span-10 md:col-span-2 text-center pb-5">
+
+          <div class="flex justify-center items-center mb-10">
+
+            <div class="w-20 h-20 flex justify-center items-center"
+              style="background-color: #131D76; border-radius: 100%;">
+              <svg aria-hidden="true" style="fill: white;" class="e-font-icon-svg e-far-paper-plane w-8" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M440 6.5L24 246.4c-34.4 19.9-31.1 70.8 5.7 85.9L144 379.6V464c0 46.4 59.2 65.5 86.6 28.6l43.8-59.1 111.9 46.2c5.9 2.4 12.1 3.6 18.3 3.6 8.2 0 16.3-2.1 23.6-6.2 12.8-7.2 21.6-20 23.9-34.5l59.4-387.2c6.1-40.1-36.9-68.8-71.5-48.9zM192 464v-64.6l36.6 15.1L192 464zm212.6-28.7l-153.8-63.5L391 169.5c10.7-15.5-9.5-33.5-23.7-21.2L155.8 332.6 48 288 464 48l-59.4 387.3z"></path></svg>
+            </div>
+
+          </div>
+
+          <h3 class="titulo text-blue-900 text-center pb-3">
+            {{translate.section_5_text_1}}
+          </h3>
+
+          <div class="text-blue-900 text-description text-center px-3">
+            {{translate.section_5_p_1}}
+          </div>
+
+        </div>
+
+        <div class="col-span-10 md:col-span-2 text-center pb-5">
+
+          <div class="flex justify-center items-center mb-10">
+
+            <div class="w-20 h-20 flex justify-center items-center"
+              style="background-color: #1DBB90; border-radius: 100%;">
+              <svg aria-hidden="true" style="fill: white;" class="e-font-icon-svg e-fas-user-shield w-8" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><path d="M622.3 271.1l-115.2-45c-4.1-1.6-12.6-3.7-22.2 0l-115.2 45c-10.7 4.2-17.7 14-17.7 24.9 0 111.6 68.7 188.8 132.9 213.9 9.6 3.7 18 1.6 22.2 0C558.4 489.9 640 420.5 640 296c0-10.9-7-20.7-17.7-24.9zM496 462.4V273.3l95.5 37.3c-5.6 87.1-60.9 135.4-95.5 151.8zM224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm96 40c0-2.5.8-4.8 1.1-7.2-2.5-.1-4.9-.8-7.5-.8h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c6.8 0 13.3-1.5 19.2-4-54-42.9-99.2-116.7-99.2-212z"></path></svg>
+            </div>
+
+          </div>
+
+          <h3 class="titulo text-blue-900 text-center pb-3">
+            {{translate.section_5_text_2}}
+          </h3>
+
+          <div class="text-blue-900 text-description text-center px-3">
+            {{translate.section_5_p_2}}
+          </div>
+
+        </div>
+
+        <div class="col-span-10 md:col-span-2 text-center pb-5">
+
+          <div class="flex justify-center items-center mb-10">
+
+            <div class="w-20 h-20 flex justify-center items-center"
+              style="background-color: #A764FF; border-radius: 100%;">
+              <svg aria-hidden="true" style="fill: white;" class="e-font-icon-svg e-fas-thumbs-up w-8" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M104 224H24c-13.255 0-24 10.745-24 24v240c0 13.255 10.745 24 24 24h80c13.255 0 24-10.745 24-24V248c0-13.255-10.745-24-24-24zM64 472c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zM384 81.452c0 42.416-25.97 66.208-33.277 94.548h101.723c33.397 0 59.397 27.746 59.553 58.098.084 17.938-7.546 37.249-19.439 49.197l-.11.11c9.836 23.337 8.237 56.037-9.308 79.469 8.681 25.895-.069 57.704-16.382 74.757 4.298 17.598 2.244 32.575-6.148 44.632C440.202 511.587 389.616 512 346.839 512l-2.845-.001c-48.287-.017-87.806-17.598-119.56-31.725-15.957-7.099-36.821-15.887-52.651-16.178-6.54-.12-11.783-5.457-11.783-11.998v-213.77c0-3.2 1.282-6.271 3.558-8.521 39.614-39.144 56.648-80.587 89.117-113.111 14.804-14.832 20.188-37.236 25.393-58.902C282.515 39.293 291.817 0 312 0c24 0 72 8 72 81.452z"></path></svg>
+            </div>
+
+          </div>
+
+          <h3 class="titulo text-blue-900 text-center pb-3">
+            {{translate.section_5_text_3}}
+          </h3>
+
+          <div class="text-blue-900 text-description text-center px-3">
+            {{translate.section_5_p_3}}
+          </div>
+
+        </div>
+
+        <div class="col-span-10 md:col-span-2 text-center pb-5">
+
+          <div class="flex justify-center items-center mb-10">
+
+            <div class="w-20 h-20 flex justify-center items-center"
+              style="background-color: #DBAE1E; border-radius: 100%;">
+              <svg aria-hidden="true" style="fill: white;" class="e-font-icon-svg e-fas-wrench w-8" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M507.73 109.1c-2.24-9.03-13.54-12.09-20.12-5.51l-74.36 74.36-67.88-11.31-11.31-67.88 74.36-74.36c6.62-6.62 3.43-17.9-5.66-20.16-47.38-11.74-99.55.91-136.58 37.93-39.64 39.64-50.55 97.1-34.05 147.2L18.74 402.76c-24.99 24.99-24.99 65.51 0 90.5 24.99 24.99 65.51 24.99 90.5 0l213.21-213.21c50.12 16.71 107.47 5.68 147.37-34.22 37.07-37.07 49.7-89.32 37.91-136.73zM64 472c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"></path></svg>
+            </div>
+
+          </div>
+
+          <h3 class="titulo text-blue-900 text-center pb-3">
+            {{translate.section_5_text_4}}
+          </h3>
+
+          <div class="text-blue-900 text-description text-center px-3">
+            {{translate.section_5_p_4}}
+          </div>
+
+        </div>
+
+        <div class="col-span-1"></div>
+
+      </div>
+
+    </div>
+
+    <div class="w-full bg-gray-200 py-20 px-5 md:px-0">
+      <div class="grid grid-cols-10 gap-4">
+
+        <div class="col-span-10 text-center md:mt-20 mb-10">
+          <h3 class="titulo text-blue-900 text-center">
+            {{translate.section_6_title}}
+          </h3>
+        </div>
+
+        <div class="col-span-1"></div>
+
+        <div class="col-span-10 md:col-span-4">
+
+          <div class="grid grid-cols-10 gap-4">
+
+            <div class="col-span-10">
+
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_1}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+    
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_1}}</p>
+                </div>
+              </details>
+            </div>
+            <div class="col-span-10">
+    
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_2}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_2}}</p>
+                  <p>{{translate.section_6_p_2_2}}</p>
+                </div>
+              </details>
+            </div>
+            <div class="col-span-10">
+    
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_3}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+    
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_3}}</p>
+                </div>
+              </details>
+            </div>
+            <div class="col-span-10">
+    
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_4}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_4}}</p>
+                  <p>{{translate.section_6_p_4_2}}</p>
+                </div>
+              </details>
+            </div>
+            <div class="col-span-10">
+    
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_5}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+    
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_5}}</p>
+                  <p>{{translate.section_6_p_5_2}}</p>
+                  <p>{{translate.section_6_p_5_3}}</p>
+                </div>
+              </details>
+            </div>
+            
+          </div>
+
+        </div>
+
+        <div class="col-span-10 md:col-span-4">
+
+          <div class="grid grid-cols-10 gap-4">
+
+            <div class="col-span-10">
+    
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_6}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+    
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_6}}</p>
+                  <p>{{translate.section_6_p_6_2}}</p>
+                  <p>{{translate.section_6_p_6_3}}</p>
+                  <p>{{translate.section_6_p_6_4}}</p>
+                  <p>{{translate.section_6_p_6_5}}</p>
+    
+                </div>
+              </details>
+            </div>
+            <div class="col-span-10">
+    
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_7}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_7}}</p>
+                </div>
+              </details>
+            </div>
+            <div class="col-span-10">
+    
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_8}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_8}}</p>
+                  <p>{{translate.section_6_p_8_2}}</p>
+                  <p>{{translate.section_6_p_8_3}}</p>
+                </div>
+              </details>
+            </div>
+            <div class="col-span-10">
+    
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_9}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+    
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_9}}</p>
+                  <p>{{translate.section_6_p_9_2}}</p>
+                  <p>{{translate.section_6_p_9_3}}</p>
+                </div>
+              </details>
+            </div>
+            <div class="col-span-10">
+    
+              <details class="border-b bg-white">
+                <summary
+                  class="cursor-pointer w-full text-left font-semibold text-gray-800 focus:outline-none text-3xl p-5 pr-12">
+                  {{translate.section_6_text_10}}
+    
+                  <svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  <svg class="e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
+                  
+                </summary>
+                <div class="px-4 py-2 text-2xl">
+                  <p>{{translate.section_6_p_10}}</p>
+                  <p>{{translate.section_6_p_10_2}}</p>
+                  <p>{{translate.section_6_p_10_3}}</p>
+                </div>
+              </details>
+            </div>
+
+          </div>
+
+        </div>
+
+        
+
+        <div class="col-span-1"></div>
+      </div>
+    </div>
+
+    <!-- <div id="contactanos" class="container columns-1 mx-8 bg-white p-6 pb-10 rounded-b-lg">
       <h3 class="titulo text-blue-900 pb-4 text-center">Contáctanos</h3>
       <div class="flex justify-center">
         <table>
@@ -760,6 +1087,22 @@
         </table>
       </div>
 
+    </div> -->
+
+    <div class="w-full bg-white p-10">
+      <div class="grid grid-cols-10 gap-4">
+
+        <div class="col-span-10 sm:col-span-3">
+          <img class="h-14 w-auto mx-auto" src="https://weber-language-services.com/wp-content/uploads/2024/12/cropped-logo-weber-language-servieces-2.png" alt="">
+        </div>
+
+        <div class="col-span-4"></div>
+
+        <div class="col-span-10 sm:col-span-3 text-center">
+          <h2 class="text-2xl text-gray-400 mb-4 text-center md:text-left">{{ landing.correo_contacto }}</h2>
+        </div>
+
+      </div>
     </div>
 
 

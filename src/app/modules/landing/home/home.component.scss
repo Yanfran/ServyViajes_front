@@ -27,6 +27,40 @@ owl-carousel-o {
     background: #1DBB90 !important;
 }
 
+details summary svg {
+    display: block;
+    fill: #666666;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+details summary svg+svg {
+    display: none;
+}
+
+details[open] summary svg {
+    display: none;
+}
+
+details[open] summary svg+svg {
+    display: block;
+    fill: #EE354F;
+}
+
+details summary{
+    position: relative;
+}
+
+summary::marker{
+    content: "";
+}
+
+summary svg{
+    width: 1.5rem;
+    float: right;
+}
+
 
 /*responsive secction*/
 /*pc, laptop*/
