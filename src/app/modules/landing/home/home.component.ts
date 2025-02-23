@@ -116,12 +116,15 @@ export class LandingHomeComponent {
 
     // validator stripe
     i_v_s_email: boolean = true;
+    i_v_s_country: boolean = true;
     i_v_s_number: boolean = true;
     i_v_s_expiry: boolean = true;
     i_v_s_cvc: boolean = true;
 
     isModalOpen = false;
     translate : any = {};
+
+    priceOfPage: number = 0;
 
     constructor(private _landingHomeService: LandingHomeService,
         private router: Router,
@@ -161,7 +164,8 @@ export class LandingHomeComponent {
             cupon: [''],
         });
         this.formStripe = this.fb.group({
-            email: ['']
+            email: [''],
+            country: ['']
         });
     }
 
@@ -203,6 +207,8 @@ export class LandingHomeComponent {
     getLanding() {
         this._landingHomeService.getLanding().subscribe(
             (response: any) => {
+
+                console.log(response);
                 if (response.result) {
                     const data = response.data;
                     this.asignarValores(data);
@@ -270,46 +276,25 @@ export class LandingHomeComponent {
 
     async countPages(file: File) {
 
-        // const reader = new FileReader();
-
-        // reader.onload = (e) => {
-        //     const typedarray = new Uint8Array(e.target.result as ArrayBuffer);
-        //     // pdfjsLib.getDocument(typedarray).promise.then((pdf) => {
-        //     //     const numPages = pdf.numPages;
-        //     //     this.form.patchValue({ numberOfPages: numPages });
-        //     //     console.log(`Number of pages: ${numPages}`);
-        //     // });
-        // };
-
-        // reader.readAsArrayBuffer(file);
-
         const arrayBuffer = await file.arrayBuffer();
         const pdfDoc = await PDFDocument.load(arrayBuffer);
         const numPages = pdfDoc.getPageCount();
+
         this.form.patchValue({ numberOfPages: numPages });
+
+        if (numPages >= 1 && numPages <= 50) {
+            this.priceOfPage = 50;
+        } else if (numPages > 50 && numPages <= 100) {
+            this.priceOfPage = 40;
+        } else if (numPages > 100 && numPages <= 150) {
+            this.priceOfPage = 30;
+        } else if (numPages > 150) {
+            this.priceOfPage = 25;
+        }
+
         console.log(`Number of pages: ${numPages}`);
+        console.log(`Price of pages: ${this.priceOfPage}`);
     }
-
-    // async handlePayment() {
-    //     const stripe = await this.stripePromise;
-    //     stripe.createPaymentMethod
-    //     const { error, paymentIntent } = await stripe.createPayment({
-    //       amount: 1000, // Monto en centavos
-    //       currency: 'usd',
-    //       payment_method: {
-    //         card: this.card,
-    //         billing_details: {
-    //           name: 'Nombre del Cliente',
-    //         },
-    //       },
-    //     });
-
-    //     if (error) {
-    //       console.error('Error:', error);
-    //     } else {
-    //       console.log('Pago exitoso:', paymentIntent);
-    //     }
-    // }
 
     async handlePayment() {
 
@@ -325,10 +310,6 @@ export class LandingHomeComponent {
 
                 const stripe = await this.stripePromise;
 
-                // Solicita el client_secret al backend (aquí uso un ejemplo de cómo hacerlo sin backend, pero es recomendable usar uno)
-                // const clientSecret = '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';
-
-                // Crear el PaymentIntent directamente desde el frontend (solo para pruebas, no recomendado en producción)
                 // Secret
                 const response = await fetch('https://api.stripe.com/v1/payment_intents', {
                     method: 'POST',
@@ -351,6 +332,9 @@ export class LandingHomeComponent {
                         billing_details: {
                             // name: this.form.get('name').value,
                             email: this.formStripe.get('email').value,
+                            address: {
+                                country: this.formStripe.get('country').value, // Asegúrate de que "country" es el nombre del campo en tu formulario
+                            },
                         },
                     },
                 });
@@ -360,18 +344,6 @@ export class LandingHomeComponent {
                     throw new Error(error.message);
 
                 }
-
-                // console.log("1", this.form.get('name').value);
-                // console.log("2", this.form.get('email').value);
-                // console.log("3", this.form.get('phone').value);
-                // console.log("4", this.form.get('file').value);
-                // console.log("5", this.form.get('numberOfPages').value);
-                // console.log("6", this.form.get('certificationOptions').value);
-                // console.log("7", this.form.get('legalizationApostille').value);
-                // console.log("8", this.form.get('cupon').value);
-                // console.log("9", this.formStripe.get('email').value);
-                // console.log("10", paymentIntent.id);
-                // console.log("11", total);
 
                 const base64 = await this.convertFileToBase64(this.form.get('file').value);
 
@@ -420,7 +392,7 @@ export class LandingHomeComponent {
 
         var sub = 0;
 
-        sub = this.form.get('numberOfPages').value * 55;
+        sub = this.form.get('numberOfPages').value * this.priceOfPage;
 
         if (this.form.get('certificationOptions').value) {
             sub += 100;
@@ -457,6 +429,7 @@ export class LandingHomeComponent {
 
         // Stripe
         const i_s_email = this.formStripe.get('email').value;
+        const i_s_country = this.formStripe.get('country').value;
 
         const cardElement = this.cardNumber;
         const valCard = cardElement ? cardElement._complete : false;
@@ -508,6 +481,11 @@ export class LandingHomeComponent {
             val = false;
         }
 
+        if (!i_s_country) {
+            this.i_v_s_country = false;
+            val = false;
+        }
+
         if (!valCard) {
             this.i_v_s_number = false;
             val = false;
@@ -540,6 +518,7 @@ export class LandingHomeComponent {
 
         // Stripe
         this.i_v_s_email = true;
+        this.i_v_s_country = true;
         this.i_v_s_number = true;
         this.i_v_s_expiry = true;
         this.i_v_s_cvc = true;
@@ -569,7 +548,7 @@ export class LandingHomeComponent {
 
         var total = 0;
 
-        total = this.form.get('numberOfPages').value * 55;
+        total = this.form.get('numberOfPages').value * this.priceOfPage;
 
         if (this.form.get('certificationOptions').value) {
             total += 100;
