@@ -1,5 +1,5 @@
 <div class="flex flex-col w-full h-full">
-  <nav class="bg-gray-900 fixed top-0 left-0 right-0 z-10 bg-purple-primary">
+  <nav class="bg-gray-900 fixed top-0 left-0 right-0 z-10 bg-purple-primary" *ngIf="false">
     <div class="mx-auto max-w-screen-2xl px-2 sm:px-8 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -165,9 +165,32 @@
           </owl-carousel-o>
         </div> -->
 
-    <div class=" mx-auto bg-white pb-10 pt-20 bg-purple-primary">
+        <div class="flex fixed right-5 bottom-5">
+          <select id="translate"
+            class="mt-1 block w-full px-3 py-2 border border-gray-500 rounded-md focus:outline-none focus:ring-white sm:text-lg bg-white"
+            (change)="loadTranslations($event.target.value)">
+            <option value="de"> <span><img src="https://weber-language-services.com/wp-content/plugins/gtranslate/flags/svg/es.svg" alt="Es"> De</span> </option>
+            <option value="es"><img src="https://weber-language-services.com/wp-content/plugins/gtranslate/flags/svg/es.svg" alt="Es"> Es</option>
+            <option value="en"><img src="https://weber-language-services.com/wp-content/plugins/gtranslate/flags/svg/es.svg" alt="Es"> En</option>
+          </select>
+        </div>
 
-      <div class="grid grid-cols-8 gap-4 max-w-7xl">
+    <div class=" mx-auto bg-white pb-10 bg-purple-primary">
+
+      <div class="grid grid-cols-8 gap-4 max-w-7xl justify-self-center">
+
+        <div class="col-span-8">
+          <div class="grid grid-cols-2 gap-4 max-w-7xl justify-self-center">
+
+            <div class="col-span-2">
+              <div class="p-6">
+                <img class="rounded-lg"
+                  src="https://weber-language-services.com/wp-content/uploads/2025/01/logo-weber-language-servieces-3-e1736103381825.png">
+              </div>
+            </div>
+
+          </div>
+        </div>
 
         <div class="col-span-1"></div>
         <div class="col-span-8 md:col-span-4 flex justify-center items-center">
@@ -189,13 +212,10 @@
         <div class="sm:col-span-2 md:hidden"></div>
 
         <div class="col-span-8 sm:col-span-4 md:col-span-2">
-
           <div class="p-6">
             <img class="rounded-lg"
               src="https://weber-language-services.com/wp-content/uploads/2025/01/Contenido-de-patrick-2-1024x1024.png">
           </div>
-
-
         </div>
 
         <div class="col-span-1"></div>
@@ -224,6 +244,7 @@
 
         </div>
       -->
+        <div class="col-span-1"></div>
 
         <div class="col-span-10 md:col-span-4" style="align-self: center;">
 
@@ -237,9 +258,7 @@
 
         </div>
 
-        <div class="col-span-1"></div>
-
-        <div class="col-span-10 md:col-span-5 flex justify-center items-center">
+        <div class="col-span-10 md:col-span-4 flex justify-center items-center">
 
           <div class="px-6">
             <h3 class="titulo text-blue-900 text-center pb-10">
@@ -258,6 +277,8 @@
 
 
         </div>
+
+        <div class="col-span-1"></div>
 
         <div class="col-span-2"></div>
         <div class="col-span-10 md:col-span-6 text-center md:mt-20 mb-10">
