@@ -28,6 +28,7 @@ import { HttpClient } from '@angular/common/http';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 import { PdfService } from 'app/services/pdf/pdf.service';
+import { group } from '@angular/animations';
 
 @Component({
     selector: 'landing-home',
@@ -89,6 +90,7 @@ export class LandingHomeComponent {
 
     form: FormGroup;
     formStripe: FormGroup;
+    formSuscribe: FormGroup;
     total: number = 0;
 
     // Stripe
@@ -166,6 +168,9 @@ export class LandingHomeComponent {
         this.formStripe = this.fb.group({
             email: [''],
             country: ['']
+        });
+        this.formSuscribe = this.fb.group({
+            email: ['']
         });
     }
 

@@ -1,6 +1,8 @@
 //asignar el tipo de fuente {
+
 h1, h2, h3, h4, h5, p, span, a, option, select, div {
     font-family: 'Poppins', sans-serif;
+    // font-family: "Gothic A1", Sans-serif;
 }
 .titulo {
     font-weight: 700;
@@ -63,6 +65,10 @@ summary svg{
 
 .max-w-container{
     max-width: 1200px;
+}
+
+.text-blue-new{
+    color: #11385B;
 }
 
 /*responsive secction*/
