@@ -71,6 +71,26 @@ summary svg{
     color: #11385B;
 }
 
+.banderas{
+    max-width: 40px;
+}
+
+#translate{
+    border:solid 1px rgb(100 116 139) !important;
+
+}
+.theme-default .light .mat-mdc-icon-button:hover .mat-mdc-button-persistent-ripple::before, .theme-default.light .mat-mdc-icon-button:hover .mat-mdc-button-persistent-ripple::before{
+    opacity: 0;
+}
+.theme-default .light .mat-mdc-icon-button:active .mat-mdc-button-persistent-ripple::before, .theme-default.light .mat-mdc-icon-button:active .mat-mdc-button-persistent-ripple::before{
+    opacity: 0;
+}
+
+#translate[aria-expanded="true"] mat-icon{
+    transform: rotate(180deg);
+}
+// aria-expanded="true"
+
 /*responsive secction*/
 /*pc, laptop*/
 @media only screen and (min-width: 1280px) {

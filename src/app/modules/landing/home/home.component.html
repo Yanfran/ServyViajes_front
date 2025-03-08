@@ -165,8 +165,8 @@
           </owl-carousel-o>
         </div> -->
 
-    <div class="flex fixed right-5 bottom-5">
-      <select id="translate"
+    <div class="flex fixed right-5 bottom-5" style="z-index: 10;">
+      <!-- <select id="translate"
         class="mt-1 block w-full px-3 py-2 border border-gray-500 rounded-md focus:outline-none focus:ring-white sm:text-lg bg-white"
         (change)="loadTranslations($event.target.value)">
         <option value="de"> <span><img
@@ -176,7 +176,48 @@
             alt="Es"> Es</option>
         <option value="en"><img src="https://weber-language-services.com/wp-content/plugins/gtranslate/flags/svg/es.svg"
             alt="Es"> En</option>
-      </select>
+      </select> -->
+
+      <!-- <div id="translate" class="flex align-items-centerx bg-white py-3 px-5 border border-gray-500 rounded-md">
+        <img src="assets/images/img/es.png" class="banderas inline-flex mr-2" alt="">
+        <span class="text-2xl text-gray-500">ES</span>
+      </div>
+
+      <div id="translate_options" style="position: relative; top: -300px;">
+        <div>
+          <img src="assets/images/img/es.png" class="banderas inline-flex mr-2" alt="">
+          <span class="text-2xl text-gray-500">Spanish</span>
+        </div>
+
+        <div>
+          <img src="assets/images/img/en.png" class="banderas inline-flex mr-2" alt="">
+          <span class="text-2xl text-gray-500">English</span>
+        </div> -->
+
+      <button id="translate" [matMenuTriggerFor]="langMenu" mat-icon-button
+        class="bg-white w-full border border-gray-500 rounded-md flex items-center px-4 py-2">
+        <img [src]="lang_selected.img" class="banderas inline-flex mr-2" alt="">
+        <span class="text-2xl text-gray-500 uppercase">{{lang_selected.value}}</span>
+        <mat-icon class="text-gray-500 ml-2">arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #langMenu="matMenu">
+
+        <!-- <button mat-menu-item (click)="loadTranslations('es')">
+          <img src="assets/images/img/es.png" class="banderas inline-flex mr-2" alt="">
+          <span class="text-2xl text-gray-500">Spanish</span>
+        </button>
+        <button mat-menu-item (click)="loadTranslations('en')">
+          <img src="assets/images/img/en.png" class="banderas inline-flex mr-2" alt="">
+          <span class="text-2xl text-gray-500">English</span>
+        </button> -->
+
+        <button *ngFor="let lang of lang_options" mat-menu-item (click)="loadTranslations(lang)">
+          <img [src]="lang.img" class="banderas inline-flex mr-2" alt="">
+          <span class="text-2xl text-gray-500">{{ lang.name }}</span>
+      </button>
+      </mat-menu>
+
+      <!-- </div> -->
     </div>
 
     <div class=" mx-auto bg-white pb-10 bg-purple-primary">
@@ -1502,14 +1543,14 @@
           <form [formGroup]="formSuscribe" class="flex items-center space-x-2 mt-5">
             <div class="flex items-center w-full">
               <input type="email" placeholder="{{translate.footer_1_2_mail}}" formControlName="email"
-                     class="w-full pl-4 pr-3 py-2 border border-indigo-700 rounded-l-full focus:outline-none focus:ring-indigo-700 focus:border-indigo-700 h-12"/>
+                class="w-full pl-4 pr-3 py-2 border border-indigo-700 rounded-l-full focus:outline-none focus:ring-indigo-700 focus:border-indigo-700 h-12" />
               <button type="button"
-                      class="h-12 px-4 border border-transparent rounded-r-full text-white bg-indigo-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 flex items-center justify-center">
+                class="h-12 px-4 border border-transparent rounded-r-full text-white bg-indigo-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 flex items-center justify-center">
                 <mat-icon class="icon-size-6 text-white">mail</mat-icon>
               </button>
             </div>
-          </form>          
-          
+          </form>
+
         </div>
 
       </div>
@@ -1525,7 +1566,8 @@
 
         <div class="col-span-5">
           <div class="text-white text-right text-lg"><span class="mr-10">{{translate.footer_2_2_s_1}}</span>
-            <span>{{translate.footer_2_2_s_2}}</span> </div>
+            <span>{{translate.footer_2_2_s_2}}</span>
+          </div>
         </div>
 
       </div>

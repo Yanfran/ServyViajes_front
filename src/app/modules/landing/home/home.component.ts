@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { MatMenuModule } from '@angular/material/menu';
+
 // import * as pdfjsLib from 'pdfjs-dist';
 // import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
 import { PDFDocument } from 'pdf-lib';
@@ -51,6 +53,7 @@ import { group } from '@angular/animations';
         MatChipsModule,
         MatDatepickerModule,
         MatCheckboxModule,
+        MatMenuModule,
     ],
 })
 export class LandingHomeComponent {
@@ -128,6 +131,30 @@ export class LandingHomeComponent {
 
     priceOfPage: number = 0;
 
+    lang_options = [
+        {
+            name: "Spanish",
+            value: "es",
+            img: "assets/images/img/es.png"
+        },
+        {
+            name: "English",
+            value: "en",
+            img: "assets/images/img/en.png"
+        },
+        {
+            name: "Deutsch",
+            value: "de",
+            img: "assets/images/img/de.png"
+        }
+    ];
+
+    lang_selected: any = {
+        name: "Deutsch",
+        value: "de",
+        img: "assets/images/img/de.png"
+    };
+
     constructor(private _landingHomeService: LandingHomeService,
         private router: Router,
         private _landingEventosService: LandingEventosService,
@@ -177,7 +204,7 @@ export class LandingHomeComponent {
     async ngOnInit() {
 
         console.log(1, this.translate);
-        await this.loadTranslations("de");
+        await this.loadTranslations(this.lang_selected);
         console.log(2, this.translate);
 
         const stripe = await this.stripePromise;
@@ -628,10 +655,11 @@ export class LandingHomeComponent {
         );
     }
 
-    async loadTranslations(lang: string) {
+    async loadTranslations(lang: any) {
         try {
-          const data = await this._landingHomeService.getTranslation(lang).toPromise();
+          const data = await this._landingHomeService.getTranslation(lang.value).toPromise();
           this.translate = data;
+          this.lang_selected = lang;
         } catch (error) {
           console.error('Error loading translations:', error);
         }
